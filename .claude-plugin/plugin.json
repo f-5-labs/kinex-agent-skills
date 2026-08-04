@@ -1,0 +1,12 @@
+{
+  "name": "kinex",
+  "version": "0.2.0",
+  "description": "Plan-first Kinex creative production skills and an authenticated remote MCP connection.",
+  "author": { "name": "Kinex Studio", "url": "https://kinex.studio" },
+  "homepage": "https://docs.kinex.studio/mcp",
+  "repository": "https://github.com/f-5-labs/kinex-agent-skills",
+  "keywords": ["kinex", "video-production", "creative-direction", "storyboarding", "mcp"],
+  "mcpServers": {
+    "kinex": { "type": "http", "url": "https://api.kinex.studio/mcp" }
+  }
+}

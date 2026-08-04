@@ -1,0 +1,11 @@
+interface:
+  display_name: 'Direct Agent Workspace'
+  short_description: 'Plan-first direction with shared project canon'
+  default_prompt: 'Use $kinex-agent-workspace to direct this Kinex project from its current evidence and plan.'
+dependencies:
+  tools:
+    - type: 'mcp'
+      value: 'kinex'
+      description: 'Kinex creative production MCP server'
+      transport: 'streamable_http'
+      url: 'https://api.kinex.studio/mcp'

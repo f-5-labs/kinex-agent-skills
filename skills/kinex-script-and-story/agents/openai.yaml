@@ -1,0 +1,11 @@
+interface:
+  display_name: 'Write with Kinex'
+  short_description: 'Develop scripts and production-ready shot plans'
+  default_prompt: 'Use $kinex-script-and-story to develop this idea into a production-ready script.'
+dependencies:
+  tools:
+    - type: 'mcp'
+      value: 'kinex'
+      description: 'Kinex creative production MCP server'
+      transport: 'streamable_http'
+      url: 'https://api.kinex.studio/mcp'

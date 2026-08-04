@@ -1,0 +1,13 @@
+{
+  "$schema": "https://cursor.com/schemas/cursor-plugin/plugin.json",
+  "name": "kinex",
+  "displayName": "Kinex",
+  "version": "0.2.0",
+  "description": "Plan-first creative direction and complete AI video production through Kinex MCP.",
+  "author": { "name": "Kinex Studio", "email": "support@kinex.studio" },
+  "publisher": "FPoint5Labs",
+  "homepage": "https://docs.kinex.studio/mcp",
+  "repository": "https://github.com/f-5-labs/kinex-agent-skills",
+  "category": "ai-content",
+  "keywords": ["kinex", "video-production", "creative-direction", "storyboarding", "mcp"]
+}

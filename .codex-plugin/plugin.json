@@ -1,0 +1,39 @@
+{
+  "name": "kinex",
+  "version": "0.2.0",
+  "description": "Plan-first creative direction and complete AI video production through the authenticated Kinex MCP server.",
+  "author": {
+    "name": "Kinex Studio",
+    "email": "support@kinex.studio",
+    "url": "https://kinex.studio"
+  },
+  "homepage": "https://docs.kinex.studio/mcp",
+  "repository": "https://github.com/f-5-labs/kinex-agent-skills",
+  "keywords": [
+    "kinex",
+    "video-production",
+    "creative-direction",
+    "storyboarding",
+    "scriptwriting",
+    "mcp"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Kinex",
+    "shortDescription": "Plan, direct, review, and export AI videos",
+    "longDescription": "Kinex turns Codex into a plan-first production partner. Build a shared Production Plan and Project Bible, lock characters and visual language, direct beats and shots, generate and review media, assemble the timeline, and export a final cut through the authenticated Kinex MCP connection.",
+    "developerName": "Kinex Studio",
+    "category": "Design",
+    "capabilities": ["Read", "Write", "Interactive"],
+    "websiteURL": "https://kinex.studio",
+    "defaultPrompt": [
+      "Turn this brief into a production-ready Kinex plan",
+      "Direct this project from brief to approved final cut",
+      "Review this Kinex project and export the final video"
+    ],
+    "brandColor": "#7C3AED",
+    "composerIcon": "./assets/icon.svg",
+    "logo": "./assets/logo.svg"
+  },
+  "mcpServers": "./.mcp.json"
+}

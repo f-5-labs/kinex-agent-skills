@@ -1,0 +1,11 @@
+interface:
+  display_name: 'Create Kinex Media'
+  short_description: 'Generate and organize reusable creative media'
+  default_prompt: 'Use $kinex-media-library to create and organize these Kinex media assets.'
+dependencies:
+  tools:
+    - type: 'mcp'
+      value: 'kinex'
+      description: 'Kinex creative production MCP server'
+      transport: 'streamable_http'
+      url: 'https://api.kinex.studio/mcp'

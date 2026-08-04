@@ -1,0 +1,96 @@
+{
+  "version": 1,
+  "description": "Observable routing, planning, safety, and completion cases for the Kinex public skills bundle.",
+  "scenarios": [
+    {
+      "id": "plan-first-short-film",
+      "skill": "kinex-agent-workspace",
+      "request": "Use the attached short-film brief, save a useful draft plan, update the Project Bible, and stop before rendering.",
+      "expectedTools": ["plan_get", "plan_save", "context_get", "context_update_section"],
+      "forbiddenTools": ["workspace_execute_command"],
+      "checks": ["persists the roadmap early", "keeps generation behind approval"]
+    },
+    {
+      "id": "approved-workspace-beat-generation",
+      "skill": "kinex-agent-workspace",
+      "request": "The plan is approved. Generate frames for the approved opening beat.",
+      "expectedTools": ["beat_list", "workspace_execute_command", "task_get"],
+      "forbiddenTools": ["generation_generate_storyboard"],
+      "checks": ["uses the Agent Workspace router", "polls and verifies the result"]
+    },
+    {
+      "id": "classic-brief-to-video",
+      "skill": "kinex-create-video",
+      "request": "Make a polished 45-second horizontal launch film from this brief.",
+      "expectedTools": [
+        "project_create_from_brief",
+        "project_get_pipeline",
+        "script_plan_shots",
+        "task_get"
+      ],
+      "forbiddenTools": ["workspace_execute_command"],
+      "checks": ["reviews story and look before storyboards", "polls every queued task"]
+    },
+    {
+      "id": "targeted-scene-fix",
+      "skill": "kinex-create-video",
+      "request": "Replace only scene four's clip and keep the rest of the cut.",
+      "expectedTools": [
+        "project_list",
+        "scene_list_project",
+        "generation_generate_video",
+        "task_get"
+      ],
+      "forbiddenTools": ["generation_generate_batch_video"],
+      "checks": ["does not regenerate unaffected scenes"]
+    },
+    {
+      "id": "story-only-revision",
+      "skill": "kinex-script-and-story",
+      "request": "Make the ending less sentimental, but do not generate media.",
+      "expectedTools": ["script_get_document", "script_refine", "script_get_current"],
+      "forbiddenTools": ["generation_generate_storyboard", "workspace_execute_command"],
+      "checks": ["honors the no-generation boundary", "re-reads the revision"]
+    },
+    {
+      "id": "exact-script-import",
+      "skill": "kinex-script-and-story",
+      "request": "Import this finished screenplay exactly and report its duration.",
+      "expectedTools": ["script_import", "script_get_current"],
+      "forbiddenTools": ["script_planning_turn", "script_refine"],
+      "checks": ["does not rewrite supplied text"]
+    },
+    {
+      "id": "reuse-library-reference",
+      "skill": "kinex-media-library",
+      "request": "Find the existing red sneaker packshot and reuse it.",
+      "expectedTools": ["library_list_media", "media_get", "media_get_public_url"],
+      "forbiddenTools": ["library_upload_media", "library_generate_image"],
+      "checks": ["searches before creating"]
+    },
+    {
+      "id": "standalone-library-image",
+      "skill": "kinex-media-library",
+      "request": "Generate a standalone product hero image for my library.",
+      "expectedTools": ["library_generate_image", "task_get", "library_list_media"],
+      "forbiddenTools": ["workspace_execute_command"],
+      "checks": ["uses the library lane", "re-lists media after completion"]
+    },
+    {
+      "id": "read-only-export-audit",
+      "skill": "kinex-review-and-export",
+      "request": "Audit export readiness, but do not save or render.",
+      "expectedTools": ["project_get_pipeline", "scene_list_project", "timeline_get"],
+      "forbiddenTools": ["timeline_save", "timeline_export"],
+      "checks": ["reports evidence-backed blockers", "remains read-only"]
+    },
+    {
+      "id": "verified-final-export",
+      "skill": "kinex-review-and-export",
+      "request": "Everything is approved. Verify the latest cut and export it.",
+      "expectedTools": ["timeline_get", "timeline_export", "timeline_export_status"],
+      "forbiddenTools": [],
+      "checks": ["checks the saved cut before rendering", "delivers only after completion"]
+    }
+  ]
+}

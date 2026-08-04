@@ -1,0 +1,11 @@
+interface:
+  display_name: 'Review and Export'
+  short_description: 'Quality-check, assemble, render, and deliver'
+  default_prompt: 'Use $kinex-review-and-export to review this project and export the final video.'
+dependencies:
+  tools:
+    - type: 'mcp'
+      value: 'kinex'
+      description: 'Kinex creative production MCP server'
+      transport: 'streamable_http'
+      url: 'https://api.kinex.studio/mcp'

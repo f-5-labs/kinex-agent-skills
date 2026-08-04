@@ -1,0 +1,39 @@
+{
+  "name": "kinex",
+  "owner": { "name": "Kinex Studio", "url": "https://kinex.studio" },
+  "plugins": [
+    {
+      "name": "kinex",
+      "source": "./",
+      "description": "Plan-first creative direction and complete AI video production through Kinex MCP.",
+      "version": "0.2.0",
+      "skills": [
+        {
+          "name": "create-video",
+          "path": "skills/kinex-create-video",
+          "invoke": "/kinex:create-video"
+        },
+        {
+          "name": "script-and-story",
+          "path": "skills/kinex-script-and-story",
+          "invoke": "/kinex:script-and-story"
+        },
+        {
+          "name": "agent-workspace",
+          "path": "skills/kinex-agent-workspace",
+          "invoke": "/kinex:agent-workspace"
+        },
+        {
+          "name": "media-library",
+          "path": "skills/kinex-media-library",
+          "invoke": "/kinex:media-library"
+        },
+        {
+          "name": "review-and-export",
+          "path": "skills/kinex-review-and-export",
+          "invoke": "/kinex:review-and-export"
+        }
+      ]
+    }
+  ]
+}

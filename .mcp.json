@@ -1,0 +1,5 @@
+{
+  "mcpServers": {
+    "kinex": { "type": "http", "url": "https://api.kinex.studio/mcp" }
+  }
+}
