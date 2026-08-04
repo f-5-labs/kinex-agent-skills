@@ -6,24 +6,43 @@ Plan-first creative direction and complete AI video production through [Kinex](h
 
 ## Install
 
-### Codex plugin
+### Claude
+
+```text
+/plugin marketplace add f-5-labs/kinex-agent-skills
+/plugin install kinex@kinex
+```
+
+### Codex
 
 ```bash
 codex plugin marketplace add f-5-labs/kinex-agent-skills
 codex plugin add kinex@kinex
 ```
 
-### Cross-agent skills
+### Gemini
+
+```bash
+gemini mcp add kinex https://api.kinex.studio/mcp --transport http
+```
+
+### Any MCP client
+
+```json
+{
+  "mcpServers": {
+    "kinex": {
+      "type": "http",
+      "url": "https://api.kinex.studio/mcp"
+    }
+  }
+}
+```
+
+### Portable skills
 
 ```bash
 npx skills add f-5-labs/kinex-agent-skills
-```
-
-### Claude Code marketplace
-
-```text
-/plugin marketplace add f-5-labs/kinex-agent-skills
-/plugin install kinex@kinex
 ```
 
 The first Kinex tool call opens browser sign-in and consent. No API key needs to be copied into the agent.
