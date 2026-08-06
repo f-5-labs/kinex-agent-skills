@@ -53,7 +53,7 @@ The first Kinex tool call opens browser sign-in and consent. No API key needs to
 | ------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
 | [`kinex-create-video`](./skills/kinex-create-video)           | Taking a brief through story, production, review, and final cut.                        |
 | [`kinex-script-and-story`](./skills/kinex-script-and-story)   | Developing scripts and shot plans without prematurely generating media.                 |
-| [`kinex-agent-workspace`](./skills/kinex-agent-workspace)     | Directing the shared Production Plan, Project Bible, style, entities, beats, and shots. |
+| [`kinex-agent-workspace`](./skills/kinex-agent-workspace)     | Directing canon, variants, beats, shots, and internal or externally generated media.    |
 | [`kinex-media-library`](./skills/kinex-media-library)         | Generating, finding, and reusing standalone media and library entities.                 |
 | [`kinex-review-and-export`](./skills/kinex-review-and-export) | Evidence-backed quality review, timeline assembly, render, and delivery.                |
 
@@ -74,6 +74,9 @@ See [creative examples](./examples/creative-prompts.md) for prompts you can adap
 
 - Save a useful draft Production Plan early, label assumptions, and update it when direction changes.
 - Keep the Project Bible source-grounded; unknown surfaces and unsupported claims stay unknown.
+- Keep routine planning and continuity with the main director; delegate only when the boundary adds value.
+- Model production states as named variants of canonical entities and lock assigned variants before generation.
+- Generate images externally when requested, then upload and attach them as project-scoped continuity media.
 - Require approval before generation at scale.
 - Treat queued work as pending, not complete.
 - Re-read saved artifacts after writes and verify outputs before claiming success.

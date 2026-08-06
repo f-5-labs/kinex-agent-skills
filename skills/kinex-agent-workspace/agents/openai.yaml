@@ -1,7 +1,7 @@
 interface:
   display_name: 'Direct Agent Workspace'
-  short_description: 'Plan-first direction with shared project canon'
-  default_prompt: 'Use $kinex-agent-workspace to direct this Kinex project from its current evidence and plan.'
+  short_description: 'Source-grounded, variant-aware production direction'
+  default_prompt: 'Use $kinex-agent-workspace to direct this Kinex project from current evidence through locked variants, shots, and verified internal or external media.'
 dependencies:
   tools:
     - type: 'mcp'

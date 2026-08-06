@@ -9,9 +9,9 @@ Drive the project from intent to a verified result. Infer safe defaults, keep in
 
 ## Route the project
 
-1. Resolve existing work with `project_list`; use `project_create_from_brief` only for a new project.
+1. Resolve existing work and the OAuth-authorized workspace with `project_list`; use `project_create_from_brief` only for a new project. Preserve the returned `workspaceId` when creating, and let Kinex use the authorized default workspace when none was selected.
 2. Read `project_get` and `project_get_pipeline`.
-3. If `formatConfig.agentWorkspace` is active, use `$kinex-agent-workspace`. Its Production Plan and Project Bible are the source of truth.
+3. New externally directed projects default to Agent Workspace mode. If `formatConfig.agentWorkspace` is active, use `$kinex-agent-workspace`; its Production Plan and Project Bible are the source of truth.
 4. Otherwise continue through the classic story pipeline below.
 
 ## Build before generating

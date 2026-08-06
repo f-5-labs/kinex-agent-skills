@@ -19,9 +19,90 @@
       "checks": ["uses the Agent Workspace router", "polls and verifies the result"]
     },
     {
+      "id": "external-imagegen-entity-lock",
+      "skill": "kinex-agent-workspace",
+      "request": "Use the host image generator—not Kinex generation—to create Nia's approved identity image, then save it as her Agent Workspace lock.",
+      "expectedTools": [
+        "workspace_list_entities",
+        "workspace_upload_external_media",
+        "workspace_attach_external_media",
+        "workspace_read_entity"
+      ],
+      "forbiddenTools": ["workspace_execute_command", "library_upload_media"],
+      "checks": [
+        "generates outside Kinex as requested",
+        "uploads project-scoped media before attaching it",
+        "verifies the canonical entity lock"
+      ]
+    },
+    {
+      "id": "variant-aware-shot-gate",
+      "skill": "kinex-agent-workspace",
+      "request": "Plan the rain-soaked wardrobe state for the chase and assign it to the relevant shots. Do not generate until its reference is locked.",
+      "expectedTools": [
+        "workspace_list_entities",
+        "workspace_update_entity",
+        "shot_list",
+        "shot_update"
+      ],
+      "forbiddenTools": ["workspace_execute_command", "workspace_define_entity"],
+      "checks": [
+        "uses a named variant instead of duplicating the character",
+        "assigns the variant only to relevant shots",
+        "keeps generation behind the lock gate"
+      ]
+    },
+    {
+      "id": "external-imagegen-variant-lock",
+      "skill": "kinex-agent-workspace",
+      "request": "Generate Nia's approved rain-soaked variant with the host image generator and lock that variant in Kinex without replacing her canonical hero or existing wardrobe variants.",
+      "expectedTools": [
+        "workspace_read_entity",
+        "workspace_upload_external_media",
+        "workspace_update_entity"
+      ],
+      "forbiddenTools": ["workspace_execute_command", "workspace_attach_external_media"],
+      "checks": [
+        "uploads a bounded project-scoped payload",
+        "merges the locked media into the full existing variants map",
+        "preserves the canonical hero and sibling variants",
+        "re-reads the entity after writing"
+      ]
+    },
+    {
+      "id": "source-grounded-campaign-plan",
+      "skill": "kinex-agent-workspace",
+      "request": "Plan a launch film, vertical cut, and creator ad from the attached product brief. Keep unverified performance claims out and stop before generation.",
+      "expectedTools": [
+        "plan_get",
+        "plan_save",
+        "context_get",
+        "context_update_section",
+        "beat_define"
+      ],
+      "forbiddenTools": ["workspace_execute_command", "define_shot_batch"],
+      "checks": [
+        "creates one beat and artifact target per deliverable family",
+        "shares sourced canon without inventing claims",
+        "does not encode the campaign workflow as a tool"
+      ]
+    },
+    {
+      "id": "performance-aware-shot-revision",
+      "skill": "kinex-agent-workspace",
+      "request": "The close-up feels generically sad. Revise the shot direction so the actor has a playable objective, physical business, and a reaction beat, without changing the approved story.",
+      "expectedTools": ["shot_list", "shot_update"],
+      "forbiddenTools": ["workspace_execute_command", "beat_update"],
+      "checks": [
+        "translates emotion adjectives into observable behavior",
+        "changes the failing shot control without rewriting canon",
+        "keeps the revision narrow"
+      ]
+    },
+    {
       "id": "classic-brief-to-video",
       "skill": "kinex-create-video",
-      "request": "Make a polished 45-second horizontal launch film from this brief.",
+      "request": "Use the classic manual script workflow to make a polished 45-second horizontal launch film from this brief.",
       "expectedTools": [
         "project_create_from_brief",
         "project_get_pipeline",
