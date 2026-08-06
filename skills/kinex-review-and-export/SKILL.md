@@ -16,9 +16,9 @@ At each stage return `pass`, `revise`, or `block`, plus the evidence and smalles
 ## Repair before assembly
 
 - Fix story problems in the story layer.
-- Fix identity or continuity before broad regeneration.
+- Fix identity or continuity before broad regeneration. Confirm that every shot-assigned entity variant has its required locked project media.
 - Regenerate only affected media.
-- Review history before `scene_set_active_media`.
+- Review history before `scene_set_active_media`; externally uploaded project media is valid only after it is attached to the intended entity or shot slot.
 - Poll repair tasks and re-read affected artifacts.
 
 ## Save and export

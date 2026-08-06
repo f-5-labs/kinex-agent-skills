@@ -5,7 +5,7 @@ description: Generate, upload, find, reuse, update, and organize standalone Kine
 
 # Create and organize Kinex media
 
-Treat the workspace library as reusable source material, not as a substitute for project-scoped entities or scene media.
+Treat the workspace library as reusable source material, not as a substitute for project-scoped entities or scene media. External assets intended to lock an Agent Workspace entity or shot must use `$kinex-agent-workspace`, which uploads them into the project before attachment.
 
 ## Route the request
 

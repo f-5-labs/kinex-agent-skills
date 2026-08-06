@@ -79,7 +79,7 @@ async function validate() {
   }
 
   check(scenarios.version === 1, 'Eval fixture version must be 1.');
-  check(scenarios.scenarios?.length >= 10, 'At least ten routing scenarios are required.');
+  check(scenarios.scenarios?.length >= 15, 'At least fifteen routing scenarios are required.');
   const covered = new Set(scenarios.scenarios?.map((scenario) => scenario.skill));
   for (const skill of expectedSkills) check(covered.has(skill), `${skill}: no eval coverage.`);
 }
@@ -91,4 +91,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log(`Kinex bundle validation passed: ${expectedSkills.length} skills and 10 scenarios.`);
+console.log(`Kinex bundle validation passed: ${expectedSkills.length} skills and 15 scenarios.`);
