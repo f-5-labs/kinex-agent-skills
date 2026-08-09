@@ -6,7 +6,7 @@
       "id": "plan-first-short-film",
       "skill": "kinex-agent-workspace",
       "request": "Use the attached short-film brief, save a useful draft plan, update the Project Bible, and stop before rendering.",
-      "expectedTools": ["plan_get", "plan_save", "context_get", "context_update_section"],
+      "expectedTools": ["plan_get", "plan_save"],
       "forbiddenTools": ["workspace_execute_command"],
       "checks": ["persists the roadmap early", "keeps generation behind approval"]
     },
@@ -17,6 +17,43 @@
       "expectedTools": ["beat_list", "workspace_execute_command", "task_get"],
       "forbiddenTools": ["generation_generate_storyboard"],
       "checks": ["uses the Agent Workspace router", "polls and verifies the result"]
+    },
+    {
+      "id": "direct-execution-approves-current-plan",
+      "skill": "kinex-agent-workspace",
+      "request": "The draft plan is right. Go ahead and create the opening video now.",
+      "expectedTools": ["plan_get", "plan_save", "workspace_execute_command", "task_get"],
+      "forbiddenTools": ["generation_generate_video", "script_planning_turn"],
+      "checks": [
+        "treats the named execution request as current-turn plan approval",
+        "saves the plan as approved with approval confirmation",
+        "continues into generation after host confirmation without asking for plan approval again"
+      ]
+    },
+    {
+      "id": "new-turn-checklist-reconciliation",
+      "skill": "kinex-agent-workspace",
+      "request": "Change direction: drop the creator ad, keep the launch film, and make the vertical cut the next priority. Do not generate yet.",
+      "expectedTools": ["plan_get", "plan_save", "context_get", "context_update_section"],
+      "forbiddenTools": ["workspace_execute_command"],
+      "checks": [
+        "reads the latest plan before material work",
+        "retains stable ids for relevant checklist outcomes",
+        "removes superseded work and reorders priorities",
+        "saves the materially revised roadmap as draft"
+      ]
+    },
+    {
+      "id": "authoritative-workspace-cancel",
+      "skill": "kinex-agent-workspace",
+      "request": "Stop the opening-beat generation that is currently queued. Do not retry it.",
+      "expectedTools": ["task_list_project", "task_cancel", "task_get"],
+      "forbiddenTools": ["workspace_execute_command"],
+      "checks": [
+        "finds and cancels only the matching queued task",
+        "verifies cancellation",
+        "does not restart cancelled work"
+      ]
     },
     {
       "id": "external-imagegen-entity-lock",
@@ -33,6 +70,42 @@
         "generates outside Kinex as requested",
         "uploads project-scoped media before attaching it",
         "verifies the canonical entity lock"
+      ]
+    },
+    {
+      "id": "character-upload-hero-and-anchor",
+      "skill": "kinex-agent-workspace",
+      "request": "Upload this approved character portrait, make it Nia's hero and continuity anchor, and show me her other generations.",
+      "expectedTools": [
+        "workspace_list_entities",
+        "workspace_read_entity",
+        "media_list_project",
+        "workspace_upload_external_media",
+        "workspace_attach_external_media"
+      ],
+      "forbiddenTools": ["library_upload_media", "workspace_execute_command"],
+      "checks": [
+        "uploads project-scoped media",
+        "sets hero and anchor intentionally as separate state changes",
+        "lists entity history with character source filters",
+        "re-reads the entity after attachment"
+      ]
+    },
+    {
+      "id": "location-history-master-plate-promotion",
+      "skill": "kinex-agent-workspace",
+      "request": "From the existing location generations, make the newest approved courtyard image the master plate but keep the current environment anchor.",
+      "expectedTools": [
+        "workspace_list_entities",
+        "workspace_read_entity",
+        "media_list_project",
+        "workspace_update_entity"
+      ],
+      "forbiddenTools": ["workspace_upload_external_media", "workspace_execute_command"],
+      "checks": [
+        "lists location history with location source filters",
+        "changes primaryMediaId without changing identityAnchorMediaItemId",
+        "verifies the location after promotion"
       ]
     },
     {

@@ -1,6 +1,6 @@
 {
   "name": "kinex",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Source-grounded, variant-aware creative direction and complete AI video production through the authenticated Kinex MCP server.",
   "author": {
     "name": "Kinex Studio",
@@ -21,7 +21,7 @@
   "interface": {
     "displayName": "Kinex",
     "shortDescription": "Plan, direct, review, and export AI videos",
-    "longDescription": "Kinex turns Codex into a plan-first production partner. Build a shared Production Plan and Project Bible, lock canonical entities and variants, direct performance-aware beats and shots, use Kinex or externally generated project media, assemble the timeline, and export a verified final cut.",
+    "longDescription": "Kinex turns Codex into a plan-first production partner. Reconcile the shared checklist as direction changes, distinguish hero and anchor locks from generation history, continue directly approved production without approval loops, direct performance-aware beats and shots, and export a verified final cut.",
     "developerName": "Kinex Studio",
     "category": "Design",
     "capabilities": ["Read", "Write", "Interactive"],

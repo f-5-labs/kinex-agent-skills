@@ -79,9 +79,23 @@ async function validate() {
   }
 
   check(scenarios.version === 1, 'Eval fixture version must be 1.');
-  check(scenarios.scenarios?.length >= 15, 'At least fifteen routing scenarios are required.');
+  check(scenarios.scenarios?.length >= 20, 'At least twenty routing scenarios are required.');
   const covered = new Set(scenarios.scenarios?.map((scenario) => scenario.skill));
   for (const skill of expectedSkills) check(covered.has(skill), `${skill}: no eval coverage.`);
+
+  const scenarioIds = scenarios.scenarios?.map((scenario) => scenario.id) ?? [];
+  check(new Set(scenarioIds).size === scenarioIds.length, 'Eval scenario ids must be unique.');
+  for (const scenario of scenarios.scenarios ?? []) {
+    check(expectedSkills.includes(scenario.skill), `${scenario.id}: unknown skill.`);
+    check(Boolean(scenario.request?.trim()), `${scenario.id}: request is required.`);
+    check(scenario.expectedTools?.length > 0, `${scenario.id}: expectedTools must not be empty.`);
+    check(scenario.checks?.length > 0, `${scenario.id}: observable checks must not be empty.`);
+    const forbidden = new Set(scenario.forbiddenTools ?? []);
+    check(
+      !(scenario.expectedTools ?? []).some((tool) => forbidden.has(tool)),
+      `${scenario.id}: a tool cannot be both expected and forbidden.`
+    );
+  }
 }
 
 await validate();
@@ -91,4 +105,7 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log(`Kinex bundle validation passed: ${expectedSkills.length} skills and 15 scenarios.`);
+const scenarios = await readJson('evals/scenarios.json');
+console.log(
+  `Kinex bundle validation passed: ${expectedSkills.length} skills and ${scenarios.scenarios.length} scenarios.`
+);

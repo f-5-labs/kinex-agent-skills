@@ -11,6 +11,7 @@ For campaigns, give each deliverable family its own beat and artifact target. Sh
 ## Build references before coverage
 
 - Keep a neutral canonical identity lock for each recurring character, location, or prop. Let shot prompts carry the cinematic treatment.
+- Keep the default hero or master plate separate from the continuity anchor and from generation history. Promote an alternative deliberately; selecting or previewing it is not approval to replace either lock.
 - Model a recurring identity once. Put wardrobe, wet/dry, damaged/clean, day/night, emotional carryover, product configuration, and other needed states in named variants.
 - Generate only variants the approved beats require. A shot may reference only variants belonging to its active entities.
 - Character definitions should include observable behavior under pressure, not only appearance and emotion labels.
@@ -44,6 +45,6 @@ Select video models from Kinex's live capability registry. Prefer demonstrated s
 
 ## Iterate and review
 
-Change one control at a time and retain the prompt version, change, and verdict in the Production Plan or task notes. Inspect start frames before spending on motion. If a shot repeatedly fails, remove simultaneous actions, simplify blocking, split the action, or change the angle.
+Change one control at a time and retain the prompt version, change, and verdict in the Production Plan or task notes. Re-read entity or scene generation history, compare actual alternatives, and inspect start frames before spending on motion. If a shot repeatedly fails, remove simultaneous actions, simplify blocking, split the action, or change the angle.
 
 Assemble the cut in parallel. Trim unstable clip edges, repair identity and cleanup before global color treatment, and use continuous ambience or state tails to support edits. Report `pass`, `revise`, or `block` with artifact evidence and the smallest corrective action.
