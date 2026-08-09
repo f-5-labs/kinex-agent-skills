@@ -5,17 +5,20 @@
 - Production Plan: `plan_get`, `plan_save`.
 - Project Bible: `context_get`, `context_update_section`.
 - A useful early plan may contain labeled unknowns; empty boilerplate is not useful.
+- A valid plan uses exactly `## Direction`, `## Assumptions and Open Questions`, `## Milestones`, and `## Checklist`. Checklist rows use `- [ ] (stable-step-id) concise outcome`, with `[x]` for complete and `[-]` for blocked.
+- At each new user turn, read the current checklist and reconcile it with the latest direction before material work. Persist only material roadmap changes; keep stable step ids for retained outcomes and do not rewrite an unchanged plan merely to prove it was reviewed.
 - Re-read after a source-derived write and before reporting the saved direction.
 
 ## Production surfaces
 
-- Style: `style_list`, `style_set_from_catalog`, `style_set_custom`, `style_set_from_image`.
+- Style: `style_list`, `style_set_from_catalog`, `style_seed_from_catalog`, `style_set_custom`, `style_set_from_image`.
 - Entities: `workspace_list_entities`, `workspace_read_entity`, `workspace_define_entity`, `workspace_update_entity`.
 - Structure: `beat_list`, `beat_define`, `beat_update`, `shot_list`, `shot_define`, `shot_update`.
 - External project media: `workspace_upload_external_media`, then `workspace_attach_external_media`.
 - Current model capabilities: `generation_list_supported_media_models`.
 - Generation router: `workspace_execute_command`.
-- Progress: `task_list_project`, `task_get`.
+- Progress and cancellation: `task_list_project`, `task_get`, `task_cancel`.
+- Project and shot histories: `media_list_project`, `media_get`, `media_get_public_url`, `scene_get_media_history`, `scene_set_active_media`.
 - Human review: `workspace_preview_projects`, `workspace_preview_entity`, `workspace_preview_timeline`.
 
 ## Generation-router families
@@ -40,13 +43,28 @@ These uploads are project-scoped. Do not use `library_upload_media` for Agent Wo
 
 The current attach target does not accept a variant key. To lock an externally generated named variant, re-read the entity, preserve every sibling in its existing `attributes.variants` map, merge the target variant with `status: locked`, the uploaded `mediaItemId`, and its returned image URL, then send the complete merged variants map through `workspace_update_entity.attributesPatch.variants`. Re-read the entity after writing. Never submit a one-variant map over an existing map because `attributesPatch` is shallow at the `variants` key.
 
+## Character and location media states
+
+Keep these independent:
+
+- Selected preview: presentation state only; it does not change continuity.
+- Hero or master plate: `primaryMediaId`, the project's default entity image.
+- Continuity or environment anchor: `identityAnchorMediaItemId`, the image future generation should preserve. Clear it with `workspace_update_entity` and `identityAnchorMediaItemId: null`.
+- Generation history: call `media_list_project` with `sourceId` set to the entity id and `sourceTable` set to its table (`entity_characters`, `entity_locations`, or `entity_props`), then sort or inspect returned items without silently promoting one.
+
+Use `workspace_attach_external_media` after upload to set an entity `hero` or `identity_anchor`. To promote an existing history item without re-uploading it, use `workspace_update_entity` with `primaryMediaId` or `identityAnchorMediaItemId`. Set both only when the user intends the same image to serve both roles. Re-read the entity and, when useful, preview it after each promotion.
+
+For shot generations, read `scene_get_media_history` before choosing an alternative with `scene_set_active_media`. Do not claim a queued result is part of history until `task_get` settles and the relevant history has been re-read.
+
 ## Entity variants
 
 List and semantically match existing entities before defining a new one. Keep production states in the canonical entity's `attributes.variants` and use the live shot schema for its variant keys. Lock the canonical hero before the entity is referenced by a shot. A shot's assigned variants must exist, belong to its active entities, and have the required locked media before start-frame or video generation.
 
 ## Confirmation gates
 
-- Approving a plan requires explicit user approval.
+- Approving a plan requires explicit current-turn user approval. A direct instruction to create, generate, render, make, produce, queue, start, or proceed with a named visual deliverable counts; a question, hypothetical, or negative instruction does not. When it counts, call `plan_save` with `status: approved` and `approvalConfirmed: true`, then continue execution in that turn.
+- Host confirmation for a pending MCP call is separate from creative approval. After approval, resume the suspended call; do not ask for the plan to be approved again.
 - Replacing a Project Bible section requires confirmation.
 - Reference-image analysis and generation may spend credits; respect host confirmation.
 - Save and export a timeline only after review and confirmation.
+- A stop or cancel request is authoritative. Use `task_cancel` for the matching queued task and do not retry unless the user later requests a restart.

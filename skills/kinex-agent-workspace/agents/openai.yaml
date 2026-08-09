@@ -1,7 +1,7 @@
 interface:
   display_name: 'Direct Agent Workspace'
   short_description: 'Source-grounded, variant-aware production direction'
-  default_prompt: 'Use $kinex-agent-workspace to direct this Kinex project from current evidence through locked variants, shots, and verified internal or external media.'
+  default_prompt: 'Use $kinex-agent-workspace to reconcile the current plan, preserve explicit hero and anchor locks, and continue approved production through verified media.'
 dependencies:
   tools:
     - type: 'mcp'

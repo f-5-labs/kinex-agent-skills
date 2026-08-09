@@ -6,7 +6,7 @@
       "name": "kinex",
       "source": "./",
       "description": "Source-grounded, variant-aware creative direction and complete AI video production through Kinex MCP.",
-      "version": "0.3.0",
+      "version": "0.3.1",
       "skills": [
         {
           "name": "create-video",

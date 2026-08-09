@@ -72,12 +72,14 @@ See [creative examples](./examples/creative-prompts.md) for prompts you can adap
 
 ## Design principles
 
-- Save a useful draft Production Plan early, label assumptions, and update it when direction changes.
+- Save a valid four-section Production Plan early, then re-read and reconcile its checklist at each new turn without rewriting an unchanged roadmap.
 - Keep the Project Bible source-grounded; unknown surfaces and unsupported claims stay unknown.
 - Keep routine planning and continuity with the main director; delegate only when the boundary adds value.
 - Model production states as named variants of canonical entities and lock assigned variants before generation.
 - Generate images externally when requested, then upload and attach them as project-scoped continuity media.
-- Require approval before generation at scale.
+- Keep hero/master plate, continuity anchor, selected preview, and generation history distinct for characters and locations.
+- Treat a direct request to create a named visual deliverable as plan approval and continue execution after host confirmation instead of asking again.
+- Treat stop and cancel as authoritative; never retry cancelled work without a new instruction.
 - Treat queued work as pending, not complete.
 - Re-read saved artifacts after writes and verify outputs before claiming success.
 - Keep internal ids and tool mechanics out of the creative conversation.
