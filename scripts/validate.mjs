@@ -9,6 +9,7 @@ const expectedSkills = [
   'kinex-media-library',
   'kinex-review-and-export',
   'kinex-script-and-story',
+  'kinex-seedance-2-5',
 ];
 const failures = [];
 
@@ -32,6 +33,7 @@ function frontmatterValue(source, key) {
 async function validate() {
   const codex = await readJson('.codex-plugin/plugin.json');
   const claude = await readJson('.claude-plugin/plugin.json');
+  const claudeMarketplace = await readJson('.claude-plugin/marketplace.json');
   const cursor = await readJson('.cursor-plugin/plugin.json');
   const mcp = await readJson('.mcp.json');
   const marketplace = await readJson('.agents/plugins/marketplace.json');
@@ -39,6 +41,8 @@ async function validate() {
 
   check(codex.name === 'kinex', 'Codex manifest must use plugin name kinex.');
   check(codex.version === claude.version, 'Codex and Claude versions must match.');
+  const claudeBundle = claudeMarketplace.plugins?.find((plugin) => plugin.name === 'kinex');
+  check(claudeBundle?.version === codex.version, 'Claude marketplace and Codex versions must match.');
   check(codex.version === cursor.version, 'Codex and Cursor versions must match.');
   check(codex.skills === './skills/', 'Codex manifest must discover the skills directory.');
   check(codex.mcpServers === './.mcp.json', 'Codex manifest must expose the MCP config.');
@@ -63,6 +67,13 @@ async function validate() {
     .map((entry) => entry.name)
     .sort();
   check(JSON.stringify(skills) === JSON.stringify(expectedSkills), 'Unexpected focused skill set.');
+  const marketplaceSkills = (claudeBundle?.skills ?? [])
+    .map((skill) => skill.path?.replace(/^skills\//u, ''))
+    .sort();
+  check(
+    JSON.stringify(marketplaceSkills) === JSON.stringify(expectedSkills),
+    'Claude marketplace skills must match the focused skill set.'
+  );
 
   for (const skill of expectedSkills) {
     const base = path.join(root, 'skills', skill);
@@ -79,7 +90,7 @@ async function validate() {
   }
 
   check(scenarios.version === 1, 'Eval fixture version must be 1.');
-  check(scenarios.scenarios?.length >= 20, 'At least twenty routing scenarios are required.');
+  check(scenarios.scenarios?.length >= 21, 'At least twenty-one routing scenarios are required.');
   const covered = new Set(scenarios.scenarios?.map((scenario) => scenario.skill));
   for (const skill of expectedSkills) check(covered.has(skill), `${skill}: no eval coverage.`);
 

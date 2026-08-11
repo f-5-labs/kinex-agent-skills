@@ -6,7 +6,7 @@
       "name": "kinex",
       "source": "./",
       "description": "Source-grounded, variant-aware creative direction and complete AI video production through Kinex MCP.",
-      "version": "0.3.1",
+      "version": "0.3.2",
       "skills": [
         {
           "name": "create-video",
@@ -32,6 +32,11 @@
           "name": "review-and-export",
           "path": "skills/kinex-review-and-export",
           "invoke": "/kinex:review-and-export"
+        },
+        {
+          "name": "seedance-2-5",
+          "path": "skills/kinex-seedance-2-5",
+          "invoke": "/kinex:seedance-2-5"
         }
       ]
     }

@@ -1,0 +1,11 @@
+interface:
+  display_name: 'Direct Seedance 2.5'
+  short_description: 'Use references and whole beats deliberately'
+  default_prompt: 'Use $kinex-seedance-2-5 to direct these approved references into a Seedance 2.5 video through Kinex.'
+dependencies:
+  tools:
+    - type: 'mcp'
+      value: 'kinex'
+      description: 'Kinex creative production MCP server'
+      transport: 'streamable_http'
+      url: 'https://api.kinex.studio/mcp'
