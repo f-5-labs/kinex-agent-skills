@@ -245,6 +245,22 @@
       "expectedTools": ["timeline_get", "timeline_export", "timeline_export_status"],
       "forbiddenTools": [],
       "checks": ["checks the saved cut before rendering", "delivers only after completion"]
+    },
+    {
+      "id": "seedance-reference-whole-beat",
+      "skill": "kinex-seedance-2-5",
+      "request": "The Production Plan is approved. Use the supplied character image, product image, camera-movement clip, and dialogue recording to generate the 25-second opening beat as one Seedance 2.5 clip.",
+      "expectedTools": [
+        "generation_list_supported_media_models",
+        "workspace_execute_command",
+        "task_get"
+      ],
+      "forbiddenTools": ["generation_generate_video", "library_upload_media"],
+      "checks": [
+        "confirms the live Seedance 2.5 operation before execution",
+        "assigns one explicit role to each activated reference",
+        "uses one clip only because the approved beat fits the advertised duration"
+      ]
     }
   ]
 }

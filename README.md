@@ -2,7 +2,7 @@
 
 [![Validate](https://github.com/f-5-labs/kinex-agent-skills/actions/workflows/validate.yml/badge.svg)](https://github.com/f-5-labs/kinex-agent-skills/actions/workflows/validate.yml)
 
-Plan-first creative direction and complete AI video production through [Kinex](https://kinex.studio). The bundle connects an agent to the authenticated Kinex MCP server and adds five focused skills for planning, production, media reuse, review, and delivery.
+Plan-first creative direction and complete AI video production through [Kinex](https://kinex.studio). The bundle connects an agent to the authenticated Kinex MCP server and adds six focused skills for planning, production, model-specific direction, media reuse, review, and delivery.
 
 ## Install
 
@@ -56,6 +56,7 @@ The first Kinex tool call opens browser sign-in and consent. No API key needs to
 | [`kinex-agent-workspace`](./skills/kinex-agent-workspace)     | Directing canon, variants, beats, shots, and internal or externally generated media.    |
 | [`kinex-media-library`](./skills/kinex-media-library)         | Generating, finding, and reusing standalone media and library entities.                 |
 | [`kinex-review-and-export`](./skills/kinex-review-and-export) | Evidence-backed quality review, timeline assembly, render, and delivery.                |
+| [`kinex-seedance-2-5`](./skills/kinex-seedance-2-5)           | Directing Atlas-backed Seedance 2.5 references, frame controls, and whole video beats. |
 
 ## Six proven creative workflows
 
