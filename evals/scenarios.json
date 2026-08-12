@@ -211,7 +211,6 @@
       "request": "Create a new Agent Workspace project from the attached source and produce Scene 1.",
       "expectedTools": [
         "workspace_get_current",
-        "workspace_list",
         "project_create_from_brief",
         "project_get",
         "plan_get",
@@ -226,7 +225,6 @@
       ],
       "orderedTools": [
         "workspace_get_current",
-        "workspace_list",
         "project_create_from_brief",
         "project_get",
         "plan_get",
@@ -253,6 +251,65 @@
         "bootstraps and verifies the Agent Workspace project before production",
         "creates only the requested Scene 1 coverage",
         "polls the queued production task and verifies the result"
+      ]
+    },
+    {
+      "id": "ambiguous-workspace-selection-gate",
+      "skill": "kinex-agent-workspace",
+      "request": "I belong to more than one Kinex workspace. Show me the choices before creating this project, and do not save it in the wrong one.",
+      "expectedTools": ["workspace_get_current", "workspace_list"],
+      "orderedTools": ["workspace_get_current", "workspace_list"],
+      "forbiddenTools": ["project_create_from_brief"],
+      "checks": [
+        "identifies the OAuth-active workspace and available memberships",
+        "asks for one workspace choice when the destination is ambiguous",
+        "requires reconnection instead of crossing the OAuth workspace boundary"
+      ]
+    },
+    {
+      "id": "recurring-character-reference-strategy",
+      "skill": "kinex-agent-workspace",
+      "request": "Use my approved portrait plus the supplied full-body wardrobe and turnaround notes to establish Nia for recurring close-ups, full-body shots, and motion across three scenes. Generate the reference externally, leave facts not established by either source unresolved, and do not plan shots until her identity reference passes review.",
+      "expectedTools": [
+        "plan_get",
+        "plan_save",
+        "context_get",
+        "context_update_section",
+        "workspace_list_entities",
+        "workspace_define_entity",
+        "workspace_upload_external_media",
+        "workspace_attach_external_media",
+        "workspace_read_entity"
+      ],
+      "forbiddenTools": ["workspace_execute_command", "shot_define", "library_upload_media"],
+      "checks": [
+        "chooses a full multi-view character master sheet rather than a decorative hero",
+        "preserves only source-visible identity and marks occluded facts unresolved",
+        "reviews identity, proportions, wardrobe, expressions, gestures, and silhouette before locking",
+        "records PASS, REVISE, REJECT, or BLOCKED with evidence"
+      ]
+    },
+    {
+      "id": "same-location-day-night-geography",
+      "skill": "kinex-agent-workspace",
+      "request": "Build the Old Market as one recurring location. We see the same entrances, stalls, and action axis in dusty late afternoon and later under one sodium streetlamp. Generate the location reference externally and keep day and night as conditions, not duplicate places.",
+      "expectedTools": [
+        "plan_get",
+        "plan_save",
+        "context_get",
+        "context_update_section",
+        "workspace_list_entities",
+        "workspace_define_entity",
+        "workspace_upload_external_media",
+        "workspace_attach_external_media",
+        "workspace_read_entity"
+      ],
+      "forbiddenTools": ["workspace_execute_command", "library_upload_media"],
+      "checks": [
+        "creates one physical location identity with stable architecture and spatial geometry",
+        "records entrances, landmarks, materials, distances, screen direction, and the 180-degree axis",
+        "treats day and night as beat, shot, or named variant conditions",
+        "reviews the master plate and alternate-light panel before locking"
       ]
     },
     {

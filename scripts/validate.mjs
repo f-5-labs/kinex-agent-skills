@@ -75,9 +75,11 @@ async function validate() {
     'Claude marketplace skills must match the focused skill set.'
   );
 
+  const skillSources = new Map();
   for (const skill of expectedSkills) {
     const base = path.join(root, 'skills', skill);
     const source = await readFile(path.join(base, 'SKILL.md'), 'utf8');
+    skillSources.set(skill, source);
     const openai = await readFile(path.join(base, 'agents', 'openai.yaml'), 'utf8');
     check(frontmatterValue(source, 'name') === skill, `${skill}: frontmatter name mismatch.`);
     check(frontmatterValue(source, 'description').length >= 80, `${skill}: trigger is too vague.`);
@@ -89,8 +91,39 @@ async function validate() {
     await access(path.join(base, 'references', 'tool-map.md'));
   }
 
+  const agentWorkspaceSource = skillSources.get('kinex-agent-workspace') ?? '';
+  check(
+    agentWorkspaceSource.includes('references/entity-and-location-method.md'),
+    'kinex-agent-workspace: character and location method link is missing.'
+  );
+  const entityLocationMethod = await readFile(
+    path.join(
+      root,
+      'skills',
+      'kinex-agent-workspace',
+      'references',
+      'entity-and-location-method.md'
+    ),
+    'utf8'
+  );
+  for (const requiredPhrase of [
+    'Single hero',
+    'Quick character lock',
+    'Character master sheet',
+    'Wardrobe or garment lock',
+    'Location reference sheet',
+    'working 180-degree axis',
+    'PASS:',
+    'BLOCKED:',
+  ]) {
+    check(
+      entityLocationMethod.includes(requiredPhrase),
+      `kinex-agent-workspace: character/location method is missing ${requiredPhrase}.`
+    );
+  }
+
   check(scenarios.version === 1, 'Eval fixture version must be 1.');
-  check(scenarios.scenarios?.length >= 23, 'At least twenty-three routing scenarios are required.');
+  check(scenarios.scenarios?.length >= 26, 'At least twenty-six routing scenarios are required.');
   const covered = new Set(scenarios.scenarios?.map((scenario) => scenario.skill));
   for (const skill of expectedSkills) check(covered.has(skill), `${skill}: no eval coverage.`);
 

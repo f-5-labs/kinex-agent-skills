@@ -37,6 +37,7 @@ The Production Plan is the living roadmap. The Project Bible is the durable crea
 - Inspect every supplied source before making source-dependent decisions.
 - Preserve what a reference proves; keep unseen construction, unsupported claims, and unknown identity details unknown.
 - Define one canonical entity per identity. Represent wardrobe, condition, time, angle, or prop-reveal states as named variants, not duplicate identities.
+- Choose the lightest sufficient reference artifact from downstream use. A multi-view sheet is the default for a new recurring character; a single hero is an explicit one-off or opt-out, not the automatic continuity lock.
 - Lock each referenced entity's canonical hero before defining or updating shots that depend on it.
 - Lock every entity variant assigned to a shot before generating its start frame or motion.
 - Treat exact copy, dialogue, product facts, geography, screen direction, and reference roles as continuity constraints.
@@ -70,4 +71,5 @@ Use `scene_get_media_history` and `scene_set_active_media` for shot alternatives
 Hand final assembly and rendering to `$kinex-review-and-export` only when the project needs a timeline or final render.
 
 Read [tool map](references/tool-map.md) for command families and confirmation boundaries.
+Read [character and location method](references/entity-and-location-method.md) when choosing, generating, or reviewing recurring identity and environment locks.
 Read [production method](references/production-method.md) when designing entities, variants, performance, shot prompts, or iteration passes.

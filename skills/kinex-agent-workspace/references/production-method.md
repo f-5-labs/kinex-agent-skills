@@ -10,12 +10,14 @@ For campaigns, give each deliverable family its own beat and artifact target. Sh
 
 ## Build references before coverage
 
+- Choose the lightest sufficient artifact from downstream use: reuse an approved lock, a one-off hero, a quick lock, a full character master sheet, a wardrobe or garment lock, or a location reference sheet. Follow the character and location method for exact coverage and review gates.
 - Keep a neutral canonical identity lock for each recurring character, location, or prop. Let shot prompts carry the cinematic treatment.
 - Keep the default hero or master plate separate from the continuity anchor and from generation history. Promote an alternative deliberately; selecting or previewing it is not approval to replace either lock.
 - Model a recurring identity once. Put wardrobe, wet/dry, damaged/clean, day/night, emotional carryover, product configuration, and other needed states in named variants.
 - Generate only variants the approved beats require. A shot may reference only variants belonging to its active entities.
 - Character definitions should include observable behavior under pressure, not only appearance and emotion labels.
 - Location definitions should preserve anchor landmarks, distances, frame-left/frame-right relationships, the working 180-degree axis, materials, and light logic. Reference images prove space and material; they do not automatically dictate the next camera angle.
+- Do not lock or assign a newly generated reference until inspection returns PASS against its sources and acceptance criteria. Use REVISE, REJECT, or BLOCKED when evidence does not support approval.
 
 ## Write sealed shot instructions
 
