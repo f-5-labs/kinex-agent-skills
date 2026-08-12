@@ -1,0 +1,39 @@
+{
+  "scenarioId": "new-agent-workspace-scene-one",
+  "host": "external-mcp-client",
+  "events": [
+    { "type": "tool_call", "tool": "workspace_get_current", "input": {} },
+    { "type": "tool_call", "tool": "workspace_list", "input": {} },
+    {
+      "type": "tool_call",
+      "tool": "project_create_from_brief",
+      "input": {
+        "title": "Soft Work — Scene 1",
+        "workspaceId": "workspace-active",
+        "workspaceMode": "agent"
+      }
+    },
+    { "type": "tool_call", "tool": "project_get", "input": { "projectId": "project-1" } },
+    { "type": "tool_call", "tool": "plan_get", "input": { "projectId": "project-1" } },
+    { "type": "tool_call", "tool": "context_get", "input": { "projectId": "project-1" } },
+    { "type": "tool_call", "tool": "plan_save", "input": { "projectId": "project-1" } },
+    {
+      "type": "tool_call",
+      "tool": "context_update_section",
+      "input": { "projectId": "project-1", "section": "Story and intent" }
+    },
+    { "type": "tool_call", "tool": "beat_define", "input": { "projectId": "project-1" } },
+    { "type": "tool_call", "tool": "shot_define", "input": { "projectId": "project-1" } },
+    {
+      "type": "tool_call",
+      "tool": "generation_list_supported_media_models",
+      "input": {}
+    },
+    {
+      "type": "tool_call",
+      "tool": "workspace_execute_command",
+      "input": { "projectId": "project-1" }
+    },
+    { "type": "tool_call", "tool": "task_get", "input": { "taskId": "task-1" } }
+  ]
+}

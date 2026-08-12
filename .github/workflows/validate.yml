@@ -17,3 +17,4 @@ jobs:
         with:
           node-version: 22
       - run: node scripts/validate.mjs
+      - run: node scripts/evaluate-external-trace.mjs new-agent-workspace-scene-one evals/fixtures/new-agent-workspace-scene-one.trace.json

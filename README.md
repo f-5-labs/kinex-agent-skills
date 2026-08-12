@@ -2,7 +2,7 @@
 
 [![Validate](https://github.com/f-5-labs/kinex-agent-skills/actions/workflows/validate.yml/badge.svg)](https://github.com/f-5-labs/kinex-agent-skills/actions/workflows/validate.yml)
 
-Plan-first creative direction and complete AI video production through [Kinex](https://kinex.studio). The bundle connects an agent to the authenticated Kinex MCP server and adds six focused skills for planning, production, model-specific direction, media reuse, review, and delivery.
+Plan-first image, video, and mixed-media production through [Kinex](https://kinex.studio). The bundle connects an agent to the authenticated Kinex MCP server and adds six focused skills for planning, production, model-specific direction, media reuse, review, and delivery.
 
 ## Install
 
@@ -51,9 +51,9 @@ The first Kinex tool call opens browser sign-in and consent. No API key needs to
 
 | Skill                                                         | Best for                                                                                |
 | ------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| [`kinex-create-video`](./skills/kinex-create-video)           | Taking a brief through story, production, review, and final cut.                        |
+| [`kinex-create-video`](./skills/kinex-create-video)           | Taking a classic script-wizard project through story, production, and final cut.        |
 | [`kinex-script-and-story`](./skills/kinex-script-and-story)   | Developing scripts and shot plans without prematurely generating media.                 |
-| [`kinex-agent-workspace`](./skills/kinex-agent-workspace)     | Directing canon, variants, beats, shots, and internal or externally generated media.    |
+| [`kinex-agent-workspace`](./skills/kinex-agent-workspace)     | Creating or continuing image, film, campaign, and mixed-media Agent Workspace projects. |
 | [`kinex-media-library`](./skills/kinex-media-library)         | Generating, finding, and reusing standalone media and library entities.                 |
 | [`kinex-review-and-export`](./skills/kinex-review-and-export) | Evidence-backed quality review, timeline assembly, render, and delivery.                |
 | [`kinex-seedance-2-5`](./skills/kinex-seedance-2-5)           | Directing Atlas-backed Seedance 2.5 references, frame controls, and whole video beats. |
