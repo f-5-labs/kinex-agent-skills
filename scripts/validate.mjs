@@ -90,7 +90,7 @@ async function validate() {
   }
 
   check(scenarios.version === 1, 'Eval fixture version must be 1.');
-  check(scenarios.scenarios?.length >= 21, 'At least twenty-one routing scenarios are required.');
+  check(scenarios.scenarios?.length >= 23, 'At least twenty-three routing scenarios are required.');
   const covered = new Set(scenarios.scenarios?.map((scenario) => scenario.skill));
   for (const skill of expectedSkills) check(covered.has(skill), `${skill}: no eval coverage.`);
 
@@ -101,6 +101,16 @@ async function validate() {
     check(Boolean(scenario.request?.trim()), `${scenario.id}: request is required.`);
     check(scenario.expectedTools?.length > 0, `${scenario.id}: expectedTools must not be empty.`);
     check(scenario.checks?.length > 0, `${scenario.id}: observable checks must not be empty.`);
+    check(
+      (scenario.orderedTools ?? []).every((tool) => scenario.expectedTools?.includes(tool)),
+      `${scenario.id}: orderedTools must also be expectedTools.`
+    );
+    check(
+      Object.keys(scenario.requiredToolInputs ?? {}).every((tool) =>
+        scenario.expectedTools?.includes(tool)
+      ),
+      `${scenario.id}: requiredToolInputs must target expectedTools.`
+    );
     const forbidden = new Set(scenario.forbiddenTools ?? []);
     check(
       !(scenario.expectedTools ?? []).some((tool) => forbidden.has(tool)),

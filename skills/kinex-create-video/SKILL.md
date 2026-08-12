@@ -1,18 +1,19 @@
 ---
 name: kinex-create-video
-description: Turn a creative brief or one-line idea into a complete Kinex video by chaining project, plan, script, entity, scene, generation, task, timeline, preview, and export tools. Use for “make a short film,” “create a product video,” “turn this idea into a video,” or “finish this Kinex project.” Not for a script-only revision, standalone library media, or a narrow Agent Workspace milestone.
+description: Turn a creative brief or one-line idea into a complete classic Kinex video through the manual script, look-bible, scene, generation, timeline, and export pipeline. Use when the user explicitly wants the classic script wizard or an existing project reports manual workflow mode. Not for Agent Workspace projects, image-only creative projects, script-only revisions, standalone library media, or export-only requests.
 ---
 
-# Create a Kinex video
+# Create a classic Kinex video
 
 Drive the project from intent to a verified result. Infer safe defaults, keep internal ids private, and ask at most one question when the answer materially changes creative direction or safety.
 
 ## Route the project
 
-1. Resolve existing work and the OAuth-authorized workspace with `project_list`; use `project_create_from_brief` only for a new project. Preserve the returned `workspaceId` when creating, and let Kinex use the authorized default workspace when none was selected.
-2. Read `project_get` and `project_get_pipeline`.
-3. New externally directed projects default to Agent Workspace mode. If `formatConfig.agentWorkspace` is active, use `$kinex-agent-workspace`; its Production Plan and Project Bible are the source of truth.
-4. Otherwise continue through the classic story pipeline below.
+1. Confirm the active OAuth workspace with `workspace_get_current`, then resolve existing work with `project_list`.
+2. Create a new project only when the user explicitly wants the classic workflow; call `project_create_from_brief` with `workspaceMode: manual` and the active `workspaceId`.
+3. Read `project_get` and `project_get_pipeline`.
+4. If the project reports `workflowType: agent`, `agentWorkspace: true`, or `formatConfig.agentWorkspaceV2: true`, stop this workflow and use `$kinex-agent-workspace`.
+5. Otherwise continue through the classic story pipeline below.
 
 ## Build before generating
 

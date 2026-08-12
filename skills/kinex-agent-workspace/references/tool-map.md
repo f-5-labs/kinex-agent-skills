@@ -1,5 +1,13 @@
 # Agent Workspace tool map
 
+## Workspace and project bootstrap
+
+- Current OAuth workspace: `workspace_get_current`.
+- Available memberships: `workspace_list`. When no destination was named, use the active workspace only if it is the default or sole membership; otherwise ask the user to choose. A non-active choice requires OAuth reconnection before any write.
+- Existing project: `project_list` or `workspace_preview_projects`, then `project_get`.
+- New Agent Workspace project: `project_create_from_brief` with `workspaceMode: agent`, then `project_get` and verify `workflowType: agent` or `formatConfig.agentWorkspaceV2: true`.
+- Missing tools are a connection or host-loading failure, not an empty workspace. Ask for Kinex reauthorization and a new task instead of claiming the project does not exist.
+
 ## Canonical records
 
 - Production Plan: `plan_get`, `plan_save`.
@@ -13,7 +21,7 @@
 
 - Style: `style_list`, `style_set_from_catalog`, `style_seed_from_catalog`, `style_set_custom`, `style_set_from_image`.
 - Entities: `workspace_list_entities`, `workspace_read_entity`, `workspace_define_entity`, `workspace_update_entity`.
-- Structure: `beat_list`, `beat_define`, `beat_update`, `shot_list`, `shot_define`, `shot_update`.
+- Optional temporal structure: `beat_list`, `beat_define`, `beat_update`, `shot_list`, `shot_define`, `shot_update`.
 - External project media: `workspace_upload_external_media`, then `workspace_attach_external_media`.
 - Current model capabilities: `generation_list_supported_media_models`.
 - Generation router: `workspace_execute_command`.

@@ -1,7 +1,7 @@
 interface:
   display_name: 'Create a Kinex Video'
   short_description: 'Take a brief to a verified final cut'
-  default_prompt: 'Use $kinex-create-video to turn this brief into a finished Kinex video.'
+  default_prompt: 'Use $kinex-create-video to turn this brief into a finished video through the classic Kinex script workflow.'
 dependencies:
   tools:
     - type: 'mcp'

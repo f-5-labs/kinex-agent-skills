@@ -1,7 +1,7 @@
 {
   "name": "kinex",
-  "version": "0.3.2",
-  "description": "Source-grounded, variant-aware creative direction and complete AI video production through the authenticated Kinex MCP server.",
+  "version": "0.3.3",
+  "description": "Source-grounded, variant-aware image, video, and mixed-media production through the authenticated Kinex MCP server.",
   "author": {
     "name": "Kinex Studio",
     "email": "support@kinex.studio",

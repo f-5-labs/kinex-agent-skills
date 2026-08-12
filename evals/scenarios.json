@@ -173,15 +173,104 @@
       ]
     },
     {
+      "id": "new-agent-workspace-image-project",
+      "skill": "kinex-agent-workspace",
+      "request": "Create a new Agent Workspace project in my current Kinex workspace for a set of product campaign stills. Save the plan and visual canon, but do not invent scenes or generate yet.",
+      "expectedTools": [
+        "workspace_get_current",
+        "project_create_from_brief",
+        "project_get",
+        "plan_get",
+        "context_get",
+        "plan_save",
+        "context_update_section"
+      ],
+      "orderedTools": [
+        "workspace_get_current",
+        "project_create_from_brief",
+        "project_get",
+        "plan_get",
+        "context_get",
+        "plan_save"
+      ],
+      "requiredToolInputs": {
+        "project_create_from_brief": {
+          "workspaceMode": "agent"
+        }
+      },
+      "forbiddenTools": ["script_planning_turn", "beat_define", "shot_define"],
+      "checks": [
+        "creates the Agent Workspace project without routing through the classic video skill",
+        "verifies Agent Workspace mode after creation",
+        "keeps image-only work free of invented temporal structure"
+      ]
+    },
+    {
+      "id": "new-agent-workspace-scene-one",
+      "skill": "kinex-agent-workspace",
+      "request": "Create a new Agent Workspace project from the attached source and produce Scene 1.",
+      "expectedTools": [
+        "workspace_get_current",
+        "workspace_list",
+        "project_create_from_brief",
+        "project_get",
+        "plan_get",
+        "context_get",
+        "plan_save",
+        "context_update_section",
+        "beat_define",
+        "shot_define",
+        "generation_list_supported_media_models",
+        "workspace_execute_command",
+        "task_get"
+      ],
+      "orderedTools": [
+        "workspace_get_current",
+        "workspace_list",
+        "project_create_from_brief",
+        "project_get",
+        "plan_get",
+        "context_get",
+        "plan_save",
+        "context_update_section",
+        "beat_define",
+        "shot_define",
+        "generation_list_supported_media_models",
+        "workspace_execute_command",
+        "task_get"
+      ],
+      "requiredToolInputs": {
+        "project_create_from_brief": {
+          "workspaceMode": "agent"
+        }
+      },
+      "forbiddenTools": [
+        "script_planning_turn",
+        "script_plan_shots",
+        "generation_generate_storyboard"
+      ],
+      "checks": [
+        "bootstraps and verifies the Agent Workspace project before production",
+        "creates only the requested Scene 1 coverage",
+        "polls the queued production task and verifies the result"
+      ]
+    },
+    {
       "id": "classic-brief-to-video",
       "skill": "kinex-create-video",
       "request": "Use the classic manual script workflow to make a polished 45-second horizontal launch film from this brief.",
       "expectedTools": [
+        "workspace_get_current",
         "project_create_from_brief",
         "project_get_pipeline",
         "script_plan_shots",
         "task_get"
       ],
+      "requiredToolInputs": {
+        "project_create_from_brief": {
+          "workspaceMode": "manual"
+        }
+      },
       "forbiddenTools": ["workspace_execute_command"],
       "checks": ["reviews story and look before storyboards", "polls every queued task"]
     },
