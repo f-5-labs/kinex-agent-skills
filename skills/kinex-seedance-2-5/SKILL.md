@@ -22,7 +22,7 @@ Do not promise Dreamina-only video editing, extension, ultra-long generation, or
 Inspect the supplied assets and activate only material needed for the present scene. Assign one explicit job to every activated material in the creative prompt:
 
 - **Image:** a character's visible identity and wardrobe; a product's structure and material; a prop; or a location's layout and lighting.
-- **Motion video:** only the action, camera path, or pacing to inherit. State which identity, clothing, scene, or audio must *not* transfer from it.
+- **Motion video:** only the action, camera path, or pacing to inherit. State which identity, clothing, scene, or audio must _not_ transfer from it.
 - **Audio:** one speaker's voice or dialogue, ambience, music, or a specific sound effect. Preserve the stated speaker and relationship to the picture.
 
 Map people, products, props, and locations separately. Do not use upload order, contact-sheet labels, or a broad range such as “images 1–4 define the cast” as a substitute for roles. Leave irrelevant materials inactive and say so. A strong full-modal prompt makes the handoff legible:
@@ -38,14 +38,16 @@ Then state the opening state, primary event, visible ending state, and the invar
 
 ## Direct a whole beat deliberately
 
-When an approved beat is at most the selected operation's advertised duration, it can be one Seedance clip. Write it as consecutive stages, not unrelated shots:
+When an approved beat is at most the selected operation's advertised duration, it can be one Seedance clip only when it is one coherent dramatic event. A capability maximum is not a creative recommendation. Write consecutive stages, not unrelated shots:
 
 1. Give each stage one main state change and a concrete end state.
 2. At each transition, state what carries forward from the previous stage.
 3. Use exact time ranges only for a genuinely critical entrance, handoff, exit, transition, or user-requested beat.
-4. If the runtime exceeds the live maximum or continuity cannot survive the requested action, split at a clear end state and retain the existing per-shot route.
+4. If the runtime exceeds the live maximum, the beat contains unrelated coverage, or continuity cannot survive the requested action, split at a clear end state and retain the existing per-shot route.
 
 For a start-frame or start-and-end-frame operation, bind only the required source frames and preserve their visual continuity. If the operation reports an Adaptive-only ratio, the source image governs composition. Use the full-modal reference operation when the scene genuinely needs image, motion, and audio materials together.
+
+Assemble a stable shot instruction from scene context, active reference roles, spatial map, first frame, format and cuts, optics, camera behavior, timed action, physics, motivated light, exact audio, per-character acting, approved style, observable quality, and positive continuity constraints. Keep counts, speaker relationships, silence, and exclusions explicit. During iteration, preserve the working instruction and structured inputs, change one failing control, and record the result and verdict.
 
 ## Execute only through the approved Kinex path
 

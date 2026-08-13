@@ -54,6 +54,23 @@ for (const [tool, expectedInput] of Object.entries(scenario.requiredToolInputs ?
   }
 }
 
+const matchedRequiredCallIndexes = new Set();
+for (const requirement of scenario.requiredToolCalls ?? []) {
+  const matchingIndex = calls.findIndex(
+    (call, index) =>
+      !matchedRequiredCallIndexes.has(index) &&
+      call.tool === requirement.tool &&
+      Object.entries(requirement.input ?? {}).every(([key, value]) => call.input?.[key] === value)
+  );
+  if (matchingIndex === -1) {
+    failures.push(
+      `${requirement.tool} never received required distinct input ${JSON.stringify(requirement.input ?? {})}`
+    );
+  } else {
+    matchedRequiredCallIndexes.add(matchingIndex);
+  }
+}
+
 if (failures.length) {
   console.error(`External MCP trace failed ${scenarioId}:\n- ${failures.join('\n- ')}`);
   process.exit(1);

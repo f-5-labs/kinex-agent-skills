@@ -1,0 +1,35 @@
+{
+  "scenarioId": "surgical-take-iteration",
+  "host": "external-mcp-client",
+  "events": [
+    {
+      "type": "tool_call",
+      "tool": "scene_get_media_history",
+      "input": { "projectId": "project-1", "sceneId": "shot-4", "type": "video" }
+    },
+    {
+      "type": "tool_call",
+      "tool": "generation_list_supported_media_models",
+      "input": {}
+    },
+    {
+      "type": "tool_call",
+      "tool": "workspace_execute_command",
+      "input": {
+        "type": "scene.generateVideo",
+        "projectId": "project-1",
+        "sceneId": "shot-4",
+        "operationKey": "video.generate",
+        "inputs": {
+          "prompt": "Preserve the approved take; keep the camera settled after the handoff."
+        }
+      }
+    },
+    { "type": "tool_call", "tool": "task_get", "input": { "taskId": "retry-5" } },
+    {
+      "type": "tool_call",
+      "tool": "scene_get_media_history",
+      "input": { "projectId": "project-1", "sceneId": "shot-4", "type": "video" }
+    }
+  ]
+}

@@ -13,17 +13,91 @@
         "workspaceMode": "agent"
       }
     },
-    { "type": "tool_call", "tool": "project_get", "input": { "projectId": "project-1" } },
-    { "type": "tool_call", "tool": "plan_get", "input": { "projectId": "project-1" } },
-    { "type": "tool_call", "tool": "context_get", "input": { "projectId": "project-1" } },
-    { "type": "tool_call", "tool": "plan_save", "input": { "projectId": "project-1" } },
+    {
+      "type": "tool_call",
+      "tool": "project_get",
+      "input": { "projectId": "project-1" }
+    },
+    {
+      "type": "tool_call",
+      "tool": "plan_get",
+      "input": { "projectId": "project-1" }
+    },
+    {
+      "type": "tool_call",
+      "tool": "context_get",
+      "input": { "projectId": "project-1" }
+    },
+    {
+      "type": "tool_call",
+      "tool": "plan_save",
+      "input": { "projectId": "project-1" }
+    },
     {
       "type": "tool_call",
       "tool": "context_update_section",
       "input": { "projectId": "project-1", "section": "Story and intent" }
     },
-    { "type": "tool_call", "tool": "beat_define", "input": { "projectId": "project-1" } },
-    { "type": "tool_call", "tool": "shot_define", "input": { "projectId": "project-1" } },
+    {
+      "type": "tool_call",
+      "tool": "workspace_list_entities",
+      "input": { "projectId": "project-1" }
+    },
+    {
+      "type": "tool_call",
+      "tool": "workspace_define_entity",
+      "input": {
+        "projectId": "project-1",
+        "kind": "character",
+        "name": "Scene 1 lead"
+      }
+    },
+    {
+      "type": "tool_call",
+      "tool": "workspace_execute_command",
+      "input": {
+        "type": "entity.generateHero",
+        "projectId": "project-1",
+        "entityKind": "character",
+        "entityId": "character-1",
+        "operationKey": "image.generate",
+        "inputs": {}
+      }
+    },
+    {
+      "type": "tool_call",
+      "tool": "task_get",
+      "input": { "taskId": "entity-task-1" }
+    },
+    {
+      "type": "tool_call",
+      "tool": "workspace_read_entity",
+      "input": {
+        "projectId": "project-1",
+        "kind": "character",
+        "entityId": "character-1"
+      }
+    },
+    {
+      "type": "tool_call",
+      "tool": "beat_define",
+      "input": {
+        "projectId": "project-1",
+        "label": "Scene 1",
+        "summary": "The requested opening scene"
+      }
+    },
+    {
+      "type": "tool_call",
+      "tool": "shot_define",
+      "input": {
+        "projectId": "project-1",
+        "beatId": "beat-1",
+        "actionLine": "The lead enters and confronts the first story obstacle.",
+        "castEntityIds": ["character-1"],
+        "requireLockedEntities": true
+      }
+    },
     {
       "type": "tool_call",
       "tool": "generation_list_supported_media_models",
@@ -32,7 +106,13 @@
     {
       "type": "tool_call",
       "tool": "workspace_execute_command",
-      "input": { "projectId": "project-1" }
+      "input": {
+        "type": "scene.generateVideo",
+        "projectId": "project-1",
+        "sceneId": "scene-1",
+        "operationKey": "video.generate",
+        "inputs": {}
+      }
     },
     { "type": "tool_call", "tool": "task_get", "input": { "taskId": "task-1" } }
   ]
