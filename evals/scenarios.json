@@ -698,6 +698,40 @@
       ]
     },
     {
+      "id": "standalone-library-imagen-ultra-photoreal",
+      "skill": "kinex-media-library",
+      "request": "Use Imagen 4 Ultra to make four 2K photoreal hero options for a premium skincare campaign. The bottle label must read 'KINEX NIGHT SERUM'.",
+      "expectedTools": [
+        "generation_list_supported_media_models",
+        "library_generate_image",
+        "task_get",
+        "library_list_media"
+      ],
+      "forbiddenTools": ["workspace_execute_command", "library_upload_media"],
+      "checks": [
+        "uses the text-only Imagen 4 Ultra operation and its native 2K and four-output fields",
+        "quotes exact visible wording and specifies its placement, material, light, lens, and surface behavior",
+        "polls and reviews every persisted output before recommending a hero"
+      ]
+    },
+    {
+      "id": "standalone-library-qwen-max-text-scene",
+      "skill": "kinex-media-library",
+      "request": "Use Qwen Image Max for a realistic night-market portrait with a clearly readable overhead sign saying 'ENUGU NIGHT MARKET'. Use 16:9 and enable prompt expansion.",
+      "expectedTools": [
+        "generation_list_supported_media_models",
+        "library_generate_image",
+        "task_get",
+        "library_list_media"
+      ],
+      "forbiddenTools": ["workspace_execute_command", "library_upload_media"],
+      "checks": [
+        "uses Qwen Image Max's text-only single-output operation and fixed 16:9 size",
+        "keeps prompt expansion and seed as structured fields while specifying exact sign text and spatial placement in prose",
+        "uses camera, skin, fabric, and motivated-light evidence for realism"
+      ]
+    },
+    {
       "id": "seedance-unqualified-defaults-to-full-2-0",
       "skill": "kinex-seedance-2-5",
       "request": "The plan is approved. Use Seedance to animate this product reveal with the supplied opening frame and dialogue track.",
