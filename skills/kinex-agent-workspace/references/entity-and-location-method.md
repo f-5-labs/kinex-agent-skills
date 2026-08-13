@@ -15,6 +15,8 @@ Decide from downstream use before generating anything:
 
 Record the chosen strategy, downstream reuse, required coverage, unresolved facts, and acceptance criteria in the Production Plan before generation.
 
+Maintain a compact asset passport for every recurring lock: canonical entity id and kind, source-grounded descriptor, declared reference roles, named variants, scenes or shots that require each state, version, status, acceptance criteria, and review evidence. Keep exploratory attempts and rejected media in history; do not silently replace the passport's approved lock.
+
 ## Define character canon
 
 Inspect every supplied source first. It is evidence, not permission to redesign or invent hidden facts.
@@ -26,6 +28,24 @@ For a non-human character, persist subject class, silhouette, proportions, limb 
 Add observable performance behavior: default posture, gaze habits, hand business or equivalent gesture system, movement rhythm, behavior under pressure, and any approved voice or delivery facts. These are playable continuity facts, not emotion adjectives.
 
 If a source is a single portrait or cropped view, mark occluded anatomy, wardrobe, accessories, back views, and construction unresolved. A derived sheet must preserve visible identity; it must not turn guesses into canon.
+
+## Plan the floor map before defining a location
+
+Do not call `workspace_define_entity` for a location until its floor map has been planned and saved in the Production Plan. Use a minimal map even for a simple one-off place; expand it when blocking, continuity, architecture, or recurring coverage matters.
+
+Inspect supplied plans, images, text, and neighbouring locations first. Record:
+
+- orientation, footprint, boundaries, and named zones;
+- entrances, exits, doors, windows, corridors, and adjacent spaces;
+- permanent anchor landmarks and story-significant set pieces;
+- relative scale, distances, elevation changes, and levels;
+- likely subject positions, action paths, and prop handoff points;
+- usable camera zones, the working 180-degree axis, screen-left and screen-right relationships, and intentional axis-crossing options;
+- foreground occlusions, mirrors, glass, choke points, hazards, and inaccessible areas;
+- motivated practical light sources and their direction;
+- source-proven facts, unresolved space, and explicit design proposals.
+
+Use readable text, compact ASCII, or both. Do not turn an inferred room behind a closed door into canon. After the floor map exists, define the location from its stable geometry and materials. Persist approved cross-scene geography in the Project Bible; keep temporary blocking and camera choices on beats or shots.
 
 ## Define location and world canon
 
@@ -63,6 +83,8 @@ Architecture, distances, materials, permanent set dressing, and palette must rem
 5. Keep the neutral canonical lock separate from cinematic shot treatment. Shot prompts carry angle, action, weather, emotion, and lighting unless those facts define a named approved variant.
 
 Do not assign a recurring entity to downstream shots until its required canonical and variant media are locked.
+
+Before motion, stress-test a recurring lock in the production conditions that are most likely to expose drift: useful wide and close framing, more than one angle, required light or weather states, movement or gesture, and at least one ensemble frame with its scene partners. Record which tests passed. One attractive image is not sufficient evidence when the asset must survive broader coverage.
 
 ## Review before locking
 

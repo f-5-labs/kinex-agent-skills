@@ -68,6 +68,10 @@ For shot generations, read `scene_get_media_history` before choosing an alternat
 
 List and semantically match existing entities before defining a new one. Keep production states in the canonical entity's `attributes.variants` and use the live shot schema for its variant keys. Lock the canonical hero before the entity is referenced by a shot. A shot's assigned variants must exist, belong to its active entities, and have the required locked media before start-frame or video generation.
 
+## Location-definition gate
+
+Before `workspace_define_entity` with `kind: location`, read the current plan and sources, then save the floor map in the Production Plan. Include stable zones, access points, landmarks, relative distances, action paths, camera sides, working axis, occlusions, elevation, and motivated light. Define the location only after that plan exists; then re-read it and persist approved cross-scene geography in the Project Bible when appropriate. Do not invent a floor-map tool.
+
 ## Confirmation gates
 
 - Approving a plan requires explicit current-turn user approval. A direct instruction to create, generate, render, make, produce, queue, start, or proceed with a named visual deliverable counts; a question, hypothetical, or negative instruction does not. When it counts, call `plan_save` with `status: approved` and `approvalConfirmed: true`, then continue execution in that turn.

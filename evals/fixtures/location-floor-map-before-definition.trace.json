@@ -1,0 +1,48 @@
+{
+  "scenarioId": "location-floor-map-before-definition",
+  "host": "external-mcp-client",
+  "events": [
+    {
+      "type": "tool_call",
+      "tool": "plan_get",
+      "input": { "projectId": "project-1" }
+    },
+    {
+      "type": "tool_call",
+      "tool": "context_get",
+      "input": { "projectId": "project-1" }
+    },
+    {
+      "type": "tool_call",
+      "tool": "workspace_list_entities",
+      "input": { "projectId": "project-1", "kind": "location" }
+    },
+    {
+      "type": "tool_call",
+      "tool": "plan_save",
+      "input": {
+        "projectId": "project-1",
+        "markdown": "## Direction\nFloor map: concourse, platforms, exits, landmarks, distances, action paths, camera sides, axis, occlusions, elevation, and practical light.\n## Assumptions and Open Questions\nClosed service corridor remains unresolved.\n## Milestones\nApprove stable station geography.\n## Checklist\n- [x] (station-floor-map) Floor map saved before location definition"
+      }
+    },
+    {
+      "type": "tool_call",
+      "tool": "workspace_define_entity",
+      "input": {
+        "projectId": "project-1",
+        "kind": "location",
+        "name": "Station interior",
+        "description": "A station defined from the saved stable floor map."
+      }
+    },
+    {
+      "type": "tool_call",
+      "tool": "workspace_read_entity",
+      "input": {
+        "projectId": "project-1",
+        "kind": "location",
+        "entityId": "station-1"
+      }
+    }
+  ]
+}

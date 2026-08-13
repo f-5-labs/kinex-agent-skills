@@ -21,17 +21,23 @@ For campaigns, give each deliverable family its own beat and artifact target. Sh
 
 ## Write sealed shot instructions
 
-Treat each generation prompt as the current shot's sealed document. Include only active references and state each role. A useful conditional order is:
+Treat each generation prompt as the current shot's sealed document. Include only active references and state each role. Assemble the instruction in a stable order so a revision can target one control without disturbing the rest:
 
-1. active cast, count, and exact entity variants;
-2. location and spatial map;
-3. first-frame occupancy and blocking;
-4. format, observable field of view, framing, and camera behavior;
-5. timed action, contact, mass, inertia, cloth or hair response, and state changes;
-6. objective, obstacle, tactics, subtext, eye behavior, hand business, interruption, and reaction timing;
-7. lighting and material response;
-8. exact dialogue, copy, ambience, and exclusions;
-9. positive quality and continuity constraints.
+1. scene context and dramatic event;
+2. active references, cast count, roles, and exact entity variants;
+3. location map and stable screen geography;
+4. first-frame occupancy, body orientation, and blocking;
+5. format mode, duration, and intentional cuts;
+6. observable field of view, framing, and optics;
+7. camera height, side, movement, physical register, and settle behavior;
+8. timed action beats and visible state changes;
+9. contact, mass, inertia, cloth, hair, liquid, and persistence;
+10. motivated light and material response;
+11. exact dialogue, copy, ambience, sound effects, music permission, and silence requirements;
+12. objective, obstacle, tactics, subtext, eye behavior, hand business, interruption, and reaction timing for each active character;
+13. the approved visual-language fragment needed for this shot;
+14. observable quality requirements;
+15. positive count, continuity, era, and exclusion constraints located next to the control they protect.
 
 Use exact quoted text for dialogue and on-screen copy. Do not add claims, ad-libs, music, extra cast, or unseen construction unless approved. Keep model parameters in structured inputs when the live tool schema provides them instead of duplicating them in prose.
 
@@ -47,6 +53,6 @@ Select video models from Kinex's live capability registry. Prefer demonstrated s
 
 ## Iterate and review
 
-Change one control at a time and retain the prompt version, change, and verdict in the Production Plan or task notes. Re-read entity or scene generation history, compare actual alternatives, and inspect start frames before spending on motion. If a shot repeatedly fails, remove simultaneous actions, simplify blocking, split the action, or change the angle.
+Change one control at a time and retain the shot id, attempt, exact operation and model, structured inputs, reference roles, prompt, changed control, output, and verdict in the Production Plan or task notes. Re-read entity or scene generation history, compare actual alternatives, and inspect start frames before spending on motion. A completed result is not automatically a select. If a shot exhausts the agreed retry budget, remove simultaneous actions, simplify blocking, split the action, add editorial coverage, or change the angle.
 
 Assemble the cut in parallel. Trim unstable clip edges, repair identity and cleanup before global color treatment, and use continuous ambience or state tails to support edits. Report `pass`, `revise`, or `block` with artifact evidence and the smallest corrective action.

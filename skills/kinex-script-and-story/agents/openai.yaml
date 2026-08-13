@@ -1,7 +1,7 @@
 interface:
-  display_name: 'Write with Kinex'
-  short_description: 'Develop scripts and production-ready shot plans'
-  default_prompt: 'Use $kinex-script-and-story to develop this idea into a production-ready script.'
+  display_name: 'Write and Review with Kinex'
+  short_description: 'Review, revise, and plan production-ready scripts'
+  default_prompt: 'Use $kinex-script-and-story to review or develop this script before production.'
 dependencies:
   tools:
     - type: 'mcp'

@@ -6,6 +6,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const expectedSkills = [
   'kinex-agent-workspace',
   'kinex-create-video',
+  'kinex-hailuo-h3',
   'kinex-media-library',
   'kinex-review-and-export',
   'kinex-script-and-story',
@@ -42,7 +43,10 @@ async function validate() {
   check(codex.name === 'kinex', 'Codex manifest must use plugin name kinex.');
   check(codex.version === claude.version, 'Codex and Claude versions must match.');
   const claudeBundle = claudeMarketplace.plugins?.find((plugin) => plugin.name === 'kinex');
-  check(claudeBundle?.version === codex.version, 'Claude marketplace and Codex versions must match.');
+  check(
+    claudeBundle?.version === codex.version,
+    'Claude marketplace and Codex versions must match.'
+  );
   check(codex.version === cursor.version, 'Codex and Cursor versions must match.');
   check(codex.skills === './skills/', 'Codex manifest must discover the skills directory.');
   check(codex.mcpServers === './.mcp.json', 'Codex manifest must expose the MCP config.');
@@ -61,7 +65,9 @@ async function validate() {
 
   for (const asset of ['assets/icon.svg', 'assets/logo.svg']) await access(path.join(root, asset));
 
-  const skillEntries = await readdir(path.join(root, 'skills'), { withFileTypes: true });
+  const skillEntries = await readdir(path.join(root, 'skills'), {
+    withFileTypes: true,
+  });
   const skills = skillEntries
     .filter((entry) => entry.isDirectory())
     .map((entry) => entry.name)
@@ -96,6 +102,10 @@ async function validate() {
     agentWorkspaceSource.includes('references/entity-and-location-method.md'),
     'kinex-agent-workspace: character and location method link is missing.'
   );
+  check(
+    agentWorkspaceSource.includes('references/scene-production-method.md'),
+    'kinex-agent-workspace: scene production method link is missing.'
+  );
   const entityLocationMethod = await readFile(
     path.join(
       root,
@@ -112,6 +122,8 @@ async function validate() {
     'Character master sheet',
     'Wardrobe or garment lock',
     'Location reference sheet',
+    'Plan the floor map before defining a location',
+    'action paths',
     'working 180-degree axis',
     'PASS:',
     'BLOCKED:',
@@ -122,8 +134,49 @@ async function validate() {
     );
   }
 
+  const scriptStorySource = skillSources.get('kinex-script-and-story') ?? '';
+  check(
+    scriptStorySource.includes('references/script-review-method.md'),
+    'kinex-script-and-story: pre-production script review link is missing.'
+  );
+  const scriptReviewMethod = await readFile(
+    path.join(root, 'skills', 'kinex-script-and-story', 'references', 'script-review-method.md'),
+    'utf8'
+  );
+  for (const requiredPhrase of [
+    'Establish the review contract',
+    'Scene function',
+    'Return a decision-ready review',
+    'Apply the pre-production gate',
+  ]) {
+    check(
+      scriptReviewMethod.includes(requiredPhrase),
+      `kinex-script-and-story: script review method is missing ${requiredPhrase}.`
+    );
+  }
+  const sceneProductionMethod = await readFile(
+    path.join(root, 'skills', 'kinex-agent-workspace', 'references', 'scene-production-method.md'),
+    'utf8'
+  );
+  for (const requiredPhrase of [
+    'Scene-readiness gate',
+    'Identity and asset lane',
+    'Direction lane',
+    'Camera lane',
+    'Edit lane',
+    'asset passport',
+    'scene-to-assets matrix',
+    'take and prompt ledger',
+    'Finish within the real surface',
+  ]) {
+    check(
+      sceneProductionMethod.toLowerCase().includes(requiredPhrase.toLowerCase()),
+      `kinex-agent-workspace: scene production method is missing ${requiredPhrase}.`
+    );
+  }
+
   check(scenarios.version === 1, 'Eval fixture version must be 1.');
-  check(scenarios.scenarios?.length >= 26, 'At least twenty-six routing scenarios are required.');
+  check(scenarios.scenarios?.length >= 36, 'At least thirty-six routing scenarios are required.');
   const covered = new Set(scenarios.scenarios?.map((scenario) => scenario.skill));
   for (const skill of expectedSkills) check(covered.has(skill), `${skill}: no eval coverage.`);
 
@@ -143,6 +196,12 @@ async function validate() {
         scenario.expectedTools?.includes(tool)
       ),
       `${scenario.id}: requiredToolInputs must target expectedTools.`
+    );
+    check(
+      (scenario.requiredToolCalls ?? []).every((call) =>
+        scenario.expectedTools?.includes(call.tool)
+      ),
+      `${scenario.id}: requiredToolCalls must target expectedTools.`
     );
     const forbidden = new Set(scenario.forbiddenTools ?? []);
     check(
