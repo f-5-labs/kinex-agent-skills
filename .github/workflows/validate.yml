@@ -18,3 +18,6 @@ jobs:
           node-version: 22
       - run: node scripts/validate.mjs
       - run: node scripts/evaluate-external-trace.mjs new-agent-workspace-scene-one evals/fixtures/new-agent-workspace-scene-one.trace.json
+      - run: node scripts/evaluate-external-trace.mjs film-scene-readiness-blocks-generation evals/fixtures/film-scene-readiness-blocks-generation.trace.json
+      - run: node scripts/evaluate-external-trace.mjs surgical-take-iteration evals/fixtures/surgical-take-iteration.trace.json
+      - run: node scripts/evaluate-external-trace.mjs seedance-capability-is-not-creative-fit evals/fixtures/seedance-capability-is-not-creative-fit.trace.json

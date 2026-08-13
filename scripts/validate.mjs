@@ -96,6 +96,10 @@ async function validate() {
     agentWorkspaceSource.includes('references/entity-and-location-method.md'),
     'kinex-agent-workspace: character and location method link is missing.'
   );
+  check(
+    agentWorkspaceSource.includes('references/film-production-pipeline.md'),
+    'kinex-agent-workspace: film production pipeline link is missing.'
+  );
   const entityLocationMethod = await readFile(
     path.join(
       root,
@@ -121,9 +125,29 @@ async function validate() {
       `kinex-agent-workspace: character/location method is missing ${requiredPhrase}.`
     );
   }
+  const filmProductionPipeline = await readFile(
+    path.join(root, 'skills', 'kinex-agent-workspace', 'references', 'film-production-pipeline.md'),
+    'utf8'
+  );
+  for (const requiredPhrase of [
+    'Scene-readiness gate',
+    'Identity and asset lane',
+    'Direction lane',
+    'Camera lane',
+    'Edit lane',
+    'asset passport',
+    'scene-to-assets matrix',
+    'take and prompt ledger',
+    'Finish within the real surface',
+  ]) {
+    check(
+      filmProductionPipeline.toLowerCase().includes(requiredPhrase.toLowerCase()),
+      `kinex-agent-workspace: film production pipeline is missing ${requiredPhrase}.`
+    );
+  }
 
   check(scenarios.version === 1, 'Eval fixture version must be 1.');
-  check(scenarios.scenarios?.length >= 26, 'At least twenty-six routing scenarios are required.');
+  check(scenarios.scenarios?.length >= 33, 'At least thirty-three routing scenarios are required.');
   const covered = new Set(scenarios.scenarios?.map((scenario) => scenario.skill));
   for (const skill of expectedSkills) check(covered.has(skill), `${skill}: no eval coverage.`);
 
@@ -143,6 +167,12 @@ async function validate() {
         scenario.expectedTools?.includes(tool)
       ),
       `${scenario.id}: requiredToolInputs must target expectedTools.`
+    );
+    check(
+      (scenario.requiredToolCalls ?? []).every((call) =>
+        scenario.expectedTools?.includes(call.tool)
+      ),
+      `${scenario.id}: requiredToolCalls must target expectedTools.`
     );
     const forbidden = new Set(scenario.forbiddenTools ?? []);
     check(

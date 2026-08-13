@@ -21,6 +21,10 @@ Switch to classic `visual_*` for a classic project look bible or `$kinex-agent-w
 
 Search before creating duplicates. Keep media and entity ids internally, reuse prior media as references, and surface canonical URLs with human labels rather than storage keys.
 
+For a reusable recurring character, location, or prop, treat the library entity and its media as a compact reference passport: stable identity, source-grounded description, explicit role for every reference, required views or states, current approved version, and unresolved facts. Gather references by asset purpose—identity, wardrobe, geometry, material, scale, or state—and separately by craft purpose—light, palette, optics, movement, texture, edit rhythm, or sound. State what each reference controls and what must not transfer.
+
+Keep variants and alternate views linked to the same reusable identity when the live entity schema supports them. Do not treat a library item as a project continuity lock automatically: when production begins, use the classic look-bible or Agent Workspace project lane and verify the project-scoped hero, anchor, variants, and shot assignments there.
+
 For async work, poll `task_get` or recover with `task_list_library`. Re-list media after completion before delivering a URL. A queued task is not a completed asset.
 
 Confirm entity deletion or media archival, then re-list the affected collection.

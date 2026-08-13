@@ -15,6 +15,8 @@ Decide from downstream use before generating anything:
 
 Record the chosen strategy, downstream reuse, required coverage, unresolved facts, and acceptance criteria in the Production Plan before generation.
 
+Maintain a compact asset passport for every recurring lock: canonical entity id and kind, source-grounded descriptor, declared reference roles, named variants, scenes or shots that require each state, version, status, acceptance criteria, and review evidence. Keep exploratory attempts and rejected media in history; do not silently replace the passport's approved lock.
+
 ## Define character canon
 
 Inspect every supplied source first. It is evidence, not permission to redesign or invent hidden facts.
@@ -63,6 +65,8 @@ Architecture, distances, materials, permanent set dressing, and palette must rem
 5. Keep the neutral canonical lock separate from cinematic shot treatment. Shot prompts carry angle, action, weather, emotion, and lighting unless those facts define a named approved variant.
 
 Do not assign a recurring entity to downstream shots until its required canonical and variant media are locked.
+
+Before motion, stress-test a recurring lock in the production conditions that are most likely to expose drift: useful wide and close framing, more than one angle, required light or weather states, movement or gesture, and at least one ensemble frame with its scene partners. Record which tests passed. One attractive image is not sufficient evidence when the asset must survive broader coverage.
 
 ## Review before locking
 

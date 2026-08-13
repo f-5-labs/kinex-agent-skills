@@ -21,16 +21,17 @@ Drive the project from intent to a verified result. Infer safe defaults, keep in
 2. Develop the story with `script_planning_turn` or make one precise change with `script_refine`.
 3. Re-read and apply a `pass`, `revise`, or `block` editorial verdict.
 4. Run `script_plan_shots`, then `script_generate_visual_script`; poll `task_get` and verify the result.
-5. Stabilize the look bible with `visual_list_entities` and required entity updates before generating thumbnails.
-6. Create storyboard rows only after story and look-bible approval.
+5. Check the visual script as production coverage: every shot needs its story purpose, active cast and state, location and time, significant props, observable action, performance beat, camera behavior, duration, intended cut, and any complex generation risk.
+6. Stabilize the look bible with `visual_list_entities` and required entity updates before generating thumbnails. Treat wardrobe, condition, time, weather, and prop changes as explicit production states rather than prose hidden inside prompts.
+7. Create storyboard rows only after story, coverage, and look-bible approval. Do not release a scene whose required visual entities are missing or unreviewed.
 
 ## Generate selectively
 
-Read `scene_list_project`, repair order or prompts, and choose a current model using `generation_list_supported_media_models` when needed. Generate only affected scenes for targeted revisions; batch only several approved scenes sharing settings. Poll every task, inspect `scene_get_media_history`, and choose canonical media with `scene_set_active_media`.
+Read `scene_list_project`, repair order or prompts, and choose a current model using `generation_list_supported_media_models` when needed. Generate scene-sized production blocks rather than scattered shots; generate only affected scenes for targeted revisions. Batch only several approved scenes sharing settings. Poll every task, inspect `scene_get_media_history`, and choose canonical media with `scene_set_active_media`. When iterating, preserve the last working prompt and inputs, change one failing control, and retain the result and verdict.
 
 ## Review and deliver
 
-Run a light evidence-backed review after story, look bible, scenes, and media. Fix blockers at their source layer. Hand final assembly and rendering to `$kinex-review-and-export`.
+Run a light evidence-backed review after story, look bible, scenes, and media. Review neighbouring shots for eyelines, action axis, identity and prop continuity, light, movement tempo, and audio tails. Fix blockers at their source layer. Hand final assembly and rendering to `$kinex-review-and-export`.
 
 Never call a queued task complete or hide unresolved continuity risks.
 

@@ -22,11 +22,18 @@ Re-read after every write and verify the requested change landed.
 
 ## Apply the editorial gate
 
-Review intent, audience, structure, stakes, dialogue versus narration, duration, platform fit, cast and locations, and visual continuity risks. Return `pass`, `revise`, or `block` with evidence from the current artifact. Fix blockers before shot planning.
+Review intent, audience, structure, stakes, dialogue versus narration, duration, platform fit, cast and locations, and visual continuity risks. Build a production asset list that distinguishes canonical identities from required wardrobe, condition, time, weather, and prop states. Flag crowds, vehicles, animals, water, fire, smoke, stunts, lip sync, designed screens, and in-frame text as explicit complexity or finishing needs. Return `pass`, `revise`, or `block` with evidence from the current artifact. Fix blockers before shot planning.
 
 ## Plan production
 
-Run `script_plan_shots`, then `script_generate_visual_script`. Poll the task, re-read `script_get_document`, and compare the visual plan with the approved story. If it drifted, repair the source story or plan and repeat.
+Run `script_plan_shots`, then `script_generate_visual_script`. Poll the task, re-read `script_get_document`, and compare the visual plan with the approved story. Each planned shot should expose four separable lanes:
+
+- identity and assets: scene, location and condition, cast and states, props, action or dialogue, duration, complexity;
+- direction: shot purpose, playable task, visible change, blocking, acting behavior, visual device;
+- camera: size, movement, field of view, angle, action axis;
+- edit: cut, pace, transition, and incoming or outgoing hook.
+
+If the visual plan drifted or lacks editorial coverage, repair the source story or plan and repeat. A prompt is downstream of the shot plan; do not let it invent story facts or coverage.
 
 Stop after the approved plan unless the user also requested production. For full production, use `$kinex-create-video`.
 
