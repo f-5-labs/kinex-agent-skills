@@ -6,6 +6,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const expectedSkills = [
   'kinex-agent-workspace',
   'kinex-create-video',
+  'kinex-hailuo-h3',
   'kinex-media-library',
   'kinex-review-and-export',
   'kinex-script-and-story',

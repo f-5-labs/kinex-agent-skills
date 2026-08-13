@@ -407,6 +407,22 @@
         "assigns one explicit role to each activated reference",
         "uses one clip only because the approved beat fits the advertised duration"
       ]
+    },
+    {
+      "id": "hailuo-h3-reference-transition",
+      "skill": "kinex-hailuo-h3",
+      "request": "The Production Plan is approved. Use the supplied product image, hand-motion video, and rhythm track to make one 8-second 2K Hailuo H3 product shot; retain the bottle appearance and land on the specified final frame.",
+      "expectedTools": [
+        "generation_list_supported_media_models",
+        "workspace_execute_command",
+        "task_get"
+      ],
+      "forbiddenTools": ["generation_generate_video", "library_upload_media"],
+      "checks": [
+        "confirms the live Hailuo H3 operation before execution",
+        "uses H3 reference labels and reference-retention logic instead of Seedance role grammar",
+        "keeps the action as one continuous frame-led shot and rejects audio-only input"
+      ]
     }
   ]
 }

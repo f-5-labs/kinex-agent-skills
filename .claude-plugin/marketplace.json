@@ -34,6 +34,11 @@
           "invoke": "/kinex:review-and-export"
         },
         {
+          "name": "hailuo-h3",
+          "path": "skills/kinex-hailuo-h3",
+          "invoke": "/kinex:hailuo-h3"
+        },
+        {
           "name": "seedance-2-5",
           "path": "skills/kinex-seedance-2-5",
           "invoke": "/kinex:seedance-2-5"
