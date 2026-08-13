@@ -658,6 +658,62 @@
       ]
     },
     {
+      "id": "standalone-library-seedream-real-human",
+      "skill": "kinex-media-library",
+      "request": "Use Seedream 5 Pro to make a photoreal editorial portrait in my library from these three identity and wardrobe references. Use the high-detail tier and preserve real skin texture.",
+      "expectedTools": [
+        "generation_list_supported_media_models",
+        "library_generate_image",
+        "task_get",
+        "library_list_media"
+      ],
+      "forbiddenTools": [
+        "workspace_execute_command",
+        "generation_generate_video"
+      ],
+      "checks": [
+        "uses Seedream 5 Pro's own output tier and multi-reference fields",
+        "writes camera, skin, fabric, lens, and motivated-light evidence instead of generic realism filler",
+        "polls and re-lists the completed library asset"
+      ]
+    },
+    {
+      "id": "standalone-library-midjourney-four-output",
+      "skill": "kinex-media-library",
+      "request": "Use Midjourney V8.1 in my library for a stylized product campaign. Set stylize to 700, chaos to 20, use this image only as the style reference, and show me all four outputs.",
+      "expectedTools": [
+        "generation_list_supported_media_models",
+        "library_generate_image",
+        "task_get",
+        "library_list_media"
+      ],
+      "forbiddenTools": [
+        "workspace_execute_command",
+        "generation_generate_video"
+      ],
+      "checks": [
+        "treats Midjourney as natural-language image generation rather than a language model",
+        "sends stylize, chaos, and style reference as structured operation fields without command suffixes",
+        "reviews all four persisted outputs before choosing a hero"
+      ]
+    },
+    {
+      "id": "seedance-unqualified-defaults-to-full-2-0",
+      "skill": "kinex-seedance-2-5",
+      "request": "The plan is approved. Use Seedance to animate this product reveal with the supplied opening frame and dialogue track.",
+      "expectedTools": [
+        "generation_list_supported_media_models",
+        "workspace_execute_command",
+        "task_get"
+      ],
+      "forbiddenTools": ["generation_generate_video", "library_upload_media"],
+      "checks": [
+        "selects the full Seedance 2.0 Standard SKU rather than Fast, Mini, or 2.5",
+        "uses only fields and limits returned by the live 2.0 operation",
+        "assigns separate visual and audio roles before execution"
+      ]
+    },
+    {
       "id": "seedance-reference-whole-beat",
       "skill": "kinex-seedance-2-5",
       "request": "The Production Plan is approved. Use the supplied character image, product image, camera-movement clip, and dialogue recording to generate the 25-second opening beat as one Seedance 2.5 clip.",

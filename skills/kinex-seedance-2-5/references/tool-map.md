@@ -1,8 +1,9 @@
-# Seedance 2.5 operation map
+# Seedance operation map
 
 ## Discover before directing
 
-- Use `generation_list_supported_media_models` to confirm that an Atlas-backed Seedance 2.5 operation is live and to read its actual fields, duration range, reference inputs, audio option, resolution, and aspect-ratio choices.
+- Use `generation_list_supported_media_models` to discover the live Seedance 2.0 and 2.5 operations and read their actual fields, duration ranges, reference inputs, audio options, resolutions, and aspect-ratio choices.
+- Default an unqualified Seedance request to the full Seedance 2.0 / Standard SKU. Treat Fast, Mini, and 2.5 as explicit alternatives; record why one is selected.
 - Do not assume a model identifier, media limit, fixed aspect ratio, or an edit/extension operation from another Seedance surface.
 
 ## Plan and execute

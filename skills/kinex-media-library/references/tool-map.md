@@ -9,3 +9,5 @@
 | Existing project media  | `media_list_project`, `media_get`, `media_get_public_url` | Generate through project tools                                             | `media_archive`                |
 
 Reuse loop: search, retain the id, resolve the canonical URL only when needed, reuse the item as a reference, and avoid duplicate uploads or entities.
+
+Model discovery loop: call `generation_list_supported_media_models`, select the exact image operation, preserve its returned scalar/reference fields, call `library_generate_image`, poll `task_get`, then re-list the library and inspect every persisted output.
