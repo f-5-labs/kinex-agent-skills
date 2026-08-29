@@ -154,16 +154,23 @@
       "expectedTools": [
         "workspace_read_entity",
         "workspace_upload_external_media",
-        "workspace_update_entity"
+        "workspace_attach_external_media"
       ],
       "forbiddenTools": [
         "workspace_execute_command",
-        "workspace_attach_external_media"
+        "workspace_update_entity"
+      ],
+      "orderedTools": [
+        "workspace_read_entity",
+        "workspace_upload_external_media",
+        "workspace_attach_external_media",
+        "workspace_read_entity"
       ],
       "checks": [
         "uploads a bounded project-scoped payload",
-        "merges the locked media into the full existing variants map",
+        "binds the upload with the entity_variant target and exact variant key",
         "preserves the canonical hero and sibling variants",
+        "verifies the locked media id differs from the hero and sibling locks",
         "re-reads the entity after writing"
       ]
     },

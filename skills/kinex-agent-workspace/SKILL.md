@@ -42,6 +42,7 @@ The Production Plan is the living roadmap. The Project Bible is the durable crea
 - Choose the lightest sufficient reference artifact from downstream use. A multi-view sheet is the default for a new recurring character; a single hero is an explicit one-off or opt-out, not the automatic continuity lock.
 - Lock each referenced entity's canonical hero before defining or updating shots that depend on it.
 - Lock every entity variant assigned to a shot before generating its start frame or motion.
+- Treat `status: locked` as a claim, not proof. A locked variant must have reviewed media distinct from both the entity's `primaryMediaId` and every sibling locked variant's media.
 - Treat exact copy, dialogue, product facts, geography, screen direction, and reference roles as continuity constraints.
 - Treat queued work as pending until the task completes and the artifact is re-read.
 
@@ -52,7 +53,7 @@ The Production Plan is the living roadmap. The Project Bible is the durable crea
 - Structure when the deliverable needs temporal coverage: `beat_list`, `beat_define`, `beat_update`, then `shot_list`, `shot_define`, `shot_update`. Do not invent beats or shots for an image-only project.
 - For scenes or films, write preliminary shot cards in the Production Plan after the breakdown, reconcile scene-to-assets coverage and required variants, lock the needed assets, then define or finalize Kinex shots with `shot_define` or `shot_update` and `requireLockedEntities: true`. Advance ready scenes without waiting for unrelated project assets.
 - Kinex generation: choose a current model from `generation_list_supported_media_models`, then use `workspace_execute_command` only for approved execution such as entity heroes, scene or beat media, sound effects, and image edits.
-- External generation: when the user names host image generation or wants generation outside Kinex, generate there, call `workspace_upload_external_media`, then bind the project-scoped result. Use `workspace_attach_external_media` for an entity hero/identity anchor or shot start/end frame; use the safe variant merge in the tool map for a named entity variant.
+- External generation: when the user names host image generation or wants generation outside Kinex, generate there, call `workspace_upload_external_media`, then bind the project-scoped result with `workspace_attach_external_media`. Use target kind `entity` for a hero or identity anchor, `entity_variant` with the exact canonical entity and `variantKey` for a named state, or `shot` for a start/end frame. Never author `status` or media lock fields through `workspace_update_entity`.
 - Progress: retain task ids internally, poll `task_get`, then re-read the affected object and its generation history.
 
 Do not substitute classic `visual_*` or `generation_*` workflows when the project is Agent Workspace-based.
