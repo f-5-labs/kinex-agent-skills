@@ -6,7 +6,7 @@
       "name": "kinex",
       "source": "./",
       "description": "Source-grounded, variant-aware image, video, and mixed-media production through Kinex MCP.",
-      "version": "0.4.0",
+      "version": "0.4.2",
       "skills": [
         {
           "name": "create-video",

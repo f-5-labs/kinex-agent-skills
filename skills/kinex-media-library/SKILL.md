@@ -17,6 +17,17 @@ Treat the workspace library as reusable source material, not as a substitute for
 
 Switch to classic `visual_*` for a classic project look bible or `$kinex-agent-workspace` for Agent Workspace entities.
 
+## Select an image model by its live schema
+
+Before a model-specific request, call `generation_list_supported_media_models` and use the exact image operation and fields returned by Kinex. Do not flatten image models into shared folklore:
+
+- **Seedream 5 Pro:** prefer it for camera-real people, products, and multi-reference edits. Keep its output tier, file format, prompt-thinking option, and up-to-ten reference contract as structured inputs. For realistic people, describe natural skin microtexture, facial asymmetry, believable hands, fabric response, lens character, and motivated light; avoid generic “beautiful” or “ultra-realistic” filler.
+- **Midjourney V8.1 on Atlas (Youchuan):** this is a natural-language image-generation model, not a language model. Put subject, environment, composition, aesthetic, light and color, lens or viewpoint, and material texture in the prose prompt. Send aspect ratio, style reference, stylize, chaos, weirdness, quality, HD, and seed through the operation fields—never append `--ar`, `--stylize`, or similar command suffixes. Expect the live operation to create four related outputs from one task and review all four before choosing a reusable hero.
+- **Imagen 4 Ultra:** use it for flagship photoreal hero images, product photography, architecture, natural materials, diverse skin tones, or accurate text inside a photographic scene. Its live Atlas operation is text-to-image only. Keep negative prompt, prompt expansion, aspect ratio, 1K/2K resolution, one-to-four output count, and seed in their structured fields. Write subject, environment, composition, physically motivated light, lens and depth of field, then skin or material behavior; quote any required visible wording exactly.
+- **Qwen Image Max:** use it when a realistic scene also contains complex spatial instructions or important readable text. Its live Atlas operation is text-to-image only and produces one image at one of five fixed sizes. Keep negative prompt, prompt expansion, aspect ratio, and seed structured. In prose, state spatial relationships explicitly and quote required text with its location, surface, type treatment, and viewing angle.
+
+If a requested model is absent from the live registry, say so and choose a supported model with the user. Reference roles remain model-specific: Seedream accepts a reference list, Midjourney separates the content image from an optional style reference, and the current Imagen 4 Ultra and Qwen Image Max operations accept no source image. Preserve those differences when assembling inputs.
+
 ## Preserve continuity
 
 Search before creating duplicates. Keep media and entity ids internally, reuse prior media as references, and surface canonical URLs with human labels rather than storage keys.

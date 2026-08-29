@@ -44,12 +44,12 @@ Use this lane when generation happens in the host agent or another approved syst
 1. Define and re-read the target entity or shot.
 2. Generate the asset externally from the current Kinex canon.
 3. Upload image, video, or audio bytes with `workspace_upload_external_media`. Default to one large file per call; use only small bounded groups that fit the live limit and avoid oversized base64 payloads.
-4. Attach an uploaded image with `workspace_attach_external_media` to an entity `hero` or `identity_anchor`, or a shot `start_frame` or `end_frame`.
-5. Re-read or preview the target and verify the lock.
+4. Attach an uploaded image with `workspace_attach_external_media` to an entity `hero` or `identity_anchor`, a named `entity_variant`, or a shot `start_frame` or `end_frame`.
+5. Re-read or preview the target and verify the lock. For a named variant, confirm its `mediaItemId` is present, differs from the entity's `primaryMediaId`, and is not reused by any sibling locked variant.
 
 These uploads are project-scoped. Do not use `library_upload_media` for Agent Workspace continuity locks. Do not also call Kinex generation when the user explicitly requested external generation.
 
-The current attach target does not accept a variant key. To lock an externally generated named variant, re-read the entity, preserve every sibling in its existing `attributes.variants` map, merge the target variant with `status: locked`, the uploaded `mediaItemId`, and its returned image URL, then send the complete merged variants map through `workspace_update_entity.attributesPatch.variants`. Re-read the entity after writing. Never submit a one-variant map over an existing map because `attributesPatch` is shallow at the `variants` key.
+To lock an externally generated named variant, call `workspace_attach_external_media` with `target.kind: "entity_variant"`, the canonical `entityKind` and `entityId`, and the exact `variantKey`. The named state must already exist. Re-read the entity after attachment; never use `workspace_update_entity` to forge system-owned `status`, `mediaItemId`, `sourceMediaItemId`, or `imageUrl` fields.
 
 ## Character and location media states
 
@@ -67,6 +67,8 @@ For shot generations, read `scene_get_media_history` before choosing an alternat
 ## Entity variants
 
 List and semantically match existing entities before defining a new one. Keep production states in the canonical entity's `attributes.variants` and use the live shot schema for its variant keys. Lock the canonical hero before the entity is referenced by a shot. A shot's assigned variants must exist, belong to its active entities, and have the required locked media before start-frame or video generation.
+
+After every generated or external variant lock, re-read the entity and compare ids. `status: locked` alone is never evidence: the variant needs a non-empty `mediaItemId` different from `primaryMediaId` and every sibling locked variant's `mediaItemId`. The Base may be a generation reference, but never a variant placeholder. If an earlier treatment left unassigned planned variants behind, remove each explicitly superseded key with `workspace_update_entity` and `attributesPatch.variants.<variantKey>: null` only after confirming no shot still assigns it.
 
 ## Location-definition gate
 

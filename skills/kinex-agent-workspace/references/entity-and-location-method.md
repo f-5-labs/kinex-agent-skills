@@ -79,7 +79,7 @@ Architecture, distances, materials, permanent set dressing, and palette must rem
 2. Persist stable canon on the entity and Project Bible before asking any image model to visualize it.
    Store each materially different production state under a stable key in `attributes.variants` with `label`, `descriptor`, `stateDelta`, `requiredShotIds`, and `status` (`planned`, `queued`, or `locked`); add `mediaItemId` and `imageUrl` only when media is actually locked.
 3. Give every supplied or generated reference one job: identity, wardrobe or garment, location geometry and materials, style, composition, or another explicit role. Identity and physical geometry outrank mood and style when references conflict.
-4. When generation happens outside Kinex, use the host image generator, upload the result as project-scoped media, and attach it deliberately as hero, continuity anchor, or both. For a named variant, preserve sibling variants and use the safe merge procedure in the tool map.
+4. When generation happens outside Kinex, use the host image generator, upload the result as project-scoped media, and attach it deliberately as hero, continuity anchor, or both. For a named variant, use `workspace_attach_external_media` with the `entity_variant` target and exact `variantKey`; do not write system-owned lock fields through an entity patch.
 5. Keep the neutral canonical lock separate from cinematic shot treatment. Shot prompts carry angle, action, weather, emotion, and lighting unless those facts define a named approved variant.
 
 Do not assign a recurring entity to downstream shots until its required canonical and variant media are locked.
@@ -99,4 +99,4 @@ Return one verdict:
 - **REJECT:** identity, geometry, architecture, or the core reference purpose fails; regenerate from the approved source and constraints.
 - **BLOCKED:** a required source, view, fact, or inspection capability is missing.
 
-Record criterion-linked evidence and the smallest next action. Promote media to hero, continuity anchor, master plate, or locked variant only after PASS. A visually attractive sheet is not sufficient when its identity or geography drifts.
+Record criterion-linked evidence and the smallest next action. Promote media to hero, continuity anchor, master plate, or locked variant only after PASS. Then re-read the entity and verify the persisted variant media differs from the canonical Base and every sibling locked variant; neither `status: locked` nor a copied Base id proves the state exists. A visually attractive sheet is not sufficient when its identity or geography drifts.

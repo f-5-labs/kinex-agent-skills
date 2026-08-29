@@ -12,7 +12,7 @@ Represent the following gates as stable Production Plan checklist outcomes. A di
 2. **Breakdown gate:** create the scene breakdown, preliminary coverage, full scene asset list, state variants, complex elements, and visual-dramaturgy notes.
 3. **Visual-system gate:** approve the style direction, reference roles, palette, light logic, optics, movement language, image texture, cutting rhythm, and sound direction.
 4. **Asset gate:** define canonical entities, make only required variants, attach or generate their reference media, stress-test recurring locks, and record a review verdict.
-5. **Scene-readiness gate:** verify the scene-to-assets coverage has no holes and every entity or variant assigned to the scene is locked. Only this gate releases shot-frame or motion generation for that scene.
+5. **Scene-readiness gate:** verify the scene-to-assets coverage has no holes and every entity or variant assigned to the scene has distinct reviewed evidence. A variant's lock must carry media different from its canonical Base and sibling state locks; `status: locked` alone does not release generation. Only this gate releases shot-frame or motion generation for that scene.
 6. **Selects gate:** retain accepted takes, their exact prompts and inputs, and the reason each was chosen. A completed generation is not automatically a select.
 7. **Picture-lock gate:** assemble scenes, close coverage holes, verify joins and runtime, save the approved cut, and freeze picture before global finishing.
 8. **Finish-and-master gate:** close artifact repairs before color treatment, verify sound and rights, run technical QC, export required versions, and retain reproducibility records.

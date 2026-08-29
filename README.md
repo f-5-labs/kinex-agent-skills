@@ -57,7 +57,7 @@ The first Kinex tool call opens browser sign-in and consent. No API key needs to
 | [`kinex-media-library`](./skills/kinex-media-library)         | Generating, finding, and reusing standalone media and library entities.                 |
 | [`kinex-review-and-export`](./skills/kinex-review-and-export) | Evidence-backed quality review, timeline assembly, render, and delivery.                |
 | [`kinex-hailuo-h3`](./skills/kinex-hailuo-h3)                 | Directing H3 audiovisual shots with its own frame, reference, and sound prompt grammar. |
-| [`kinex-seedance-2-5`](./skills/kinex-seedance-2-5)           | Directing Atlas-backed Seedance 2.5 references, frame controls, and whole video beats.  |
+| [`kinex-seedance-2-5`](./skills/kinex-seedance-2-5)           | Directing Seedance references and beats, defaulting to full-quality Seedance 2.0.       |
 
 ## Six proven creative workflows
 

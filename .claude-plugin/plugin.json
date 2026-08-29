@@ -1,11 +1,17 @@
 {
   "name": "kinex",
-  "version": "0.4.0",
+  "version": "0.4.2",
   "description": "Source-grounded, variant-aware Kinex image, video, and mixed-media skills with an authenticated remote MCP connection.",
   "author": { "name": "Kinex Studio", "url": "https://kinex.studio" },
   "homepage": "https://docs.kinex.studio/mcp",
   "repository": "https://github.com/f-5-labs/kinex-agent-skills",
-  "keywords": ["kinex", "video-production", "creative-direction", "storyboarding", "mcp"],
+  "keywords": [
+    "kinex",
+    "video-production",
+    "creative-direction",
+    "storyboarding",
+    "mcp"
+  ],
   "mcpServers": {
     "kinex": { "type": "http", "url": "https://api.kinex.studio/mcp" }
   }
