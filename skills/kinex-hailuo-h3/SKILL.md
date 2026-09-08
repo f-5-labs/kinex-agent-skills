@@ -5,7 +5,7 @@ description: Direct Atlas-backed MiniMax Hailuo H3 video generation in Kinex wit
 
 # Direct Hailuo H3 in Kinex
 
-Use this skill to direct one coherent 4–15 second Hailuo H3 audiovisual shot through the approved Kinex route. H3 is not a shorter Seedance variant: its inputs and prompt grammar are model-specific.
+Use this skill to direct one coherent Hailuo H3 audiovisual shot through the approved Kinex route. H3 is not a shorter Seedance variant: its inputs and prompt grammar are model-specific. If they asked to generate, generate.
 
 ## Confirm the live H3 operation first
 
@@ -17,13 +17,22 @@ Use this skill to direct one coherent 4–15 second Hailuo H3 audiovisual shot t
    - **Mixed references** for typed image, video, and audio materials. It accepts at most nine total materials and requires at least one image or video; audio alone is invalid.
 3. If the Atlas-backed H3 operation is absent, say so and select a live supported alternative with the user. Do not call MiniMax directly or assume features from another Hailuo surface.
 
-Keep duration, resolution, ratio, and uploaded materials as structured operation inputs. Do not invent a Seedance `generateAudio` switch: H3 has its own audiovisual prompting and may use a supplied audio reference when the live mixed-reference operation exposes it.
+Keep duration, resolution, ratio, and uploaded materials as structured operation inputs. Read the live duration range from the current model notes; do not hardcode a remembered 4–15 second ceiling. Do not invent a Seedance `generateAudio` switch: H3 has its own audiovisual prompting and may use a supplied audio reference when the live mixed-reference operation exposes it.
 
 ## Build an H3 shot, not a Seedance beat
 
-H3 works best as one continuous 4–15 second audiovisual event. State an opening composition, a physically plausible action and camera path, and the exact visible ending state. Do not use Seedance staged 30-second beats, hard-cut timecodes, `@Image` tags, or Seedance reference-role prose.
+H3 works best as one continuous audiovisual event within the live duration range. State an opening composition, a physically plausible action and camera path, and the exact visible ending state. Do not use Seedance `@Image` tags, staged multi-beat grammar, hard-cut timecodes, or Seedance reference-role prose.
 
-For a frame-led operation, make the first frame motion-safe before submitting. With a final frame, describe a single path that lands on the final composition; do not ask for a montage or a sequence of cuts between the two images. Give camera direction as **movement type + amplitude + speed**, then ensure the subject and environmental movement agree with it.
+Fill the same production spine H3 can hold, in H3 language:
+
+- **GEO:** stable layout, subject positions, eyelines, axis, screen direction.
+- **First frame:** motion-safe occupancy, pose, prop contact, and the readable start of the action.
+- **Exactly one camera move:** movement type + amplitude + speed. Stacking two moves is the number-one jitter cause. Make subject and environment motion agree with that one path.
+- **One continuous shot, no cuts, no zoom-to-stop.** With a final frame, describe a single path that lands on the final composition; do not write a montage between the two images.
+- **Slow motion** is `recorded at 240fps, played back at 24fps` — never “slow motion”.
+- **Performance and physics:** observable behavior, contact, weight, cloth, hair, water. No emotion adjectives.
+- **Preserve / retention:** what must stay as-is — identity, product geometry, composition, or the useful transfer from each attached reference. Skipping this is the number-one drift cause.
+- **No negative prompts.** Write the desired state: “identity holds”, “label stays legible”, “edges stay stable”.
 
 For mixed references, attach only materials needed by this shot and label them in the prompt as `<Subject N>`, `<Picture N>`, `<Video N>`, and `<Audio N>`. Give each one a single retained role:
 
@@ -38,19 +47,34 @@ Never claim an unattached reference exists. Do not force every property from one
 For text-only, start-frame, and start-and-end-frame work, put this structure in the operation's plain `prompt` field:
 
 ```text
-Integrated Multimodal Description: <subject, action, setting, composition, camera path, and visible ending state>
+Integrated Multimodal Description: <GEO, first-frame blocking, subject, one action, one camera path with amplitude and speed, physics, and visible ending state>
 Overall Soundscape: <diegetic sound, ambience, dialogue, and timing>
 Non-diegetic Music: <music direction, or None>
+Preserve: <identity / product / composition>, stays as-is
 ```
 
-When dialogue is essential, keep the provided words exact and write it as `<d>[language]spoken line</d>`. Keep the prompt specific and concise; use observable performance rather than emotion labels.
+When dialogue is essential, keep the provided words exact and write it as `<d>[language]spoken line</d>`. Keep the prompt specific and concise.
 
-For the mixed-reference operation, use the reference-aware structure in [H3 prompt structure](references/prompt-structure.md). It adds `Subject Definitions`, `Summary`, and `Reference Retention` before the audiovisual description so the model receives explicit reference bindings. Do not substitute the Seedance reference template.
+For the mixed-reference operation, use the reference-aware structure in [H3 prompt structure](references/prompt-structure.md). It adds `Subject Definitions`, `Summary`, and `Reference Retention` before the audiovisual description so the model receives explicit reference bindings. Put must-hold outcomes in `Reference Retention` — that is H3's Preserve line. Do not substitute the Seedance template.
+
+## Preflight, then generate
+
+Run this checklist in the same turn, then generate. It is advice, not a silent QA gate.
+
+1. One H3 operation from the live notes; duration and ratio match that contract.
+2. GEO and a motion-safe first frame are stated.
+3. Exactly one camera move; one continuous path to the ending state.
+4. Each attached reference has one retained role; no unattached labels.
+5. Performance is observable; quoted or `<d>` dialogue is exact.
+6. Preserve / Reference Retention is present and positive.
+7. No Seedance `@Image` tags, staged beats, or hard-cut timecodes.
+
+If they asked to generate, do not stop the turn after the checklist.
 
 ## Execute and review through Kinex
 
-For an Agent Workspace project, read the Production Plan and Project Bible, confirm the relevant plan is approved, then call `workspace_execute_command` using the operation returned by the live registry. Record a duration split or reference-role decision in the plan when it affects coverage or continuity.
+For an Agent Workspace project, read the Production Plan and Project Bible. A current-turn generate request approves the current plan; then call `workspace_execute_command` using the operation returned by the live registry. Record a duration split or reference-role decision in the plan when it affects coverage or continuity.
 
-Poll `task_get`, inspect the completed beat or shot, and review the output before calling the work complete. Repair the failed control at its source—operation selection, frame selection, reference retention, camera path, or soundscape—rather than piling on generic prompt text.
+Poll `task_get`, inspect the completed beat or shot, and review the output before calling the work complete. Repair the failed control at its source—operation selection, frame selection, reference retention, camera path, or soundscape—rather than piling on generic prompt text. Never fabricate a completed clip.
 
 Read [tool map](references/tool-map.md) for Kinex routing and review boundaries.

@@ -15,7 +15,7 @@
       ],
       "checks": [
         "persists the roadmap early",
-        "keeps generation behind approval"
+        "stops before rendering as requested"
       ]
     },
     {
@@ -172,7 +172,7 @@
       "checks": [
         "uses a named variant instead of duplicating the character",
         "assigns the variant only to relevant shots",
-        "keeps generation behind the lock gate"
+        "honors the user's request to wait for the lock"
       ]
     },
     {
@@ -345,7 +345,7 @@
       ],
       "checks": [
         "bootstraps and verifies the Agent Workspace project before production",
-        "closes the source, visual-system, asset, and scene-readiness gates before shot generation",
+        "recommends lock, still, then motion, then generates Scene 1 as requested",
         "defines and verifies the required Scene 1 entity locks before final shots",
         "creates only the requested Scene 1 coverage",
         "polls the queued production task and verifies the result"
@@ -368,8 +368,26 @@
       ],
       "checks": [
         "reconciles the scene-to-assets coverage rather than relying on prose",
-        "names the missing variant and location-condition locks",
-        "blocks only Scene 3 while leaving unrelated ready scenes unaffected"
+        "names the missing variant and location-condition locks as advice",
+        "honors the user's request to stop before generation; does not treat missing locks as a product-wide generate ban"
+      ]
+    },
+    {
+      "id": "generate-despite-open-asset-locks",
+      "skill": "kinex-agent-workspace",
+      "request": "Scene 3 still needs the rain wardrobe lock. Generate the station night clip anyway.",
+      "expectedTools": [
+        "plan_get",
+        "workspace_execute_command",
+        "task_get"
+      ],
+      "forbiddenTools": [
+        "generation_generate_video"
+      ],
+      "checks": [
+        "names the missing lock as advice",
+        "generates because the user asked",
+        "polls the queued task and does not refuse on an open readiness row"
       ]
     },
     {
@@ -727,8 +745,9 @@
       ],
       "checks": [
         "selects the full Seedance 2.0 Standard SKU rather than Fast, Mini, or 2.5",
-        "uses only fields and limits returned by the live 2.0 operation",
-        "assigns separate visual and audio roles before execution"
+        "uses only fields and limits returned by the live 2.0 operation, not remembered 15s/30s ceilings",
+        "assigns separate visual and audio roles before execution",
+        "compiles from the universal template including Preserve and exactly one camera move"
       ]
     },
     {
@@ -746,7 +765,8 @@
       "checks": [
         "confirms the live Seedance 2.5 operation before execution",
         "assigns one explicit role to each activated reference",
-        "uses one clip only because the approved beat fits the advertised duration"
+        "includes a Preserve line and exactly one camera move per shot",
+        "uses one clip only because the approved beat fits the live advertised duration"
       ]
     },
     {
@@ -789,7 +809,8 @@
       "checks": [
         "confirms the live Hailuo H3 operation before execution",
         "uses H3 reference labels and reference-retention logic instead of Seedance role grammar",
-        "keeps the action as one continuous frame-led shot and rejects audio-only input"
+        "keeps the action as one continuous frame-led shot with one camera path and a Preserve/retention line",
+        "reads live duration from the current model notes and rejects audio-only input"
       ]
     }
   ]

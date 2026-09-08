@@ -75,9 +75,9 @@ See [creative examples](./examples/creative-prompts.md) for prompts you can adap
 - Save a valid four-section Production Plan early, then re-read and reconcile its checklist at each new turn without rewriting an unchanged roadmap.
 - Keep the Project Bible source-grounded; unknown surfaces and unsupported claims stay unknown.
 - Keep routine planning and continuity with the main director; delegate only when the boundary adds value.
-- Model production states as named variants of canonical entities and lock assigned variants before generation.
+- Model production states as named variants of canonical entities and recommend locking assigned variants before generation.
 - Plan and save a source-grounded floor map before defining a location; keep unknown space unresolved.
-- For films, close source, breakdown, visual-system, asset, and scene-readiness gates before releasing each scene; advance ready scenes without blocking on unrelated assets.
+- For films, recommend lock → still → motion and keep the eight-stage checklist as advice; if the user asked to generate, generate. Advance requested scenes without waiting on unrelated assets.
 - Keep shot direction, camera, edit intent, exact prompt inputs, take verdicts, and join QC reproducible rather than relying on agent memory.
 - Generate images externally when requested, then upload and attach them as project-scoped continuity media.
 - Keep hero/master plate, continuity anchor, selected preview, and generation history distinct for characters and locations.

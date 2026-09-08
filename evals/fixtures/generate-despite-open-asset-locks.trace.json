@@ -1,0 +1,21 @@
+{
+  "scenarioId": "generate-despite-open-asset-locks",
+  "host": "external-mcp-client",
+  "events": [
+    { "type": "tool_call", "tool": "plan_get", "input": { "projectId": "project-1" } },
+    {
+      "type": "tool_call",
+      "tool": "workspace_execute_command",
+      "input": {
+        "type": "scene.generateVideo",
+        "projectId": "project-1",
+        "sceneId": "scene-3"
+      }
+    },
+    {
+      "type": "tool_call",
+      "tool": "task_get",
+      "input": { "taskId": "scene-3-task-1" }
+    }
+  ]
+}

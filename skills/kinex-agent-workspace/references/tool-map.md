@@ -65,7 +65,7 @@ For shot generations, re-read `media_list_project` and `task_get` before choosin
 
 ## Entity variants
 
-List and semantically match existing entities before defining a new one. Keep production states in the canonical entity's `attributes.variants` and use the live shot schema for its variant keys. Lock the canonical hero before the entity is referenced by a shot. A shot's assigned variants must exist, belong to its active entities, and have the required locked media before start-frame or video generation.
+List and semantically match existing entities before defining a new one. Keep production states in the canonical entity's `attributes.variants` and use the live shot schema for its variant keys. Prefer locking the canonical hero before the entity is referenced by a shot. A shot's assigned variants should exist and belong to its active entities; locked media is recommended before start-frame or video generation, not required to proceed when the user asked to generate.
 
 After every generated or external variant lock, re-read the entity and compare ids. `status: locked` alone is never evidence: the variant needs a non-empty `mediaItemId` different from `primaryMediaId` and every sibling locked variant's `mediaItemId`. The Base may be a generation reference, but never a variant placeholder. If an earlier treatment left unassigned planned variants behind, remove each explicitly superseded key with `workspace_update_entity` and `attributesPatch.variants.<variantKey>: null` only after confirming no shot still assigns it.
 
