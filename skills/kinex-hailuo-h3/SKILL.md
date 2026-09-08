@@ -9,7 +9,7 @@ Use this skill to direct one coherent 4–15 second Hailuo H3 audiovisual shot t
 
 ## Confirm the live H3 operation first
 
-1. Call `generation_list_supported_media_models` before choosing Hailuo H3. The live Kinex registry is authoritative for its available operations and fields.
+1. Confirm Hailuo H3 from the current model notes in this skill before choosing it. The live Kinex operation contract is authoritative for its available operations and fields.
 2. Choose exactly one returned H3 operation:
    - **Text only** for a fresh prompt-led clip. It uses a concrete aspect ratio and supports 768P or 2K.
    - **Start frame** to continue a supplied first image. It uses the source-led adaptive ratio.

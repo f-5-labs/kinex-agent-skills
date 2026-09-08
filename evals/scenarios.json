@@ -295,7 +295,6 @@
         "workspace_read_entity",
         "beat_define",
         "shot_define",
-        "generation_list_supported_media_models",
         "workspace_execute_command",
         "task_get"
       ],
@@ -314,7 +313,6 @@
         "workspace_read_entity",
         "beat_define",
         "shot_define",
-        "generation_list_supported_media_models",
         "workspace_execute_command",
         "task_get"
       ],
@@ -398,17 +396,15 @@
       "skill": "kinex-agent-workspace",
       "request": "Take 4 holds identity and acting, but the camera drifts after the handoff. Make one surgical retry and keep the rest unchanged.",
       "expectedTools": [
-        "scene_get_media_history",
-        "generation_list_supported_media_models",
+        "media_list_project",
         "workspace_execute_command",
         "task_get"
       ],
       "orderedTools": [
-        "scene_get_media_history",
-        "generation_list_supported_media_models",
+        "media_list_project",
         "workspace_execute_command",
         "task_get",
-        "scene_get_media_history"
+        "media_list_project"
       ],
       "requiredToolInputs": {
         "workspace_execute_command": {
@@ -592,8 +588,8 @@
       "skill": "kinex-review-and-export",
       "request": "Audit export readiness, but do not save or render.",
       "expectedTools": [
-        "project_get_pipeline",
-        "scene_list_project",
+        "project_get",
+        "shot_list",
         "timeline_get"
       ],
       "forbiddenTools": [
@@ -610,8 +606,8 @@
       "skill": "kinex-review-and-export",
       "request": "Review the selected station scene against its neighbouring scenes for picture-lock readiness. Do not save or export.",
       "expectedTools": [
-        "scene_list_project",
-        "scene_get_media_history",
+        "shot_list",
+        "media_list_project",
         "timeline_get",
         "workspace_preview_timeline"
       ],
@@ -646,7 +642,6 @@
       "skill": "kinex-media-library",
       "request": "Use Seedream 5 Pro to make a photoreal editorial portrait in my library from these three identity and wardrobe references. Use the high-detail tier and preserve real skin texture.",
       "expectedTools": [
-        "generation_list_supported_media_models",
         "library_generate_image",
         "task_get",
         "library_list_media"
@@ -666,7 +661,6 @@
       "skill": "kinex-media-library",
       "request": "Use Midjourney V8.1 in my library for a stylized product campaign. Set stylize to 700, chaos to 20, use this image only as the style reference, and show me all four outputs.",
       "expectedTools": [
-        "generation_list_supported_media_models",
         "library_generate_image",
         "task_get",
         "library_list_media"
@@ -686,7 +680,6 @@
       "skill": "kinex-media-library",
       "request": "Use Imagen 4 Ultra to make four 2K photoreal hero options for a premium skincare campaign. The bottle label must read 'KINEX NIGHT SERUM'.",
       "expectedTools": [
-        "generation_list_supported_media_models",
         "library_generate_image",
         "task_get",
         "library_list_media"
@@ -706,7 +699,6 @@
       "skill": "kinex-media-library",
       "request": "Use Qwen Image Max for a realistic night-market portrait with a clearly readable overhead sign saying 'ENUGU NIGHT MARKET'. Use 16:9 and enable prompt expansion.",
       "expectedTools": [
-        "generation_list_supported_media_models",
         "library_generate_image",
         "task_get",
         "library_list_media"
@@ -726,7 +718,6 @@
       "skill": "kinex-seedance-2-5",
       "request": "The plan is approved. Use Seedance to animate this product reveal with the supplied opening frame and dialogue track.",
       "expectedTools": [
-        "generation_list_supported_media_models",
         "workspace_execute_command",
         "task_get"
       ],
@@ -745,7 +736,6 @@
       "skill": "kinex-seedance-2-5",
       "request": "The Production Plan is approved. Use the supplied character image, product image, camera-movement clip, and dialogue recording to generate the 25-second opening beat as one Seedance 2.5 clip.",
       "expectedTools": [
-        "generation_list_supported_media_models",
         "workspace_execute_command",
         "task_get"
       ],
@@ -764,7 +754,6 @@
       "skill": "kinex-seedance-2-5",
       "request": "This approved 26-second beat contains three unrelated locations and two hard time jumps. Seedance supports 30 seconds, but split it into coherent coverage and generate through the Agent Workspace.",
       "expectedTools": [
-        "generation_list_supported_media_models",
         "beat_list",
         "shot_list",
         "workspace_execute_command",
@@ -790,7 +779,6 @@
       "skill": "kinex-hailuo-h3",
       "request": "The Production Plan is approved. Use the supplied product image, hand-motion video, and rhythm track to make one 8-second 2K Hailuo H3 product shot; retain the bottle appearance and land on the specified final frame.",
       "expectedTools": [
-        "generation_list_supported_media_models",
         "workspace_execute_command",
         "task_get"
       ],

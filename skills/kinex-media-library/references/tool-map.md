@@ -9,4 +9,4 @@
 
 Reuse loop: search, retain the id, resolve the canonical URL only when needed, reuse the item as a reference, and avoid duplicate uploads or entities.
 
-Model discovery loop: call `generation_list_supported_media_models`, select the exact image operation, preserve its returned scalar/reference fields, call `library_generate_image`, poll `task_get`, then re-list the library and inspect every persisted output.
+Model discovery loop: pick the exact image operation from the current library/model notes, preserve its scalar/reference fields, call `library_generate_image`, poll `task_get`, then re-list the library and inspect every persisted output.

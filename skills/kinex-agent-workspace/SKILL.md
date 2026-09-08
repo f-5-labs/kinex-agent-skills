@@ -52,11 +52,11 @@ The Production Plan is the living roadmap. The Project Bible is the durable crea
 - Entities: list before creating, then use `workspace_read_entity`, `workspace_define_entity`, and `workspace_update_entity`. Keep named variants in entity attributes and assign only relevant locked variants to shots.
 - Structure when the deliverable needs temporal coverage: `beat_list`, `beat_define`, `beat_update`, then `shot_list`, `shot_define`, `shot_update`. Do not invent beats or shots for an image-only project.
 - For scenes or films, write preliminary shot cards in the Production Plan after the breakdown, reconcile scene-to-assets coverage and required variants, lock the needed assets, then define or finalize Kinex shots with `shot_define` or `shot_update` and `requireLockedEntities: true`. Advance ready scenes without waiting for unrelated project assets.
-- Kinex generation: choose a current model from `generation_list_supported_media_models`, then use `workspace_execute_command` only for approved execution such as entity heroes, scene or beat media, sound effects, and image edits.
+- Kinex generation: choose a current model from the live operation notes for the shot, then use `workspace_execute_command` only for approved execution such as entity heroes, scene or beat media, sound effects, and image edits.
 - External generation: when the user names host image generation or wants generation outside Kinex, generate there, call `workspace_upload_external_media`, then bind the project-scoped result with `workspace_attach_external_media`. Use target kind `entity` for a hero or identity anchor, `entity_variant` with the exact canonical entity and `variantKey` for a named state, or `shot` for a start/end frame. Never author `status` or media lock fields through `workspace_update_entity`.
 - Progress: retain task ids internally, poll `task_get`, then re-read the affected object and its generation history.
 
-Do not substitute `visual_*` or `generation_*` workflows when the project is Agent Workspace-based. Use `workspace_*`, `plan_*`, `context_*`, `beat_*`, and `shot_*` instead.
+Do not invent classic `script_*`, `visual_*`, `scene_*`, or `generation_*` wizard tools. Use `workspace_*`, `plan_*`, `context_*`, `beat_*`, and `shot_*` instead.
 
 ## Direct the shot, not just the prompt
 
@@ -70,7 +70,7 @@ Build and review the edit while generation proceeds. Missing coverage is a plann
 
 For character and location review, keep four states distinct: selected preview, hero or master plate (`primaryMediaId`), continuity anchor (`identityAnchorMediaItemId`), and generation history. List entity image history with `media_list_project`, using the entity id as `sourceId` and its matching entity table as `sourceTable`; use `workspace_update_entity` to promote an existing item or clear an anchor. An upload may become the hero, the anchor, or both only when that is intentional.
 
-Use `scene_get_media_history` and `scene_set_active_media` for shot alternatives. Use `workspace_preview_entity` for identity and look review and `workspace_preview_timeline` for the current cut. Keep the conversation about creative outcomes, decisions, evidence, and blockers—not ids or tool mechanics.
+Use `media_list_project` and `task_get` for shot alternatives. Use `workspace_preview_entity` for identity and look review and `workspace_preview_timeline` for the current cut. Keep the conversation about creative outcomes, decisions, evidence, and blockers—not ids or tool mechanics.
 
 Hand final assembly and rendering to `$kinex-review-and-export` only when the project needs a timeline or final render.
 

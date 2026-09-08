@@ -23,10 +23,9 @@
 - Entities: `workspace_list_entities`, `workspace_read_entity`, `workspace_define_entity`, `workspace_update_entity`.
 - Optional temporal structure: `beat_list`, `beat_define`, `beat_update`, `shot_list`, `shot_define`, `shot_update`.
 - External project media: `workspace_upload_external_media`, then `workspace_attach_external_media`.
-- Current model capabilities: `generation_list_supported_media_models`.
 - Generation router: `workspace_execute_command`.
 - Progress and cancellation: `task_list_project`, `task_get`, `task_cancel`.
-- Project and shot histories: `media_list_project`, `media_get`, `media_get_public_url`, `scene_get_media_history`, `scene_set_active_media`.
+- Project and shot histories: `media_list_project`, `media_get`, `media_get_public_url`.
 - Human review: `workspace_preview_projects`, `workspace_preview_entity`, `workspace_preview_timeline`.
 
 ## Generation-router families
@@ -62,7 +61,7 @@ Keep these independent:
 
 Use `workspace_attach_external_media` after upload to set an entity `hero` or `identity_anchor`. To promote an existing history item without re-uploading it, use `workspace_update_entity` with `primaryMediaId` or `identityAnchorMediaItemId`. Set both only when the user intends the same image to serve both roles. Re-read the entity and, when useful, preview it after each promotion.
 
-For shot generations, read `scene_get_media_history` before choosing an alternative with `scene_set_active_media`. Do not claim a queued result is part of history until `task_get` settles and the relevant history has been re-read.
+For shot generations, re-read `media_list_project` and `task_get` before choosing an alternative. Do not claim a queued result is part of history until `task_get` settles and the relevant history has been re-read.
 
 ## Entity variants
 
