@@ -13,4 +13,4 @@
 - Approved generation router: `workspace_execute_command`.
 - Task completion: `task_get`, then re-read the affected beat or shot and use `workspace_preview_timeline` for cut review.
 
-Use `workspace_execute_command` only after the relevant Production Plan is approved. Do not call classic `generation_generate_video` for an Agent Workspace beat, and do not use `library_upload_media` for project-scoped continuity media.
+Use `workspace_execute_command` only after the relevant Production Plan is approved. Do not call `generation_generate_video` for an Agent Workspace beat, and do not use `library_upload_media` for project-scoped continuity media.

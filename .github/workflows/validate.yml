@@ -22,4 +22,3 @@ jobs:
       - run: node scripts/evaluate-external-trace.mjs surgical-take-iteration evals/fixtures/surgical-take-iteration.trace.json
       - run: node scripts/evaluate-external-trace.mjs seedance-capability-is-not-creative-fit evals/fixtures/seedance-capability-is-not-creative-fit.trace.json
       - run: node scripts/evaluate-external-trace.mjs location-floor-map-before-definition evals/fixtures/location-floor-map-before-definition.trace.json
-      - run: node scripts/evaluate-external-trace.mjs preproduction-script-review-read-only evals/fixtures/preproduction-script-review-read-only.trace.json

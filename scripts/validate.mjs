@@ -5,11 +5,9 @@ import { fileURLToPath } from 'node:url';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const expectedSkills = [
   'kinex-agent-workspace',
-  'kinex-create-video',
   'kinex-hailuo-h3',
   'kinex-media-library',
   'kinex-review-and-export',
-  'kinex-script-and-story',
   'kinex-seedance-2-5',
 ];
 const failures = [];
@@ -134,26 +132,6 @@ async function validate() {
     );
   }
 
-  const scriptStorySource = skillSources.get('kinex-script-and-story') ?? '';
-  check(
-    scriptStorySource.includes('references/script-review-method.md'),
-    'kinex-script-and-story: pre-production script review link is missing.'
-  );
-  const scriptReviewMethod = await readFile(
-    path.join(root, 'skills', 'kinex-script-and-story', 'references', 'script-review-method.md'),
-    'utf8'
-  );
-  for (const requiredPhrase of [
-    'Establish the review contract',
-    'Scene function',
-    'Return a decision-ready review',
-    'Apply the pre-production gate',
-  ]) {
-    check(
-      scriptReviewMethod.includes(requiredPhrase),
-      `kinex-script-and-story: script review method is missing ${requiredPhrase}.`
-    );
-  }
   const sceneProductionMethod = await readFile(
     path.join(root, 'skills', 'kinex-agent-workspace', 'references', 'scene-production-method.md'),
     'utf8'
@@ -176,7 +154,7 @@ async function validate() {
   }
 
   check(scenarios.version === 1, 'Eval fixture version must be 1.');
-  check(scenarios.scenarios?.length >= 36, 'At least thirty-six routing scenarios are required.');
+  check(scenarios.scenarios?.length >= 30, 'At least thirty routing scenarios are required.');
   const covered = new Set(scenarios.scenarios?.map((scenario) => scenario.skill));
   for (const skill of expectedSkills) check(covered.has(skill), `${skill}: no eval coverage.`);
 

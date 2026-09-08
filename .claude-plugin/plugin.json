@@ -1,6 +1,6 @@
 {
   "name": "kinex",
-  "version": "0.4.2",
+  "version": "0.5.0",
   "description": "Source-grounded, variant-aware Kinex image, video, and mixed-media skills with an authenticated remote MCP connection.",
   "author": { "name": "Kinex Studio", "url": "https://kinex.studio" },
   "homepage": "https://docs.kinex.studio/mcp",

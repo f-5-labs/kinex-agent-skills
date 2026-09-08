@@ -15,7 +15,7 @@ Treat the workspace library as reusable source material, not as a substitute for
 - Manage reusable library characters, locations, and props with `library_list_entities`, `library_create_entity`, and `library_update_entity`.
 - Inspect project media records with `media_list_project`, `media_get`, and `media_get_public_url`.
 
-Switch to classic `visual_*` for a classic project look bible or `$kinex-agent-workspace` for Agent Workspace entities.
+Switch to `$kinex-agent-workspace` for project-scoped entities, variants, and continuity locks.
 
 ## Select an image model by its live schema
 
@@ -34,7 +34,7 @@ Search before creating duplicates. Keep media and entity ids internally, reuse p
 
 For a reusable recurring character, location, or prop, treat the library entity and its media as a compact reference passport: stable identity, source-grounded description, explicit role for every reference, required views or states, current approved version, and unresolved facts. Gather references by asset purpose—identity, wardrobe, geometry, material, scale, or state—and separately by craft purpose—light, palette, optics, movement, texture, edit rhythm, or sound. State what each reference controls and what must not transfer.
 
-Keep variants and alternate views linked to the same reusable identity when the live entity schema supports them. Do not treat a library item as a project continuity lock automatically: when production begins, use the classic look-bible or Agent Workspace project lane and verify the project-scoped hero, anchor, variants, and shot assignments there.
+Keep variants and alternate views linked to the same reusable identity when the live entity schema supports them. Do not treat a library item as a project continuity lock automatically: when production begins, use `$kinex-agent-workspace` and verify the project-scoped hero, anchor, variants, and shot assignments there.
 
 Before `library_create_entity` creates a reusable location, plan a minimal floor map from available evidence: footprint, zones, entrances and exits, permanent landmarks, relative scale, elevation, occlusions, and motivated light. Put supported stable geometry in the location description or live schema fields and mark unknown space unresolved. A library location still needs project-specific blocking and axis decisions when reused.
 

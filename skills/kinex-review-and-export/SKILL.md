@@ -9,7 +9,7 @@ Separate building from judging. Ground each verdict in current Kinex artifacts, 
 
 ## Run the review ladder
 
-Read the smallest relevant evidence: project and pipeline, classic script or Agent Workspace plan and context, look-bible entities, entity and scene generation histories, project tasks, then `timeline_get` and optionally `workspace_preview_timeline`.
+Read the smallest relevant evidence: project and pipeline, Production Plan and Project Bible, workspace entities, entity and scene generation histories, project tasks, then `timeline_get` and optionally `workspace_preview_timeline`.
 
 At each stage return `pass`, `revise`, or `block`, plus the evidence and smallest corrective action.
 

@@ -3,8 +3,8 @@
 | Stage      | Evidence                                            | Common blockers                                 |
 | ---------- | --------------------------------------------------- | ----------------------------------------------- |
 | Intent     | `project_get`, `project_get_pipeline`               | Wrong format, duration, or unfinished stage     |
-| Story      | `script_get_document` or `plan_get` + `context_get` | Structural drift or canon conflict              |
-| Look bible | `visual_list_entities` or `workspace_list_entities`; `media_list_project` for Agent Workspace entity history | Missing hero/master plate, anchor, or stray entity |
+| Story      | `plan_get` + `context_get`                          | Structural drift or canon conflict              |
+| Entities   | `workspace_list_entities`; `media_list_project` for entity history | Missing hero/master plate, anchor, or stray entity |
 | Scenes     | `scene_list_project`, `scene_get`                   | Wrong order, stale prompt, missing active media |
 | Media      | `scene_get_media_history`, `media_list_project`, `task_get` | Failed task or unreviewed alternative           |
 | Cut        | `timeline_get`, `workspace_preview_timeline`        | Stale sequence id, missing clip, timing issue   |

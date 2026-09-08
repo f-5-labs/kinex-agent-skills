@@ -1,11 +1,11 @@
 ---
 name: kinex-agent-workspace
-description: Create or continue Kinex Agent Workspace projects for still images, films, scenes, campaigns, or mixed-media production through a source-grounded Production Plan and Project Bible, variant-aware entities, optional beats and shots, external or Kinex generation, tasks, and interactive previews. Use when the user asks for a new agent project, plan-first creative work, project-scoped imagery, entity continuity, or Agent Workspace production. Not for classic script-wizard projects, standalone library assets, or export-only requests.
+description: Create or continue Kinex Agent Workspace projects for still images, films, scenes, campaigns, or mixed-media production through a source-grounded Production Plan and Project Bible, variant-aware entities, optional beats and shots, external or Kinex generation, tasks, and interactive previews. Use when the user asks for a new agent project, plan-first creative work, project-scoped imagery, entity continuity, or Agent Workspace production. Not for standalone library assets or export-only requests.
 ---
 
 # Direct Kinex Agent Workspace
 
-Use the Agent Workspace as a media-agnostic collaborative production system: one living roadmap, one source-grounded canon, and explicit gates between planning, design, generation, review, and delivery. A project may contain only images and entities, or may grow into beats, shots, scenes, video, and a timeline. Do not route to the classic video skill merely because one deliverable is a film. Apply the film production pipeline only to temporal work; do not burden image-only projects with film artifacts. Keep routine direction, canonical definitions, and cross-stage continuity with the main agent. Delegate only when the user requests it or a specialist adds clear execution or deep-review value without fragmenting context.
+Use the Agent Workspace as a media-agnostic collaborative production system: one living roadmap, one source-grounded canon, and explicit gates between planning, design, generation, review, and delivery. A project may contain only images and entities, or may grow into beats, shots, scenes, video, and a timeline. Stay in Agent Workspace when a deliverable is a film; do not leave this skill for a separate script pipeline. Apply the film production pipeline only to temporal work; do not burden image-only projects with film artifacts. Keep routine direction, canonical definitions, and cross-stage continuity with the main agent. Delegate only when the user requests it or a specialist adds clear execution or deep-review value without fragmenting context.
 
 ## Connect and bootstrap
 
@@ -56,7 +56,7 @@ The Production Plan is the living roadmap. The Project Bible is the durable crea
 - External generation: when the user names host image generation or wants generation outside Kinex, generate there, call `workspace_upload_external_media`, then bind the project-scoped result with `workspace_attach_external_media`. Use target kind `entity` for a hero or identity anchor, `entity_variant` with the exact canonical entity and `variantKey` for a named state, or `shot` for a start/end frame. Never author `status` or media lock fields through `workspace_update_entity`.
 - Progress: retain task ids internally, poll `task_get`, then re-read the affected object and its generation history.
 
-Do not substitute classic `visual_*` or `generation_*` workflows when the project is Agent Workspace-based.
+Do not substitute `visual_*` or `generation_*` workflows when the project is Agent Workspace-based. Use `workspace_*`, `plan_*`, `context_*`, `beat_*`, and `shot_*` instead.
 
 ## Direct the shot, not just the prompt
 
