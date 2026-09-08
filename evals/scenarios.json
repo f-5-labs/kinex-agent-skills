@@ -6,8 +6,13 @@
       "id": "plan-first-short-film",
       "skill": "kinex-agent-workspace",
       "request": "Use the attached short-film brief, save a useful draft plan, update the Project Bible, and stop before rendering.",
-      "expectedTools": ["plan_get", "plan_save"],
-      "forbiddenTools": ["workspace_execute_command"],
+      "expectedTools": [
+        "plan_get",
+        "plan_save"
+      ],
+      "forbiddenTools": [
+        "workspace_execute_command"
+      ],
       "checks": [
         "persists the roadmap early",
         "keeps generation behind approval"
@@ -17,8 +22,14 @@
       "id": "approved-workspace-beat-generation",
       "skill": "kinex-agent-workspace",
       "request": "The plan is approved. Generate frames for the approved opening beat.",
-      "expectedTools": ["beat_list", "workspace_execute_command", "task_get"],
-      "forbiddenTools": ["generation_generate_storyboard"],
+      "expectedTools": [
+        "beat_list",
+        "workspace_execute_command",
+        "task_get"
+      ],
+      "forbiddenTools": [
+        "generation_generate_storyboard"
+      ],
       "checks": [
         "uses the Agent Workspace router",
         "polls and verifies the result"
@@ -34,7 +45,10 @@
         "workspace_execute_command",
         "task_get"
       ],
-      "forbiddenTools": ["generation_generate_video", "script_planning_turn"],
+      "forbiddenTools": [
+        "generation_generate_video",
+        "script_planning_turn"
+      ],
       "checks": [
         "treats the named execution request as current-turn plan approval",
         "saves the plan as approved with approval confirmation",
@@ -51,7 +65,9 @@
         "context_get",
         "context_update_section"
       ],
-      "forbiddenTools": ["workspace_execute_command"],
+      "forbiddenTools": [
+        "workspace_execute_command"
+      ],
       "checks": [
         "reads the latest plan before material work",
         "retains stable ids for relevant checklist outcomes",
@@ -63,8 +79,14 @@
       "id": "authoritative-workspace-cancel",
       "skill": "kinex-agent-workspace",
       "request": "Stop the opening-beat generation that is currently queued. Do not retry it.",
-      "expectedTools": ["task_list_project", "task_cancel", "task_get"],
-      "forbiddenTools": ["workspace_execute_command"],
+      "expectedTools": [
+        "task_list_project",
+        "task_cancel",
+        "task_get"
+      ],
+      "forbiddenTools": [
+        "workspace_execute_command"
+      ],
       "checks": [
         "finds and cancels only the matching queued task",
         "verifies cancellation",
@@ -74,14 +96,17 @@
     {
       "id": "external-imagegen-entity-lock",
       "skill": "kinex-agent-workspace",
-      "request": "Use the host image generator—not Kinex generation—to create Nia's approved identity image, then save it as her Agent Workspace lock.",
+      "request": "Use the host image generator\u2014not Kinex generation\u2014to create Nia's approved identity image, then save it as her Agent Workspace lock.",
       "expectedTools": [
         "workspace_list_entities",
         "workspace_upload_external_media",
         "workspace_attach_external_media",
         "workspace_read_entity"
       ],
-      "forbiddenTools": ["workspace_execute_command", "library_upload_media"],
+      "forbiddenTools": [
+        "workspace_execute_command",
+        "library_upload_media"
+      ],
       "checks": [
         "generates outside Kinex as requested",
         "uploads project-scoped media before attaching it",
@@ -99,7 +124,10 @@
         "workspace_upload_external_media",
         "workspace_attach_external_media"
       ],
-      "forbiddenTools": ["library_upload_media", "workspace_execute_command"],
+      "forbiddenTools": [
+        "library_upload_media",
+        "workspace_execute_command"
+      ],
       "checks": [
         "uploads project-scoped media",
         "sets hero and anchor intentionally as separate state changes",
@@ -185,7 +213,10 @@
         "context_update_section",
         "beat_define"
       ],
-      "forbiddenTools": ["workspace_execute_command", "define_shot_batch"],
+      "forbiddenTools": [
+        "workspace_execute_command",
+        "define_shot_batch"
+      ],
       "checks": [
         "creates one beat and artifact target per deliverable family",
         "shares sourced canon without inventing claims",
@@ -196,8 +227,14 @@
       "id": "performance-aware-shot-revision",
       "skill": "kinex-agent-workspace",
       "request": "The close-up feels generically sad. Revise the shot direction so the actor has a playable objective, physical business, and a reaction beat, without changing the approved story.",
-      "expectedTools": ["shot_list", "shot_update"],
-      "forbiddenTools": ["workspace_execute_command", "beat_update"],
+      "expectedTools": [
+        "shot_list",
+        "shot_update"
+      ],
+      "forbiddenTools": [
+        "workspace_execute_command",
+        "beat_update"
+      ],
       "checks": [
         "translates emotion adjectives into observable behavior",
         "changes the failing shot control without rewriting canon",
@@ -230,9 +267,13 @@
           "workspaceMode": "agent"
         }
       },
-      "forbiddenTools": ["script_planning_turn", "beat_define", "shot_define"],
+      "forbiddenTools": [
+        "script_planning_turn",
+        "beat_define",
+        "shot_define"
+      ],
       "checks": [
-        "creates the Agent Workspace project without routing through the classic video skill",
+        "creates the Agent Workspace project without leaving this skill for a retired pipeline",
         "verifies Agent Workspace mode after creation",
         "keeps image-only work free of invented temporal structure"
       ]
@@ -254,7 +295,6 @@
         "workspace_read_entity",
         "beat_define",
         "shot_define",
-        "generation_list_supported_media_models",
         "workspace_execute_command",
         "task_get"
       ],
@@ -273,7 +313,6 @@
         "workspace_read_entity",
         "beat_define",
         "shot_define",
-        "generation_list_supported_media_models",
         "workspace_execute_command",
         "task_get"
       ],
@@ -337,8 +376,15 @@
       "id": "film-shot-card-four-lanes",
       "skill": "kinex-agent-workspace",
       "request": "Revise the approved station confrontation coverage into production-ready shot cards, but do not generate anything.",
-      "expectedTools": ["plan_get", "context_get", "shot_list", "shot_update"],
-      "forbiddenTools": ["workspace_execute_command"],
+      "expectedTools": [
+        "plan_get",
+        "context_get",
+        "shot_list",
+        "shot_update"
+      ],
+      "forbiddenTools": [
+        "workspace_execute_command"
+      ],
       "checks": [
         "records identity and assets, direction, camera, and edit information for every shot",
         "includes story purpose, playable task, visible change, first-frame geography, and intended join",
@@ -350,24 +396,24 @@
       "skill": "kinex-agent-workspace",
       "request": "Take 4 holds identity and acting, but the camera drifts after the handoff. Make one surgical retry and keep the rest unchanged.",
       "expectedTools": [
-        "scene_get_media_history",
-        "generation_list_supported_media_models",
+        "media_list_project",
         "workspace_execute_command",
         "task_get"
       ],
       "orderedTools": [
-        "scene_get_media_history",
-        "generation_list_supported_media_models",
+        "media_list_project",
         "workspace_execute_command",
         "task_get",
-        "scene_get_media_history"
+        "media_list_project"
       ],
       "requiredToolInputs": {
         "workspace_execute_command": {
           "type": "scene.generateVideo"
         }
       },
-      "forbiddenTools": ["generation_generate_video_batch"],
+      "forbiddenTools": [
+        "generation_generate_video_batch"
+      ],
       "checks": [
         "preserves the last working prompt, inputs, and active references",
         "changes only the camera drift control",
@@ -378,9 +424,17 @@
       "id": "ambiguous-workspace-selection-gate",
       "skill": "kinex-agent-workspace",
       "request": "I belong to more than one Kinex workspace. Show me the choices before creating this project, and do not save it in the wrong one.",
-      "expectedTools": ["workspace_get_current", "workspace_list"],
-      "orderedTools": ["workspace_get_current", "workspace_list"],
-      "forbiddenTools": ["project_create_from_brief"],
+      "expectedTools": [
+        "workspace_get_current",
+        "workspace_list"
+      ],
+      "orderedTools": [
+        "workspace_get_current",
+        "workspace_list"
+      ],
+      "forbiddenTools": [
+        "project_create_from_brief"
+      ],
       "checks": [
         "identifies the OAuth-active workspace and available memberships",
         "asks for one workspace choice when the destination is ambiguous",
@@ -429,7 +483,10 @@
         "workspace_attach_external_media",
         "workspace_read_entity"
       ],
-      "forbiddenTools": ["workspace_execute_command", "library_upload_media"],
+      "forbiddenTools": [
+        "workspace_execute_command",
+        "library_upload_media"
+      ],
       "checks": [
         "creates one physical location identity with stable architecture and spatial geometry",
         "records entrances, landmarks, materials, distances, screen direction, and the 180-degree axis",
@@ -462,115 +519,15 @@
           "kind": "location"
         }
       },
-      "forbiddenTools": ["workspace_execute_command"],
+      "forbiddenTools": [
+        "workspace_execute_command"
+      ],
       "checks": [
         "saves the floor map before defining the location",
         "maps zones, entrances, exits, landmarks, scale, action paths, camera sides, axis, occlusions, elevation, and motivated light",
         "marks unsupported space unresolved or as a design proposal",
         "defines one stable location identity from the planned geography"
       ]
-    },
-    {
-      "id": "classic-brief-to-video",
-      "skill": "kinex-create-video",
-      "request": "Use the classic manual script workflow to make a polished 45-second horizontal launch film from this brief.",
-      "expectedTools": [
-        "workspace_get_current",
-        "project_create_from_brief",
-        "project_get_pipeline",
-        "script_plan_shots",
-        "task_get"
-      ],
-      "requiredToolInputs": {
-        "project_create_from_brief": {
-          "workspaceMode": "manual"
-        }
-      },
-      "forbiddenTools": ["workspace_execute_command"],
-      "checks": [
-        "reviews story and look before storyboards",
-        "polls every queued task"
-      ]
-    },
-    {
-      "id": "classic-scene-asset-gate",
-      "skill": "kinex-create-video",
-      "request": "Check whether the market-night scene is ready. The lead has no approved rain wardrobe thumbnail yet; do not generate the storyboard.",
-      "expectedTools": [
-        "project_get_pipeline",
-        "script_get_document",
-        "visual_list_entities",
-        "scene_list_project"
-      ],
-      "forbiddenTools": [
-        "generation_generate_storyboard",
-        "generation_generate_storyboard_batch",
-        "visual_generate_entity_thumbnails"
-      ],
-      "checks": [
-        "treats the missing production state as a scene readiness blocker",
-        "does not release storyboard generation from an incomplete look bible"
-      ]
-    },
-    {
-      "id": "targeted-scene-fix",
-      "skill": "kinex-create-video",
-      "request": "Replace only scene four's clip and keep the rest of the cut.",
-      "expectedTools": [
-        "project_list",
-        "scene_list_project",
-        "generation_generate_video",
-        "task_get"
-      ],
-      "forbiddenTools": ["generation_generate_batch_video"],
-      "checks": ["does not regenerate unaffected scenes"]
-    },
-    {
-      "id": "story-only-revision",
-      "skill": "kinex-script-and-story",
-      "request": "Make the ending less sentimental, but do not generate media.",
-      "expectedTools": [
-        "script_get_document",
-        "script_refine",
-        "script_get_current"
-      ],
-      "forbiddenTools": [
-        "generation_generate_storyboard",
-        "workspace_execute_command"
-      ],
-      "checks": ["honors the no-generation boundary", "re-reads the revision"]
-    },
-    {
-      "id": "preproduction-script-review-read-only",
-      "skill": "kinex-script-and-story",
-      "request": "Review the proposed screenplay for production readiness. Give me evidence-backed notes and a pass, revise, or block verdict, but do not rewrite it or plan shots yet.",
-      "expectedTools": [
-        "project_get",
-        "project_get_pipeline",
-        "script_get_current",
-        "script_get_document"
-      ],
-      "forbiddenTools": [
-        "script_refine",
-        "script_planning_turn",
-        "script_plan_shots",
-        "script_generate_visual_script",
-        "workspace_execute_command"
-      ],
-      "checks": [
-        "reviews intent, causality, scene function, character behavior, dialogue, rhythm, continuity, production load, truth, and rights",
-        "grounds every note in a scene, passage, line, or missing bridge",
-        "preserves strengths and distinguishes defects from preferences",
-        "does not turn review into an unauthorized rewrite or generation step"
-      ]
-    },
-    {
-      "id": "exact-script-import",
-      "skill": "kinex-script-and-story",
-      "request": "Import this finished screenplay exactly and report its duration.",
-      "expectedTools": ["script_import", "script_get_current"],
-      "forbiddenTools": ["script_planning_turn", "script_refine"],
-      "checks": ["does not rewrite supplied text"]
     },
     {
       "id": "reuse-library-reference",
@@ -581,8 +538,13 @@
         "media_get",
         "media_get_public_url"
       ],
-      "forbiddenTools": ["library_upload_media", "library_generate_image"],
-      "checks": ["searches before creating"]
+      "forbiddenTools": [
+        "library_upload_media",
+        "library_generate_image"
+      ],
+      "checks": [
+        "searches before creating"
+      ]
     },
     {
       "id": "standalone-library-image",
@@ -593,8 +555,13 @@
         "task_get",
         "library_list_media"
       ],
-      "forbiddenTools": ["workspace_execute_command"],
-      "checks": ["uses the library lane", "re-lists media after completion"]
+      "forbiddenTools": [
+        "workspace_execute_command"
+      ],
+      "checks": [
+        "uses the library lane",
+        "re-lists media after completion"
+      ]
     },
     {
       "id": "reuse-library-reference-passport",
@@ -621,20 +588,26 @@
       "skill": "kinex-review-and-export",
       "request": "Audit export readiness, but do not save or render.",
       "expectedTools": [
-        "project_get_pipeline",
-        "scene_list_project",
+        "project_get",
+        "shot_list",
         "timeline_get"
       ],
-      "forbiddenTools": ["timeline_save", "timeline_export"],
-      "checks": ["reports evidence-backed blockers", "remains read-only"]
+      "forbiddenTools": [
+        "timeline_save",
+        "timeline_export"
+      ],
+      "checks": [
+        "reports evidence-backed blockers",
+        "remains read-only"
+      ]
     },
     {
       "id": "scene-selects-and-join-qc",
       "skill": "kinex-review-and-export",
       "request": "Review the selected station scene against its neighbouring scenes for picture-lock readiness. Do not save or export.",
       "expectedTools": [
-        "scene_list_project",
-        "scene_get_media_history",
+        "shot_list",
+        "media_list_project",
         "timeline_get",
         "workspace_preview_timeline"
       ],
@@ -669,7 +642,6 @@
       "skill": "kinex-media-library",
       "request": "Use Seedream 5 Pro to make a photoreal editorial portrait in my library from these three identity and wardrobe references. Use the high-detail tier and preserve real skin texture.",
       "expectedTools": [
-        "generation_list_supported_media_models",
         "library_generate_image",
         "task_get",
         "library_list_media"
@@ -689,7 +661,6 @@
       "skill": "kinex-media-library",
       "request": "Use Midjourney V8.1 in my library for a stylized product campaign. Set stylize to 700, chaos to 20, use this image only as the style reference, and show me all four outputs.",
       "expectedTools": [
-        "generation_list_supported_media_models",
         "library_generate_image",
         "task_get",
         "library_list_media"
@@ -709,12 +680,14 @@
       "skill": "kinex-media-library",
       "request": "Use Imagen 4 Ultra to make four 2K photoreal hero options for a premium skincare campaign. The bottle label must read 'KINEX NIGHT SERUM'.",
       "expectedTools": [
-        "generation_list_supported_media_models",
         "library_generate_image",
         "task_get",
         "library_list_media"
       ],
-      "forbiddenTools": ["workspace_execute_command", "library_upload_media"],
+      "forbiddenTools": [
+        "workspace_execute_command",
+        "library_upload_media"
+      ],
       "checks": [
         "uses the text-only Imagen 4 Ultra operation and its native 2K and four-output fields",
         "quotes exact visible wording and specifies its placement, material, light, lens, and surface behavior",
@@ -726,12 +699,14 @@
       "skill": "kinex-media-library",
       "request": "Use Qwen Image Max for a realistic night-market portrait with a clearly readable overhead sign saying 'ENUGU NIGHT MARKET'. Use 16:9 and enable prompt expansion.",
       "expectedTools": [
-        "generation_list_supported_media_models",
         "library_generate_image",
         "task_get",
         "library_list_media"
       ],
-      "forbiddenTools": ["workspace_execute_command", "library_upload_media"],
+      "forbiddenTools": [
+        "workspace_execute_command",
+        "library_upload_media"
+      ],
       "checks": [
         "uses Qwen Image Max's text-only single-output operation and fixed 16:9 size",
         "keeps prompt expansion and seed as structured fields while specifying exact sign text and spatial placement in prose",
@@ -743,11 +718,13 @@
       "skill": "kinex-seedance-2-5",
       "request": "The plan is approved. Use Seedance to animate this product reveal with the supplied opening frame and dialogue track.",
       "expectedTools": [
-        "generation_list_supported_media_models",
         "workspace_execute_command",
         "task_get"
       ],
-      "forbiddenTools": ["generation_generate_video", "library_upload_media"],
+      "forbiddenTools": [
+        "generation_generate_video",
+        "library_upload_media"
+      ],
       "checks": [
         "selects the full Seedance 2.0 Standard SKU rather than Fast, Mini, or 2.5",
         "uses only fields and limits returned by the live 2.0 operation",
@@ -759,11 +736,13 @@
       "skill": "kinex-seedance-2-5",
       "request": "The Production Plan is approved. Use the supplied character image, product image, camera-movement clip, and dialogue recording to generate the 25-second opening beat as one Seedance 2.5 clip.",
       "expectedTools": [
-        "generation_list_supported_media_models",
         "workspace_execute_command",
         "task_get"
       ],
-      "forbiddenTools": ["generation_generate_video", "library_upload_media"],
+      "forbiddenTools": [
+        "generation_generate_video",
+        "library_upload_media"
+      ],
       "checks": [
         "confirms the live Seedance 2.5 operation before execution",
         "assigns one explicit role to each activated reference",
@@ -775,7 +754,6 @@
       "skill": "kinex-seedance-2-5",
       "request": "This approved 26-second beat contains three unrelated locations and two hard time jumps. Seedance supports 30 seconds, but split it into coherent coverage and generate through the Agent Workspace.",
       "expectedTools": [
-        "generation_list_supported_media_models",
         "beat_list",
         "shot_list",
         "workspace_execute_command",
@@ -787,7 +765,9 @@
           "mode": "per_shot"
         }
       },
-      "forbiddenTools": ["generation_generate_multi_shot_video"],
+      "forbiddenTools": [
+        "generation_generate_multi_shot_video"
+      ],
       "checks": [
         "does not equate the provider maximum with a recommendation for one clip",
         "splits at coherent end states and carries continuity across the cuts",
@@ -799,11 +779,13 @@
       "skill": "kinex-hailuo-h3",
       "request": "The Production Plan is approved. Use the supplied product image, hand-motion video, and rhythm track to make one 8-second 2K Hailuo H3 product shot; retain the bottle appearance and land on the specified final frame.",
       "expectedTools": [
-        "generation_list_supported_media_models",
         "workspace_execute_command",
         "task_get"
       ],
-      "forbiddenTools": ["generation_generate_video", "library_upload_media"],
+      "forbiddenTools": [
+        "generation_generate_video",
+        "library_upload_media"
+      ],
       "checks": [
         "confirms the live Hailuo H3 operation before execution",
         "uses H3 reference labels and reference-retention logic instead of Seedance role grammar",

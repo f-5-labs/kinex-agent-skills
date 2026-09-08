@@ -9,7 +9,7 @@ Separate building from judging. Ground each verdict in current Kinex artifacts, 
 
 ## Run the review ladder
 
-Read the smallest relevant evidence: project and pipeline, classic script or Agent Workspace plan and context, look-bible entities, entity and scene generation histories, project tasks, then `timeline_get` and optionally `workspace_preview_timeline`.
+Read the smallest relevant evidence: project and pipeline, Production Plan and Project Bible, workspace entities, entity and scene generation histories, project tasks, then `timeline_get` and optionally `workspace_preview_timeline`.
 
 At each stage return `pass`, `revise`, or `block`, plus the evidence and smallest corrective action.
 
@@ -21,7 +21,7 @@ For films, keep generated, accepted, active, and selected states distinct. The c
 - Fix identity or continuity before broad regeneration. Confirm that every shot-assigned entity variant has its required locked project media.
 - For Agent Workspace characters and locations, distinguish the hero/master plate, continuity anchor, selected preview, and history. Use `media_list_project` with entity source filters; do not treat preview selection as a lock change.
 - Regenerate only affected media.
-- Review history before `scene_set_active_media`; externally uploaded project media is valid only after it is attached to the intended entity or shot slot.
+- Review history with `media_list_project` and `task_get` before choosing an alternative; externally uploaded project media is valid only after it is attached to the intended entity or shot slot.
 - Poll repair tasks and re-read affected artifacts.
 
 Review every join for eyelines, action axis, wardrobe, hair, props, geography, light, palette, movement tempo, performance carryover, dialogue, ambience, and sound tails. Treat a missing cutaway or connective shot as a coverage blocker, not an invitation to regenerate unrelated material.

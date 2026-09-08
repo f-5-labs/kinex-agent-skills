@@ -2,13 +2,21 @@
   "scenarioId": "new-agent-workspace-scene-one",
   "host": "external-mcp-client",
   "events": [
-    { "type": "tool_call", "tool": "workspace_get_current", "input": {} },
-    { "type": "tool_call", "tool": "workspace_list", "input": {} },
+    {
+      "type": "tool_call",
+      "tool": "workspace_get_current",
+      "input": {}
+    },
+    {
+      "type": "tool_call",
+      "tool": "workspace_list",
+      "input": {}
+    },
     {
       "type": "tool_call",
       "tool": "project_create_from_brief",
       "input": {
-        "title": "Soft Work — Scene 1",
+        "title": "Soft Work \u2014 Scene 1",
         "workspaceId": "workspace-active",
         "workspaceMode": "agent"
       }
@@ -16,32 +24,45 @@
     {
       "type": "tool_call",
       "tool": "project_get",
-      "input": { "projectId": "project-1" }
+      "input": {
+        "projectId": "project-1"
+      }
     },
     {
       "type": "tool_call",
       "tool": "plan_get",
-      "input": { "projectId": "project-1" }
+      "input": {
+        "projectId": "project-1"
+      }
     },
     {
       "type": "tool_call",
       "tool": "context_get",
-      "input": { "projectId": "project-1" }
+      "input": {
+        "projectId": "project-1"
+      }
     },
     {
       "type": "tool_call",
       "tool": "plan_save",
-      "input": { "projectId": "project-1" }
+      "input": {
+        "projectId": "project-1"
+      }
     },
     {
       "type": "tool_call",
       "tool": "context_update_section",
-      "input": { "projectId": "project-1", "section": "Story and intent" }
+      "input": {
+        "projectId": "project-1",
+        "section": "Story and intent"
+      }
     },
     {
       "type": "tool_call",
       "tool": "workspace_list_entities",
-      "input": { "projectId": "project-1" }
+      "input": {
+        "projectId": "project-1"
+      }
     },
     {
       "type": "tool_call",
@@ -67,7 +88,9 @@
     {
       "type": "tool_call",
       "tool": "task_get",
-      "input": { "taskId": "entity-task-1" }
+      "input": {
+        "taskId": "entity-task-1"
+      }
     },
     {
       "type": "tool_call",
@@ -94,14 +117,11 @@
         "projectId": "project-1",
         "beatId": "beat-1",
         "actionLine": "The lead enters and confronts the first story obstacle.",
-        "castEntityIds": ["character-1"],
+        "castEntityIds": [
+          "character-1"
+        ],
         "requireLockedEntities": true
       }
-    },
-    {
-      "type": "tool_call",
-      "tool": "generation_list_supported_media_models",
-      "input": {}
     },
     {
       "type": "tool_call",
@@ -114,6 +134,12 @@
         "inputs": {}
       }
     },
-    { "type": "tool_call", "tool": "task_get", "input": { "taskId": "task-1" } }
+    {
+      "type": "tool_call",
+      "tool": "task_get",
+      "input": {
+        "taskId": "task-1"
+      }
+    }
   ]
 }

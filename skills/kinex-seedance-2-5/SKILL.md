@@ -9,7 +9,7 @@ Use this skill to turn an approved creative direction and a small, intentional s
 
 ## Confirm the live operation first
 
-1. Call `generation_list_supported_media_models` before selecting a Seedance operation. Use only the model, operation, and fields the live Kinex registry returns.
+1. Confirm the Seedance operation from the current model notes in this skill before selecting it. Use only the model, operation, and fields the live Kinex contract returns.
 2. For an unqualified Seedance request, prefer the full `Seedance 2.0` / Standard SKU. Do not silently substitute 2.0 Fast, Mini, or 2.5 because they are separate creative and cost choices.
 3. Select Seedance 2.5 only for an explicit 2.5 request or an accepted requirement such as a coherent clip beyond Seedance 2.0's live duration ceiling. State the reason in the Production Plan.
 4. If the selected Atlas-backed operation is unavailable, say so and choose a supported alternative with the user; do not invent a direct ByteDance, Dreamina, or browser workflow.

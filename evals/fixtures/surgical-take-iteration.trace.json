@@ -4,13 +4,12 @@
   "events": [
     {
       "type": "tool_call",
-      "tool": "scene_get_media_history",
-      "input": { "projectId": "project-1", "sceneId": "shot-4", "type": "video" }
-    },
-    {
-      "type": "tool_call",
-      "tool": "generation_list_supported_media_models",
-      "input": {}
+      "tool": "media_list_project",
+      "input": {
+        "projectId": "project-1",
+        "sceneId": "shot-4",
+        "type": "video"
+      }
     },
     {
       "type": "tool_call",
@@ -25,11 +24,21 @@
         }
       }
     },
-    { "type": "tool_call", "tool": "task_get", "input": { "taskId": "retry-5" } },
     {
       "type": "tool_call",
-      "tool": "scene_get_media_history",
-      "input": { "projectId": "project-1", "sceneId": "shot-4", "type": "video" }
+      "tool": "task_get",
+      "input": {
+        "taskId": "retry-5"
+      }
+    },
+    {
+      "type": "tool_call",
+      "tool": "media_list_project",
+      "input": {
+        "projectId": "project-1",
+        "sceneId": "shot-4",
+        "type": "video"
+      }
     }
   ]
 }

@@ -108,7 +108,7 @@ For every attempted shot, retain:
 
 Use generation history as evidence and keep concise decisions in the Production Plan. Do not turn the Project Bible into an attempt log. Change one failing control at a time. If the agreed retry budget is exhausted, simplify blocking, reduce simultaneous actions, split the shot, add a cutaway, or change angle rather than growing the prompt indiscriminately.
 
-The current active-media field is not a separate editorial-select state. Until the surface exposes one, record the select verdict in the Production Plan and use `scene_set_active_media` only for the canonical media choice the user intends. Do not report an active alternative as an approved select without that evidence.
+The current active-media field is not a separate editorial-select state. Until the surface exposes one, record the select verdict in the Production Plan and use `media_list_project` plus the shot's current media as evidence of the canonical choice the user intends. Do not report an active alternative as an approved select without that evidence.
 
 ## Edit while production continues
 
