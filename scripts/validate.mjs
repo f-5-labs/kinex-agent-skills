@@ -5,7 +5,9 @@ import { fileURLToPath } from 'node:url';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const expectedSkills = [
   'kinex-agent-workspace',
+  'kinex-audio-prompting',
   'kinex-hailuo-h3',
+  'kinex-image-prompting',
   'kinex-media-library',
   'kinex-review-and-export',
   'kinex-seedance-2-5',

@@ -82,7 +82,7 @@ Architecture, distances, materials, permanent set dressing, and palette must rem
 4. When generation happens outside Kinex, use the host image generator, upload the result as project-scoped media, and attach it deliberately as hero, continuity anchor, or both. For a named variant, use `workspace_attach_external_media` with the `entity_variant` target and exact `variantKey`; do not write system-owned lock fields through an entity patch.
 5. Keep the neutral canonical lock separate from cinematic shot treatment. Shot prompts carry angle, action, weather, emotion, and lighting unless those facts define a named approved variant.
 
-Do not assign a recurring entity to downstream shots until its required canonical and variant media are locked.
+Prefer assigning a recurring entity to downstream shots after its required canonical and variant media are locked. If the user asked to generate first, generate and name the missing lock.
 
 Before motion, stress-test a recurring lock in the production conditions that are most likely to expose drift: useful wide and close framing, more than one angle, required light or weather states, movement or gesture, and at least one ensemble frame with its scene partners. Record which tests passed. One attractive image is not sufficient evidence when the asset must survive broader coverage.
 

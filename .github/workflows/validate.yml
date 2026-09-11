@@ -19,6 +19,8 @@ jobs:
       - run: node scripts/validate.mjs
       - run: node scripts/evaluate-external-trace.mjs new-agent-workspace-scene-one evals/fixtures/new-agent-workspace-scene-one.trace.json
       - run: node scripts/evaluate-external-trace.mjs film-scene-readiness-blocks-generation evals/fixtures/film-scene-readiness-blocks-generation.trace.json
+      - run: node scripts/evaluate-external-trace.mjs generate-despite-open-asset-locks evals/fixtures/generate-despite-open-asset-locks.trace.json
       - run: node scripts/evaluate-external-trace.mjs surgical-take-iteration evals/fixtures/surgical-take-iteration.trace.json
       - run: node scripts/evaluate-external-trace.mjs seedance-capability-is-not-creative-fit evals/fixtures/seedance-capability-is-not-creative-fit.trace.json
       - run: node scripts/evaluate-external-trace.mjs location-floor-map-before-definition evals/fixtures/location-floor-map-before-definition.trace.json
+      - run: node scripts/evaluate-external-trace.mjs repeat-generation-announced-as-take evals/fixtures/repeat-generation-announced-as-take.trace.json

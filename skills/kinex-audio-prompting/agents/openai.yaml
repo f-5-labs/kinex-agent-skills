@@ -1,0 +1,11 @@
+interface:
+  display_name: 'Prompt the Audio'
+  short_description: 'Write voice, music, SFX, and ambience cues that fit the cut'
+  default_prompt: 'Use $kinex-audio-prompting to write these Kinex audio cues, keeping each layer a separate generation.'
+dependencies:
+  tools:
+    - type: 'mcp'
+      value: 'kinex'
+      description: 'Kinex creative production MCP server'
+      transport: 'streamable_http'
+      url: 'https://api.kinex.studio/mcp'

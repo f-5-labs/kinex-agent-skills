@@ -1,23 +1,23 @@
-# Scene-gated production method
+# Scene production method
 
 Use this reference only when the deliverable contains scenes, shots, motion, or an edited film. Keep image-only and non-temporal Agent Workspace projects on the lighter plan, canon, entity, generation, and review path.
 
-The durable lesson is production control, not allegiance to one model. Use the live Kinex registry for capabilities and treat every provider recommendation as replaceable.
+The durable lesson is production control, not allegiance to one model. Use the live Kinex registry for capabilities and treat every provider recommendation as replaceable. Lock → still → motion is the recommended path. It does not refuse generation. If the user asked to produce the scene, generate; name missing locks as advice.
 
-## Run scene-level gates
+## Recommend scene-level production
 
-Represent the following gates as stable Production Plan checklist outcomes. A direct instruction to produce a scene approves the current creative plan, but it does not waive missing source, continuity, or asset prerequisites. Complete the prerequisites first and continue in the same turn when they can be resolved safely.
+Represent the following as stable Production Plan checklist outcomes. They are a recommended film OS, not release valves. A direct instruction to produce a scene approves the current creative plan and is authority to generate. Suggest closing source, continuity, and asset gaps in the same turn; do not refuse because a checklist row is open.
 
 1. **Story gate:** inspect the source; lock the requested story range, target duration, dialogue or copy, and unresolved facts.
 2. **Breakdown gate:** create the scene breakdown, preliminary coverage, full scene asset list, state variants, complex elements, and visual-dramaturgy notes.
 3. **Visual-system gate:** approve the style direction, reference roles, palette, light logic, optics, movement language, image texture, cutting rhythm, and sound direction.
 4. **Asset gate:** define canonical entities, make only required variants, attach or generate their reference media, stress-test recurring locks, and record a review verdict.
-5. **Scene-readiness gate:** verify the scene-to-assets coverage has no holes and every entity or variant assigned to the scene has distinct reviewed evidence. A variant's lock must carry media different from its canonical Base and sibling state locks; `status: locked` alone does not release generation. Only this gate releases shot-frame or motion generation for that scene.
+5. **Scene-readiness gate:** verify the scene-to-assets coverage and whether every entity or variant assigned to the scene has distinct reviewed evidence. A variant's lock should carry media different from its canonical Base and sibling state locks; `status: locked` alone is not proof. Recommend this check before motion; it does not block generation.
 6. **Selects gate:** retain accepted takes, their exact prompts and inputs, and the reason each was chosen. A completed generation is not automatically a select.
 7. **Picture-lock gate:** assemble scenes, close coverage holes, verify joins and runtime, save the approved cut, and freeze picture before global finishing.
 8. **Finish-and-master gate:** close artifact repairs before color treatment, verify sound and rights, run technical QC, export required versions, and retain reproducibility records.
 
-Advance by scene or production block. Do not wait for every asset in a long project before starting a scene whose own readiness gate is closed. Do not scatter generation across unrelated scenes when a scene-sized batch would preserve light, performance, and editorial continuity.
+Advance by scene or production block. Do not wait for every asset in a long project before starting a requested scene. Do not scatter generation across unrelated scenes when a scene-sized batch would preserve light, performance, and editorial continuity.
 
 ## Review the proposed script first
 
@@ -25,7 +25,7 @@ When the project starts from a screenplay, narration, treatment, or proposed scr
 
 For every scene, identify its entry state, active objective, obstacle, tactic, visible change, exit state, and causal handoff. Return `PASS`, `REVISE`, or `BLOCK` with location-specific evidence and the smallest useful changes. Preserve strengths and distinguish defects from preferences. Do not rewrite a script during a read-only review.
 
-Release the breakdown only after the user approves the script or explicitly accepts remaining non-blocking notes. Script approval releases planning, not media generation.
+Release the breakdown after the user approves the script or explicitly accepts remaining non-blocking notes. Script approval is planning advice, not a media-generation lock. If they asked to generate, generate.
 
 ## Break down each scene
 
@@ -66,7 +66,7 @@ Treat vehicle interiors, designed screens, typography, crowds, water, fire, smok
 
 The shot card is the source for the generation instruction and later join review. Do not let the prompt introduce a new cast member, prop, geography, action, or line that is absent from the approved card.
 
-Keep the complete four-lane card in the Production Plan. Map only supported fields into `shot_define` or `shot_update`; do not invent tool inputs for dramatic purpose, edit intent, or transition notes. Once required locks exist, finalize film shots with `requireLockedEntities: true` so the current surface enforces the asset gate it can prove.
+Keep the complete four-lane card in the Production Plan. Map only supported fields into `shot_define` or `shot_update`; do not invent tool inputs for dramatic purpose, edit intent, or transition notes. When recommended locks already exist, finalize film shots with `requireLockedEntities: true`. If the user asked to produce without them, generate and name the gap.
 
 ## Build a reference map and visual system
 
@@ -94,7 +94,7 @@ One physical identity remains one Kinex entity. State variants remain named vari
 
 Stress-test a recurring asset before motion: useful wide and close framing, more than one angle, required lighting states, movement or gesture, and at least one ensemble composition with the assets it will share a frame with. Do not promote a lucky single image into a continuity lock when the production demands more coverage.
 
-Before generating a scene, reconcile a scene-to-assets matrix in the plan: scene or shot, active entity, required variant, reference media, lock status, and blocker. Any missing required lock blocks that scene, not necessarily the entire project.
+Before generating a scene, reconcile a scene-to-assets matrix in the plan: scene or shot, active entity, required variant, reference media, lock status, and recommended next lock. Report missing locks as advice for that scene, not a generate ban.
 
 ## Keep a take and prompt ledger
 

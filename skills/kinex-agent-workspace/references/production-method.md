@@ -1,6 +1,6 @@
 # Agent Workspace production method
 
-Use this reference selectively. It turns the Project Bible into usable production constraints without turning a creative workflow into a tool call.
+Use this reference selectively. It turns the Project Bible into usable production constraints without turning a creative workflow into a tool call. Prefer references and locks before coverage; if the user asked to generate, generate and keep the missing lock as the next repair.
 
 ## Deconstruct and diagnose
 
