@@ -6,7 +6,7 @@
       "name": "kinex",
       "source": "./",
       "description": "Source-grounded, variant-aware image, video, and mixed-media production through Kinex MCP.",
-      "version": "0.5.0",
+      "version": "0.6.0",
       "skills": [
         {
           "name": "agent-workspace",
@@ -32,6 +32,16 @@
           "name": "seedance-2-5",
           "path": "skills/kinex-seedance-2-5",
           "invoke": "/kinex:seedance-2-5"
+        },
+        {
+          "name": "image-prompting",
+          "path": "skills/kinex-image-prompting",
+          "invoke": "/kinex:image-prompting"
+        },
+        {
+          "name": "audio-prompting",
+          "path": "skills/kinex-audio-prompting",
+          "invoke": "/kinex:audio-prompting"
         }
       ]
     }

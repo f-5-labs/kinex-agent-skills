@@ -2,7 +2,7 @@
 
 [![Validate](https://github.com/f-5-labs/kinex-agent-skills/actions/workflows/validate.yml/badge.svg)](https://github.com/f-5-labs/kinex-agent-skills/actions/workflows/validate.yml)
 
-Plan-first image, video, and mixed-media production through [Kinex](https://kinex.studio). The bundle connects an agent to the authenticated Kinex MCP server and adds five focused skills for Agent Workspace production, model-specific direction, media reuse, review, and delivery. Agent Workspace is the only production path; the old project-page skills are not shipped.
+Plan-first image, video, and mixed-media production through [Kinex](https://kinex.studio). The bundle connects an agent to the authenticated Kinex MCP server and adds seven focused skills for Agent Workspace production, model-specific direction, image and audio prompt craft, media reuse, review, and delivery. Agent Workspace is the only production path; the old project-page skills are not shipped.
 
 ## Install
 
@@ -56,6 +56,8 @@ The first Kinex tool call opens browser sign-in and consent. No API key needs to
 | [`kinex-review-and-export`](./skills/kinex-review-and-export) | Evidence-backed quality review, timeline assembly, render, and delivery.                |
 | [`kinex-hailuo-h3`](./skills/kinex-hailuo-h3)                 | Directing H3 audiovisual shots with its own frame, reference, and sound prompt grammar. |
 | [`kinex-seedance-2-5`](./skills/kinex-seedance-2-5)           | Directing Seedance references and beats, defaulting to full-quality Seedance 2.0.       |
+| [`kinex-image-prompting`](./skills/kinex-image-prompting)     | Writing identity locks, hero stills, start frames, layout stills, and targeted edits.   |
+| [`kinex-audio-prompting`](./skills/kinex-audio-prompting)     | Writing voice, music, sound-effect, and ambience cues as separate, cut-aware layers.    |
 
 ## Six proven creative workflows
 
@@ -83,6 +85,8 @@ See [creative examples](./examples/creative-prompts.md) for prompts you can adap
 - Keep hero/master plate, continuity anchor, selected preview, and generation history distinct for characters and locations.
 - Treat a direct request to create a named visual deliverable as plan approval and continue execution after host confirmation instead of asking again.
 - Treat stop and cancel as authoritative; never retry cancelled work without a new instruction.
+- Check what already exists before generating, announce a repeat run as a numbered take, and keep earlier takes available until the user picks one.
+- Treat a generated hero as unassigned until `primaryMediaId` is verified by re-reading the entity; Kinex auto-assigns only an entity's first hero.
 - Treat queued work as pending, not complete.
 - Re-read saved artifacts after writes and verify outputs before claiming success.
 - Claim only finishing work the live Kinex surface proves; prepare an explicit external handoff for grade, sound post, interchange, or delivery formats outside it.

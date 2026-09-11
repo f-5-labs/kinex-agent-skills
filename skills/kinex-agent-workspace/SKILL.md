@@ -45,6 +45,16 @@ Lock → still → motion is advice, not a product gate. Open checklist rows, un
 - Treat exact copy, dialogue, product facts, geography, screen direction, and reference roles as continuity constraints.
 - Treat queued work as pending until the task completes and the artifact is re-read. Never fabricate a completed clip, still, or lock.
 
+## Know what already exists before you generate
+
+Generating is still the user's call: an existing asset never refuses a new one. But a repeat run that arrives silently leaves the user with duplicate heroes and clips and no way to tell which one is current.
+
+- Look before generating. Read the entity with `workspace_read_entity` before a hero; check `media_list_project` and `task_get` before a shot's still or clip.
+- Announce a repeat as a numbered take rather than quietly adding another asset. Kinex reports prior takes on the queued task, so use that number instead of guessing one.
+- Earlier takes stay available. Do not delete them and do not imply one replaced another until the user picks the take they want.
+- When iterating, say what changed for this take. One changed control per take.
+- Queueing two generations of the same target in one turn is a mistake, not thoroughness. Poll the existing task instead.
+
 ## Build the production
 
 - Style: `style_list`, then one of `style_set_from_catalog`, `style_seed_from_catalog`, `style_set_custom`, or `style_set_from_image`.
@@ -68,6 +78,8 @@ Build and review the edit while generation proceeds. Missing coverage is a plann
 ## Review with the user
 
 For character and location review, keep four states distinct: selected preview, hero or master plate (`primaryMediaId`), continuity anchor (`identityAnchorMediaItemId`), and generation history. List entity image history with `media_list_project`, using the entity id as `sourceId` and its matching entity table as `sourceTable`; use `workspace_update_entity` to promote an existing item or clear an anchor. An upload may become the hero, the anchor, or both only when that is intentional.
+
+A generated hero is not an assigned hero. Kinex auto-assigns the first hero when an entity has none; every later replacement stays a deliberate act. Assign the take the user chose with `workspace_update_entity`, then re-read the entity and compare ids to confirm `primaryMediaId` points at that take — verify the assignment rather than trusting the write.
 
 Use `media_list_project` and `task_get` for shot alternatives. Use `workspace_preview_entity` for identity and look review and `workspace_preview_timeline` for the current cut. Keep the conversation about creative outcomes, decisions, evidence, and blockers—not ids or tool mechanics.
 

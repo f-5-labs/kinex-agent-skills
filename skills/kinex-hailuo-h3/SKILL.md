@@ -28,10 +28,10 @@ Fill the same production spine H3 can hold, in H3 language:
 - **GEO:** stable layout, subject positions, eyelines, axis, screen direction.
 - **First frame:** motion-safe occupancy, pose, prop contact, and the readable start of the action.
 - **Exactly one camera move:** movement type + amplitude + speed. Stacking two moves is the number-one jitter cause. Make subject and environment motion agree with that one path.
-- **One continuous shot, no cuts, no zoom-to-stop.** With a final frame, describe a single path that lands on the final composition; do not write a montage between the two images.
+- **One continuous shot, no cuts, no zoom.** With a final frame, describe a single path that lands on the final composition; do not write a montage between the two images.
 - **Slow motion** is `recorded at 240fps, played back at 24fps` — never “slow motion”.
 - **Performance and physics:** observable behavior, contact, weight, cloth, hair, water. No emotion adjectives.
-- **Preserve / retention:** what must stay as-is — identity, product geometry, composition, or the useful transfer from each attached reference. Skipping this is the number-one drift cause.
+- **Must-hold outcomes:** identity, product geometry, composition, and the useful transfer from each attached reference. H3 has no separate `Preserve:` line — state these inside the description for text-only and frame-led work, and in `Reference Retention` for the mixed-reference operation. Omitting them is the number-one drift cause.
 - **No negative prompts.** Write the desired state: “identity holds”, “label stays legible”, “edges stay stable”.
 
 For mixed references, attach only materials needed by this shot and label them in the prompt as `<Subject N>`, `<Picture N>`, `<Video N>`, and `<Audio N>`. Give each one a single retained role:
@@ -50,8 +50,9 @@ For text-only, start-frame, and start-and-end-frame work, put this structure in 
 Integrated Multimodal Description: <GEO, first-frame blocking, subject, one action, one camera path with amplitude and speed, physics, and visible ending state>
 Overall Soundscape: <diegetic sound, ambience, dialogue, and timing>
 Non-diegetic Music: <music direction, or None>
-Preserve: <identity / product / composition>, stays as-is
 ```
+
+Those three sections are the whole base structure. Do not append a Seedance-style `Preserve:` line: fold the must-hold outcomes — identity, product geometry, composition — into the `Integrated Multimodal Description` as positive statements. `Reference Retention` is where they go instead, and only for the mixed-reference operation.
 
 When dialogue is essential, keep the provided words exact and write it as `<d>[language]spoken line</d>`. Keep the prompt specific and concise.
 
@@ -66,7 +67,7 @@ Run this checklist in the same turn, then generate. It is advice, not a silent Q
 3. Exactly one camera move; one continuous path to the ending state.
 4. Each attached reference has one retained role; no unattached labels.
 5. Performance is observable; quoted or `<d>` dialogue is exact.
-6. Preserve / Reference Retention is present and positive.
+6. Must-hold outcomes are stated positively — inside the description, or in `Reference Retention` for mixed references.
 7. No Seedance `@Image` tags, staged beats, or hard-cut timecodes.
 
 If they asked to generate, do not stop the turn after the checklist.

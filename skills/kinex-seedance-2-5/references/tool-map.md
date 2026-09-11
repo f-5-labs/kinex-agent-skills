@@ -13,4 +13,4 @@
 - Approved generation router: `workspace_execute_command`.
 - Task completion: `task_get`, then re-read the affected beat or shot and use `workspace_preview_timeline` for cut review.
 
-Use `workspace_execute_command` after the relevant Production Plan is approved, or immediately when the user asked to generate. Do not invent classic `generation_*` scene-row tools, and do not use `library_upload_media` for project-scoped continuity media.
+Use `workspace_execute_command` once the Production Plan carries one recorded approval. A current-turn request to generate is that approval, but it still has to be written: save the plan with `approvalConfirmed: true`, then execute in the same turn. Kinex refuses video generation without that saved approval record, and an open checklist row is not a reason to wait. Do not invent classic `generation_*` scene-row tools, and do not use `library_upload_media` for project-scoped continuity media.

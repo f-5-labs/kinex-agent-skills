@@ -39,9 +39,9 @@ Seedance 2 reasons before it generates. Hand it a clear problem and a short, una
 - **No negative prompts.** Phrase the desired state: “edges stay stable”, “identity holds”, “label stays legible”. “No warping” and “don’t change the face” spend words without helping.
 - **Timestamps are hard cuts, not labels.** A `[MM:SS – MM:SS]` boundary tells the model where to cut. If a cut is not reading, write `cut to`, `camera switch`, or `camera cut to`.
 - **Exactly one camera move per shot.** Stacking two moves is the number-one jitter cause. If unsure, use `locked-off`.
-- **One continuous shot** unless a cut is intentional. Say it: “one continuous shot, no cuts, no zoom”. Without that line Seedance often cuts between angles. Do not write zoom-to-stop.
+- **One continuous shot** unless a cut is intentional. Say it: “one continuous shot, no cuts, no zoom”. Without that line Seedance often cuts between angles.
 - **Slow motion** is `recorded at 240fps, played back at 24fps` — never “slow motion”.
-- **Preserve is the number-one drift cause.** Always include it. Fold every must-hold outcome into that one line.
+- **Omitting Preserve is the number-one drift cause.** Always include it. Fold every must-hold outcome into that one line.
 
 ```text
 @Image1 = <role> — call it "<token>"
@@ -89,6 +89,8 @@ Prefer concrete camera, pacing, light, and material words over adjectives.
 **Light and color:** name the source and two or three hues — `golden hour`, `tungsten`, `neon`, `natural window light`, `warm orange and teal`. Never “colorful”.
 
 **Audio:** dialogue in `"double quotes"` (the lip-sync signal) · SFX as acoustic descriptors · `score bed` · `ambient room tone`.
+
+**Style anchors:** one strong reference beats ten adjectives. Name a film stock (`35mm, Kodak palette`), a director (`Wes Anderson symmetry`, `Wong Kar-wai`), a sensor (`ARRI ALEXA aesthetic`), or a brand (`Apple keynote style`). A single concrete anchor gives the model a target to hit; piling on adjectives gives it nothing to aim at.
 
 **Avoid:** `beautiful` / `amazing` / `epic` / bare `cinematic` · `dynamic` · `fast` as the only motion word · `slow motion` · stacked camera moves · traditional negative prompts.
 

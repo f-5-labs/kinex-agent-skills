@@ -809,8 +809,140 @@
       "checks": [
         "confirms the live Hailuo H3 operation before execution",
         "uses H3 reference labels and reference-retention logic instead of Seedance role grammar",
-        "keeps the action as one continuous frame-led shot with one camera path and a Preserve/retention line",
+        "keeps the action as one continuous frame-led shot with one camera path and a Reference Retention line",
         "reads live duration from the current model notes and rejects audio-only input"
+      ]
+    },
+    {
+      "id": "repeat-generation-announced-as-take",
+      "skill": "kinex-agent-workspace",
+      "request": "Nia's hero still doesn't feel right. Generate another one.",
+      "expectedTools": [
+        "workspace_read_entity",
+        "media_list_project",
+        "workspace_execute_command",
+        "task_get"
+      ],
+      "orderedTools": [
+        "workspace_read_entity",
+        "media_list_project",
+        "workspace_execute_command",
+        "task_get"
+      ],
+      "forbiddenTools": [
+        "media_archive",
+        "generation_generate_image"
+      ],
+      "checks": [
+        "reads the existing entity and its media before generating a repeat",
+        "announces the run as a numbered take using the prior-take count Kinex reports on the queued task",
+        "names the one control that changed for this take",
+        "keeps earlier takes available and does not imply one was replaced",
+        "queues exactly one generation for the target and polls it instead of queueing a second"
+      ]
+    },
+    {
+      "id": "hero-assignment-verified-after-promotion",
+      "skill": "kinex-agent-workspace",
+      "request": "Take 3 is the one. Make it Nia's hero.",
+      "expectedTools": [
+        "media_list_project",
+        "workspace_update_entity",
+        "workspace_read_entity"
+      ],
+      "orderedTools": [
+        "media_list_project",
+        "workspace_update_entity",
+        "workspace_read_entity"
+      ],
+      "forbiddenTools": [
+        "workspace_execute_command",
+        "library_update_entity"
+      ],
+      "checks": [
+        "assigns the chosen take explicitly rather than assuming generation already assigned it",
+        "re-reads the entity and compares ids to confirm primaryMediaId points at the chosen take",
+        "does not treat the write response as proof of assignment"
+      ]
+    },
+    {
+      "id": "image-identity-lock-stays-neutral",
+      "skill": "kinex-image-prompting",
+      "request": "Write and generate Nia's identity lock image so we can reference her later. Make it cinematic and moody.",
+      "expectedTools": [
+        "workspace_read_entity",
+        "workspace_execute_command",
+        "task_get"
+      ],
+      "forbiddenTools": [
+        "library_generate_image",
+        "generation_generate_image"
+      ],
+      "checks": [
+        "classifies the job as an identity lock before drafting the prompt",
+        "explains that a cinematic grade and moody key light make it a worse reference and offers a separate hero still",
+        "writes even light, plain background, and neutral expression as positive constraints",
+        "sets aspect ratio and resolution as structured operation fields rather than in the prompt text"
+      ]
+    },
+    {
+      "id": "image-start-frame-reads-mid-action",
+      "skill": "kinex-image-prompting",
+      "request": "Make the start frame for shot 4 where she pushes the door open. Put 'STAFF ONLY' on the door and keep it 16:9.",
+      "expectedTools": [
+        "shot_list",
+        "workspace_execute_command",
+        "task_get",
+        "media_list_project"
+      ],
+      "forbiddenTools": [
+        "library_generate_image"
+      ],
+      "checks": [
+        "classifies the job as a start frame and blocks it mid-action with weight shifted and the hand already on the door",
+        "quotes 'STAFF ONLY' verbatim with its surface, placement, weight, and case",
+        "sends 16:9 as the structured aspect-ratio field instead of writing it in the prompt",
+        "inspects the returned frame before calling it usable"
+      ]
+    },
+    {
+      "id": "audio-layers-generated-separately",
+      "skill": "kinex-audio-prompting",
+      "request": "Give scene 2 a tense score bed plus the footsteps on the gravel and the distant motorway underneath.",
+      "expectedTools": [
+        "shot_list",
+        "workspace_execute_command",
+        "task_get"
+      ],
+      "forbiddenTools": [
+        "timeline_get",
+        "library_generate_video"
+      ],
+      "checks": [
+        "splits music, sound effect, and ambience into separate generations instead of one blended prompt",
+        "names two or three specific instruments and the arc rather than piling on mood words",
+        "describes the footstep event by material, force, and the space it happens in",
+        "reads duration and format from the live operation and hands final mixing to the review-and-export skill"
+      ]
+    },
+    {
+      "id": "audio-recurring-voice-identity-holds",
+      "skill": "kinex-audio-prompting",
+      "request": "Write Nia's VO for scene 4. She sounds different from scene 1 and the line has to stay exactly as written.",
+      "expectedTools": [
+        "context_get",
+        "workspace_execute_command",
+        "task_get"
+      ],
+      "forbiddenTools": [
+        "library_generate_video"
+      ],
+      "checks": [
+        "reuses the stored vocal identity verbatim and changes only the spoken line",
+        "keeps the supplied words exact and does not paraphrase them to scan better",
+        "puts delivery direction in a short preface rather than as stage directions inside the spoken text",
+        "checks the line against the shot runtime and surfaces the conflict instead of absorbing it",
+        "listens to the result against picture before reporting"
       ]
     }
   ]
