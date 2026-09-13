@@ -45,7 +45,7 @@ The first frame normally establishes occupancy and geography. Use an empty estab
 
 ## Direct performance and motion
 
-Translate adjectives into playable behavior: an objective, obstacle, tactics, physical business, and reactions. Preserve performance state across cuts. Let reactions begin before dialogue fully lands, keep eyes responsive, and give hands purposeful activity where appropriate.
+Translate adjectives into playable behavior: an objective aimed at a partner, the obstacle, current tactic, perceived trigger, listening, visible response, physical business, and exit state. Preserve performance state across cuts. A reaction may begin before a line ends only when the listener has perceived the decisive cue; never let them know information early. Give hands a task only when it already belongs to the scene, and preserve the object's starting owner, reachable path, contact, release, and ending owner rather than adding decorative gestures.
 
 Describe physics concretely through contact, weight, acceleration, settling, and delayed secondary motion. Choose optics and camera language for the visible result; do not depend on lens metadata alone.
 

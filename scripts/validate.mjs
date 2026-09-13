@@ -2,6 +2,8 @@ import { access, readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+import { validateDirectionFixtures } from './evaluate-direction-readiness.mjs';
+
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const expectedSkills = [
   'kinex-agent-workspace',
@@ -13,6 +15,7 @@ const expectedSkills = [
   'kinex-seedance-2-5',
 ];
 const failures = [];
+let directionCaseCount = 0;
 
 /** Reads a required JSON file from the repository root. */
 async function readJson(relativePath) {
@@ -106,6 +109,10 @@ async function validate() {
     agentWorkspaceSource.includes('references/scene-production-method.md'),
     'kinex-agent-workspace: scene production method link is missing.'
   );
+  check(
+    agentWorkspaceSource.includes('references/direction-readiness.md'),
+    'kinex-agent-workspace: direction readiness link is missing.'
+  );
   const entityLocationMethod = await readFile(
     path.join(
       root,
@@ -134,12 +141,55 @@ async function validate() {
     );
   }
 
+  const directionReadinessMethod = await readFile(
+    path.join(root, 'skills', 'kinex-agent-workspace', 'references', 'direction-readiness.md'),
+    'utf8'
+  );
+  for (const requiredPhrase of [
+    'Receive an incoming production',
+    'whose uncertainty matters',
+    'starting owner/state',
+    'Repeated frontal two-shots',
+    'Shot count is a consequence',
+    'native camera fields',
+    'colour profile',
+    'successful field readback is not visual or motion evidence',
+  ]) {
+    check(
+      directionReadinessMethod.toLowerCase().includes(requiredPhrase.toLowerCase()),
+      `kinex-agent-workspace: direction readiness is missing ${requiredPhrase}.`
+    );
+  }
+
+  const reviewSource = skillSources.get('kinex-review-and-export') ?? '';
+  check(
+    reviewSource.includes('references/direction-review.md'),
+    'kinex-review-and-export: direction review link is missing.'
+  );
+  const directionReviewMethod = await readFile(
+    path.join(root, 'skills', 'kinex-review-and-export', 'references', 'direction-review.md'),
+    'utf8'
+  );
+  for (const requiredPhrase of [
+    'Persistence',
+    'Direction',
+    'Frame',
+    'Motion',
+    'Sound',
+    'Audit coverage and route debt',
+  ]) {
+    check(
+      directionReviewMethod.includes(requiredPhrase),
+      `kinex-review-and-export: direction review is missing ${requiredPhrase}.`
+    );
+  }
+
   const sceneProductionMethod = await readFile(
     path.join(root, 'skills', 'kinex-agent-workspace', 'references', 'scene-production-method.md'),
     'utf8'
   );
   for (const requiredPhrase of [
-    'Scene-readiness gate',
+    'Direction-readiness gate',
     'Identity and asset lane',
     'Direction lane',
     'Camera lane',
@@ -189,6 +239,30 @@ async function validate() {
       `${scenario.id}: a tool cannot be both expected and forbidden.`
     );
   }
+
+  const directionFixtureResult = await validateDirectionFixtures(
+    path.join(root, 'evals', 'fixtures', 'direction-readiness-cases.json')
+  );
+  directionCaseCount = directionFixtureResult.caseCount;
+  failures.push(...directionFixtureResult.failures);
+  for (const requiredCase of [
+    'pass-motivated-coverage',
+    'fail-audience-and-playable-intent',
+    'fail-repeated-frontal-two-shots',
+    'fail-inert-prop-gesture',
+    'fail-negative-camera-and-eight-second-hold',
+    'block-impossible-elevated-sightline',
+    'block-falsified-speaker-ownership',
+    'block-held-dialogue-route',
+    'block-readback-claimed-as-motion-pass',
+    'fail-unsynced-format-and-generic-colour',
+    'fail-natural-spoken-timing',
+  ]) {
+    check(
+      directionFixtureResult.results.some((result) => result.id === requiredCase),
+      `direction fixtures: required case is missing ${requiredCase}.`
+    );
+  }
 }
 
 await validate();
@@ -200,5 +274,5 @@ if (failures.length) {
 
 const scenarios = await readJson('evals/scenarios.json');
 console.log(
-  `Kinex bundle validation passed: ${expectedSkills.length} skills and ${scenarios.scenarios.length} scenarios.`
+  `Kinex bundle validation passed: ${expectedSkills.length} skills, ${scenarios.scenarios.length} scenarios, and ${directionCaseCount} direction cases.`
 );

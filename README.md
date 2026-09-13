@@ -81,6 +81,7 @@ See [creative examples](./examples/creative-prompts.md) for prompts you can adap
 - Plan and save a source-grounded floor map before defining a location; keep unknown space unresolved.
 - For films, recommend lock → still → motion and keep the eight-stage checklist as advice; if the user asked to generate, generate. Advance requested scenes without waiting on unrelated assets.
 - Keep shot direction, camera, edit intent, exact prompt inputs, take verdicts, and join QC reproducible rather than relying on agent memory.
+- Require direction-ready motion coverage to earn its audience change, blocking, camera, cut, natural timing, and audio route; a successful record readback proves persistence, not creative or motion quality.
 - Generate images externally when requested, then upload and attach them as project-scoped continuity media.
 - Keep hero/master plate, continuity anchor, selected preview, and generation history distinct for characters and locations.
 - Treat a direct request to create a named visual deliverable as plan approval and continue execution after host confirmation instead of asking again.
@@ -96,6 +97,7 @@ See [creative examples](./examples/creative-prompts.md) for prompts you can adap
 
 ```bash
 node scripts/validate.mjs
+node scripts/evaluate-direction-readiness.mjs
 npx skills add . --list
 ```
 
