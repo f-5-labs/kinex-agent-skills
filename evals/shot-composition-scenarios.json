@@ -1,0 +1,185 @@
+{
+  "version": 1,
+  "description": "Synthetic requests and manual outcome rubrics for the PR #196 pipeline. No live execution is asserted.",
+  "scenarios": [
+    {
+      "id": "coauthor-camera-prompt-repair",
+      "skill": "kinex-agent-workspace",
+      "request": "Widen this shot and hold the camera still. Preserve the human editor's dialogue, lighting, assignments and beat. Update the card and both prompts; no generation.",
+      "expectedTools": [
+        "plan_get",
+        "context_get",
+        "shot_get",
+        "shot_update"
+      ],
+      "orderedTools": [
+        "shot_get",
+        "shot_update",
+        "shot_get"
+      ],
+      "requiredToolInputs": {
+        "shot_update": {
+          "camera": {
+            "movement": "locked-off"
+          }
+        }
+      },
+      "forbiddenTools": [
+        "workspace_execute_command",
+        "shot_define",
+        "shot_delete"
+      ],
+      "checks": [
+        "sends only intended nested fields rather than the full read response",
+        "compares authored imagePrompt and videoPrompt against the changed card and explicitly updates conflicts",
+        "preserves unmentioned voice, lighting, variants and placement on readback",
+        "does not mark source review complete without a whole-card script review"
+      ]
+    },
+    {
+      "id": "audio-reference-route-switch",
+      "skill": "kinex-audio-prompting",
+      "request": "Use the approved project-owned two-speaker recording for this shot instead of its generated single voice. Keep both speakers and the exact words. Update only the card, not media.",
+      "expectedTools": [
+        "shot_get",
+        "media_list_project",
+        "shot_update"
+      ],
+      "orderedTools": [
+        "shot_get",
+        "shot_update",
+        "shot_get"
+      ],
+      "requiredToolInputs": {
+        "shot_update": {
+          "audio": {
+            "intent": "reference_audio"
+          }
+        }
+      },
+      "forbiddenTools": [
+        "workspace_execute_command",
+        "library_generate_audio"
+      ],
+      "checks": [
+        "verifies the recording is active project audio and preserves the two real voices",
+        "does not assign the entire exchange to one cast speaker",
+        "re-reads after switching intent because old dialogue and voice fields may be cleared",
+        "reconciles any authored native-dialogue prompt; checks referenceAudio and generateAudio support before later execution"
+      ]
+    },
+    {
+      "id": "move-shot-without-recut",
+      "skill": "kinex-agent-workspace",
+      "request": "Move this shot to the beginning of the next beat and reconcile the plan and beat prompts. Do not change the saved cut or generate anything.",
+      "expectedTools": [
+        "plan_get",
+        "beat_list",
+        "shot_list",
+        "shot_get",
+        "shot_update",
+        "beat_update"
+      ],
+      "orderedTools": [
+        "shot_get",
+        "shot_update",
+        "shot_get",
+        "shot_list"
+      ],
+      "requiredToolInputs": {
+        "shot_update": {
+          "order": 0
+        }
+      },
+      "forbiddenTools": [
+        "timeline_save",
+        "workspace_execute_command",
+        "shot_delete"
+      ],
+      "checks": [
+        "uses the returned destination beatId and beat-local zero-based order in the same update",
+        "re-lists both beats and refreshes affected frame/clip prompts and join dependencies",
+        "does not interpret a storyboard panel strategy as that many shot records",
+        "reports saved timeline as unchanged, not automatically reordered"
+      ]
+    },
+    {
+      "id": "delete-shot-referenced-by-cut",
+      "skill": "kinex-review-and-export",
+      "request": "Delete this unused shot. Leave the approved edit and running jobs untouched.",
+      "expectedTools": [
+        "shot_get",
+        "timeline_get"
+      ],
+      "forbiddenTools": [
+        "shot_delete",
+        "timeline_save",
+        "task_cancel",
+        "workspace_execute_command"
+      ],
+      "checks": [
+        "raw artifact: the supposedly unused shot is still referenced by the saved master cut",
+        "explains the contradiction and does not rewrite the cut or cancel jobs",
+        "reads current shot/beat task and master/beat timeline evidence as available; read failure is not absence",
+        "requests scope direction before resolving the reference; does not pretend deletion succeeded"
+      ]
+    },
+    {
+      "id": "external-still-adaptive-handoff",
+      "skill": "kinex-image-prompting",
+      "request": "Create an external start frame for this 21:9 shot. Use the assigned character and closed-prop variants. Give me the still only.",
+      "expectedTools": [
+        "shot_get",
+        "workspace_read_entity",
+        "workspace_upload_external_media",
+        "workspace_attach_external_media"
+      ],
+      "orderedTools": [
+        "shot_get",
+        "workspace_upload_external_media",
+        "workspace_attach_external_media",
+        "shot_get"
+      ],
+      "forbiddenTools": [
+        "workspace_execute_command",
+        "library_generate_image"
+      ],
+      "checks": [
+        "uses the requested external ImageGen route and approved project references",
+        "incoming frame precedes the required source trigger rather than depicting its payoff",
+        "visually inspects and measures output dimensions before upload and binding",
+        "uses an advertised ratio token or measured Adaptive reference later, never invents a 7:3 enum",
+        "does not infer media dimensions, generation quality, or selection from a card readback"
+      ]
+    },
+    {
+      "id": "authorized-export-evidence",
+      "skill": "kinex-review-and-export",
+      "request": "The selected cut is approved. Verify it and export it; do not generate replacement takes.",
+      "expectedTools": [
+        "project_get",
+        "plan_get",
+        "timeline_get",
+        "workspace_preview_timeline",
+        "timeline_export",
+        "timeline_export_status"
+      ],
+      "orderedTools": [
+        "timeline_get",
+        "workspace_preview_timeline",
+        "timeline_export",
+        "timeline_export_status"
+      ],
+      "checks": [
+        "verifies the saved cut's selected media, picture joins, words, speaker ownership and sound tails",
+        "uses only the supported export command and does not regenerate takes",
+        "polls the returned export task instead of queueing another export",
+        "delivers only a verified completed output, distinguishing any unverified colour metadata or external sound-post requirement"
+      ],
+      "forbiddenTools": [
+        "workspace_execute_command",
+        "timeline_save"
+      ]
+    }
+  ]
+}

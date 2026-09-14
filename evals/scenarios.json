@@ -321,7 +321,9 @@
           "workspaceMode": "agent"
         },
         "shot_define": {
-          "requireLockedEntities": true
+          "camera": {
+            "shotSize": "medium two-shot"
+          }
         }
       },
       "requiredToolCalls": [
@@ -747,7 +749,7 @@
         "selects the full Seedance 2.0 Standard SKU rather than Fast, Mini, or 2.5",
         "uses only fields and limits returned by the live 2.0 operation, not remembered 15s/30s ceilings",
         "assigns separate visual and audio roles before execution",
-        "compiles from the universal template including Preserve and exactly one camera move"
+        "compiles from the universal template including the must-hold references and one coherent camera plan, including locked-off"
       ]
     },
     {
@@ -765,7 +767,7 @@
       "checks": [
         "confirms the live Seedance 2.5 operation before execution",
         "assigns one explicit role to each activated reference",
-        "includes a Preserve line and exactly one camera move per shot",
+        "states the must-hold reference transfer and one coherent camera plan per shot",
         "uses one clip only because the approved beat fits the live advertised duration"
       ]
     },
@@ -886,7 +888,7 @@
       ]
     },
     {
-      "id": "image-start-frame-reads-mid-action",
+      "id": "image-start-frame-preserves-incoming-phase",
       "skill": "kinex-image-prompting",
       "request": "Make the start frame for shot 4 where she pushes the door open. Put 'STAFF ONLY' on the door and keep it 16:9.",
       "expectedTools": [
@@ -899,7 +901,7 @@
         "library_generate_image"
       ],
       "checks": [
-        "classifies the job as a start frame and blocks it mid-action with weight shifted and the hand already on the door",
+        "reads the shot and preceding state, then composes the sourced incoming phase; does not skip a required approach or contact simply to begin mid-action",
         "quotes 'STAFF ONLY' verbatim with its surface, placement, weight, and case",
         "sends 16:9 as the structured aspect-ratio field instead of writing it in the prompt",
         "inspects the returned frame before calling it usable"

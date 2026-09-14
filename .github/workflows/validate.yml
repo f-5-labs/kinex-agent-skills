@@ -17,6 +17,7 @@ jobs:
         with:
           node-version: 22
       - run: node scripts/validate.mjs
+      - run: node --test scripts/*.test.mjs
       - run: node scripts/evaluate-external-trace.mjs new-agent-workspace-scene-one evals/fixtures/new-agent-workspace-scene-one.trace.json
       - run: node scripts/evaluate-external-trace.mjs film-scene-readiness-blocks-generation evals/fixtures/film-scene-readiness-blocks-generation.trace.json
       - run: node scripts/evaluate-external-trace.mjs generate-despite-open-asset-locks evals/fixtures/generate-despite-open-asset-locks.trace.json

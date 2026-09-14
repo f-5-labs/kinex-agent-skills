@@ -21,12 +21,14 @@
 
 - Style: `style_list`, `style_set_from_catalog`, `style_seed_from_catalog`, `style_set_custom`, `style_set_from_image`.
 - Entities: `workspace_list_entities`, `workspace_read_entity`, `workspace_define_entity`, `workspace_update_entity`.
-- Optional temporal structure: `beat_list`, `beat_define`, `beat_update`, `shot_list`, `shot_define`, `shot_update`.
+- Optional temporal structure: `beat_list`, `beat_define`, `beat_update`, `shot_list`, `shot_get`, `shot_define`, `shot_update`; `shot_delete` only for a user-requested deletion.
 - External project media: `workspace_upload_external_media`, then `workspace_attach_external_media`.
 - Generation router: `workspace_execute_command`.
 - Progress and cancellation: `task_list_project`, `task_get`, `task_cancel`.
 - Project and shot histories: `media_list_project`, `media_get`, `media_get_public_url`.
 - Human review: `workspace_preview_projects`, `workspace_preview_entity`, `workspace_preview_timeline`.
+
+For any shot write, read [shared shot composition](shot-composition.md). MCP and Director coauthor the same nested groups; preserve omitted values, beat-local ordering, exact variant selectors, and the difference between saved fields and reviewed work.
 
 ## Generation-router families
 
@@ -42,7 +44,7 @@ Use this lane when generation happens in the host agent or another approved syst
 
 1. Define and re-read the target entity or shot.
 2. Generate the asset externally from the current Kinex canon.
-3. Upload image, video, or audio bytes with `workspace_upload_external_media`. Default to one large file per call; use only small bounded groups that fit the live limit and avoid oversized base64 payloads.
+3. Inspect the actual external artifact and verify its dimensions/format against the target before uploading image, video, or audio bytes with `workspace_upload_external_media`. Default to one large file per call; use only small bounded groups that fit the live limit and avoid oversized base64 payloads.
 4. Attach an uploaded image with `workspace_attach_external_media` to an entity `hero` or `identity_anchor`, a named `entity_variant`, or a shot `start_frame` or `end_frame`.
 5. Re-read or preview the target and verify the lock. For a named variant, confirm its `mediaItemId` is present, differs from the entity's `primaryMediaId`, and is not reused by any sibling locked variant.
 

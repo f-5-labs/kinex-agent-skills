@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "description": "Anonymized direction-gate regressions. The baseline is a complete passing example; each case applies only the listed failure mutations.",
+  "description": "Synthetic review-note consistency regressions, NOT shot API payloads or independent creative evaluations. Evidence booleans are declarations, not proof; PASS is only a lint verdict.",
   "baseline": {
     "targetStage": "DIRECTION_READY",
     "sourceUnitCount": 2,
@@ -11,7 +11,7 @@
     },
     "format": {
       "requestedRatio": "7:3",
-      "structuredRatio": "7:3",
+      "structuredRatio": "21:9",
       "compositionPlan": "Keep the handoff path and both eyelines inside the native wide frame before any delivery crop.",
       "nativeCameraFieldsSynchronized": true,
       "actualDimensionsVerified": false

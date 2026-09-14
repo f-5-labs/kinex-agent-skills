@@ -43,8 +43,10 @@ None of these operations take a negative prompt in the prose, and naming what to
 ## Copy, start frames, and edits
 
 - **On-image text** is quoted verbatim with its real weight and case, plus its surface and placement. Never invent wording, never approximate a supplied line.
-- **Motion-safe start frames** must already read as mid-action — weight shifted, hand already on the handle, fabric already moving. A frozen, perfectly posed frame animates badly.
+- **Motion-safe start frames** follow the sourced incoming action phase in `direction.blocking`. They can show anticipation, stillness, permission, or action already underway. Show the cause before its payoff; never skip approach, consent, contact, or transfer simply to start mid-action.
 - **Edits** change the minimum and preserve the rest explicitly: one change per pass, and name what fills the space a removed object leaves behind. A frame that needs several unrelated changes needs a rebuild, not an edit chain — regenerate it.
+
+For project frames, read `shot_get` and the assigned entities/variants first. Compile `imagePrompt` from `direction.blocking`, `camera`, and `spatialLayout`; preserve the executable assignments. Compose for the exact target ratio before cropping, then inspect actual dimensions and action readability. An Adaptive operation inherits the source frame ratio. Follow [shared shot composition](../kinex-agent-workspace/references/shot-composition.md) when a frame changes the shot.
 
 ## Cut, then generate, then look
 
@@ -53,3 +55,5 @@ Before sending, delete every clause that is not doing work. Past a point, extra 
 Then generate through the route the project uses, poll the task, and actually look at the returned image. Repair at the source — job classification, reference role, light, framing, structured field — rather than appending adjectives to the prompt that already failed.
 
 Read [tool map](references/tool-map.md) for discovery, routing, and review boundaries.
+
+For a standalone installation without the sibling reference, read the [published shot composition contract](https://github.com/f-5-labs/kinex-agent-skills/blob/main/skills/kinex-agent-workspace/references/shot-composition.md) and refresh the live tool schema before project writes. If neither is available, keep the proposed patch local and report the gap; prompt-only work can continue.

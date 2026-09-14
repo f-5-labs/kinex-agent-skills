@@ -10,7 +10,8 @@
 - Project-scoped voice, music, sound effects, and ambience: `workspace_execute_command` with the discovered operation, one layer per call.
 - Standalone or reusable audio: `$kinex-media-library`.
 - Project canon and approval: `plan_get`, `plan_save`, `context_get`, `context_update_section`. Keep a recurring character's stored vocal identity in the Project Bible so every scene reuses the same wording.
-- Existing evidence: `media_list_project`, `shot_list`, `beat_list`.
+- Existing evidence: `media_list_project`, `shot_list`, `shot_get`, `beat_list`.
+- Shot sound contract: `shot_update` with nested `audio`; re-read `shot_get` after changing intent. Generation remains a separate authorized operation.
 
 ## Review before reporting
 

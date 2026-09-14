@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const blockingCodes = new Set([
+  'REVIEW_RECORD_INVALID',
   'AUDIO_EVIDENCE_MISSING',
   'AUDIO_OWNERSHIP_FALSIFIED',
   'AUDIO_ROUTE_HELD',
@@ -21,22 +22,45 @@ const earnedSplitReasons = new Set([
   'source_transition',
 ]);
 
+/** Recognizes written review evidence without judging its truth or creative quality. */
 function hasText(value) {
   return typeof value === 'string' && value.trim().length > 0;
 }
 
+/** Records a review-note inconsistency at the stage it affects. */
 function pushIssue(issues, code, scope, detail) {
   issues.push({ code, severity: blockingCodes.has(code) ? 'BLOCK' : 'REVISE', scope, detail });
 }
 
+/** Compares numeric ratios in review notes; these are not advertised operation enum values. */
+function sameRatio(left, right) {
+  const parse = (value) => {
+    if (typeof value !== 'string' || !/^\d+(?:\.\d+)?:\d+(?:\.\d+)?$/u.test(value)) return NaN;
+    const [width, height] = value.split(':').map(Number);
+    return width > 0 && height > 0 ? width / height : NaN;
+  };
+  return Math.abs(parse(left) - parse(right)) < 1e-6;
+}
+
 /**
- * Evaluate a structured direction package. The package records decisions rather than prompt wording,
- * so the checks do not reward a long card or the presence of a particular heading.
+ * Lints a synthetic review worksheet, NOT the shot API or raw source/media.
+ * A PASS means no encoded inconsistencies found. Declarations are unverified;
+ * this function cannot grant creative acceptance or permission to generate.
  */
 export function evaluateDirectionReadiness(production) {
+  if (!production || !Array.isArray(production.shots) || production.shots.length === 0 ||
+      !['DIRECTION_READY', 'FRAME_PASS', 'MOTION_PASS'].includes(production.targetStage) ||
+      !production.shots.every((shot) => shot && hasText(shot.id)) ||
+      new Set(production.shots.map((shot) => shot.id)).size !== production.shots.length) {
+    return {
+      verdict: 'BLOCK', codes: ['REVIEW_RECORD_INVALID'],
+      issues: [{ code: 'REVIEW_RECORD_INVALID', severity: 'BLOCK', scope: 'record', detail: 'Require a known stage and nonempty shots with unique ids.' }],
+      acceptance: 'NOT_ASSESSED',
+    };
+  }
   const issues = [];
   const shots = production.shots ?? [];
-  const stage = production.targetStage ?? 'DIRECTION_READY';
+  const stage = production.targetStage;
 
   if (!production.evidence?.creativeReviewCompleted) {
     pushIssue(
@@ -61,7 +85,7 @@ export function evaluateDirectionReadiness(production) {
   }
 
   const requestedRatio = production.format?.requestedRatio;
-  if (!hasText(requestedRatio) || requestedRatio !== production.format?.structuredRatio) {
+  if (!sameRatio(requestedRatio, production.format?.structuredRatio)) {
     pushIssue(
       issues,
       'FORMAT_UNSYNCED',
@@ -248,7 +272,7 @@ export function evaluateDirectionReadiness(production) {
     }
 
     const timing = shot.timing ?? {};
-    if ((timing.holdAfterActionSeconds ?? 0) > 1.5 && !hasText(timing.holdMotivation)) {
+    if ((timing.holdAfterActionSeconds ?? 0) > 0 && !hasText(timing.holdMotivation)) {
       pushIssue(
         issues,
         'ARBITRARY_HOLD',
@@ -347,6 +371,7 @@ export function evaluateDirectionReadiness(production) {
 
   return {
     verdict,
+    acceptance: 'NOT_ASSESSED',
     codes,
     issues,
     metrics: {
@@ -364,6 +389,7 @@ export function evaluateDirectionReadiness(production) {
   };
 }
 
+/** Applies a fixture mutation to a review worksheet, never to production records. */
 function setPath(target, dottedPath, value) {
   const segments = dottedPath.split('.');
   let cursor = target;
@@ -421,7 +447,7 @@ if (isMain) {
   );
   const result = await validateDirectionFixtures(fixturePath);
   if (result.failures.length > 0) {
-    console.error(`Direction readiness fixtures failed:\n- ${result.failures.join('\n- ')}`);
+    console.error(`Direction review-record fixtures failed:\n- ${result.failures.join('\n- ')}`);
     process.exit(1);
   }
   for (const fixture of result.results) {
@@ -429,5 +455,5 @@ if (isMain) {
       `${fixture.id}: ${fixture.verdict}${fixture.codes.length ? ` (${fixture.codes.join(', ')})` : ''}`
     );
   }
-  console.log(`Direction readiness fixtures passed: ${result.caseCount} cases.`);
+  console.log(`Review-record consistency fixtures passed: ${result.caseCount} cases; creative acceptance NOT_ASSESSED.`);
 }

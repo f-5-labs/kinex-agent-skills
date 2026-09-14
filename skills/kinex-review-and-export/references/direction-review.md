@@ -24,7 +24,7 @@ Follow the story's causal units rather than treating each card as independent.
 - **Performance:** Is each objective aimed at a partner and expressed through a current tactic? What exact cue is perceived? Does listening precede the response? Does physical business change or expose the task, or is it an inert gesture?
 - **Space and objects:** Can bodies, camera, eyelines, and sound occupy the stated geography? Trace every handled prop from starting owner and state through path, contact, release, and ending owner and state. Reject impossible balcony, floor, wall, screen, or occlusion claims even when the prose sounds precise.
 - **Camera and look:** What information makes this view necessary? Flag runs of frontal two-shots or locked setups that do not preserve a deliberate relationship or progress point of view, scale, depth, or access. Require a positive camera plan and a motivated light source, direction, camera relation, and colour progression.
-- **Edit, timing, and audio:** Read dialogue naturally. Flag finished actions held to fill a model duration, cuts with no trigger, and speech accelerated or dropped to fit. Preserve labelled speakers and distinguish room, offscreen, device, and playback routes.
+- **Edit, timing, and audio:** Use a timed natural read when available; label text-only timing estimates unverified. Flag finished actions held to fill a model duration, cuts with no trigger, and speech accelerated or dropped to fit. Preserve labelled speakers and distinguish room, offscreen, device, and playback routes.
 
 ## Audit coverage and route debt
 

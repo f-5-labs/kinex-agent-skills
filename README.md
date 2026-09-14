@@ -42,8 +42,10 @@ gemini mcp add kinex https://api.kinex.studio/mcp --transport http
 ### Portable skills
 
 ```bash
-npx skills add f-5-labs/kinex-agent-skills
+npx skills add f-5-labs/kinex-agent-skills --skill '*'
 ```
+
+For end-to-end project work, install all seven skills together: the specialist skills share the Agent Workspace composition reference. Individual prompt-only installs can use the published fallback linked from their skill.
 
 The first Kinex tool call opens browser sign-in and consent. No API key needs to be copied into the agent.
 
@@ -59,9 +61,9 @@ The first Kinex tool call opens browser sign-in and consent. No API key needs to
 | [`kinex-image-prompting`](./skills/kinex-image-prompting)     | Writing identity locks, hero stills, start frames, layout stills, and targeted edits.   |
 | [`kinex-audio-prompting`](./skills/kinex-audio-prompting)     | Writing voice, music, sound-effect, and ambience cues as separate, cut-aware layers.    |
 
-## Six proven creative workflows
+## Six example creative workflows
 
-The current Kinex Agent Workspace release includes regression scenarios for six production shapes. These are workflow claims, not a gallery of fabricated customer results.
+The bundle includes example requests and routing scenarios for six production shapes. These are synthetic coverage, not evidence of live generation or completed customer productions.
 
 1. A vertical short film carried from source brief to Slate edit.
 2. A neon performance music video with beat and sound planning.
@@ -98,7 +100,12 @@ See [creative examples](./examples/creative-prompts.md) for prompts you can adap
 ```bash
 node scripts/validate.mjs
 node scripts/evaluate-direction-readiness.mjs
+node --test scripts/*.test.mjs
 npx skills add . --list
 ```
+
+The seven skills share [shot composition and pipeline handoffs](./skills/kinex-agent-workspace/references/shot-composition.md), aligned to the final merged Helios PR #196. Confirm the connected server advertises that contract before writing; merged source is not deployment proof.
+
+Validation checks packaging, nested trace expectations, and review-record consistency. Checked-in traces are synthetic tool-call examples, not server executions. Review-record PASS means only that declared fields are consistent; creative quality, saved-state integrity, operation compilation, image dimensions, motion, and sound require their own evidence. Scenarios' prose `checks` are a manual evaluation rubric, not assertions executed by the trace checker.
 
 Public tool reference and connection guidance live at [docs.kinex.studio/mcp](https://docs.kinex.studio/mcp).

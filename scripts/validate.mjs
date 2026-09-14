@@ -2,6 +2,7 @@ import { access, readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+import { loadScenarios } from './load-scenarios.mjs';
 import { validateDirectionFixtures } from './evaluate-direction-readiness.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -41,7 +42,7 @@ async function validate() {
   const cursor = await readJson('.cursor-plugin/plugin.json');
   const mcp = await readJson('.mcp.json');
   const marketplace = await readJson('.agents/plugins/marketplace.json');
-  const scenarios = await readJson('evals/scenarios.json');
+  const scenarios = await loadScenarios();
 
   check(codex.name === 'kinex', 'Codex manifest must use plugin name kinex.');
   check(codex.version === claude.version, 'Codex and Claude versions must match.');
@@ -272,7 +273,7 @@ if (failures.length) {
   process.exit(1);
 }
 
-const scenarios = await readJson('evals/scenarios.json');
+const scenarios = await loadScenarios();
 console.log(
   `Kinex bundle validation passed: ${expectedSkills.length} skills, ${scenarios.scenarios.length} scenarios, and ${directionCaseCount} direction cases.`
 );

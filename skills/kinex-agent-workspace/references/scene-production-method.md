@@ -71,7 +71,7 @@ Treat vehicle interiors, designed screens, typography, crowds, water, fire, smok
 
 The shot card is the source for the generation instruction and later join review. Do not let the prompt introduce a new cast member, prop, geography, action, or line that is absent from the approved card. Do not treat prohibitions such as “no push-in” as a camera plan; specify the useful view, operator behaviour, and reason for the cut. A gesture is not physical business unless a trigger changes the task or relationship.
 
-Keep the complete four-lane card in the Production Plan. Map only supported fields into `shot_define` or `shot_update`; do not invent tool inputs for dramatic purpose, edit intent, or transition notes. When recommended locks already exist, finalize film shots with `requireLockedEntities: true`. A successful save and re-read proves persistence only; it does not prove direction, frame feasibility, motion, or sound.
+Keep scene reasoning and open decisions in the Production Plan. Persist the executable four-lane card in the shot's supported `direction`, `camera`, `edit`, and `audio` groups using [shared shot composition](shot-composition.md). Read it back with `shot_get`; canvas notes alone do not update the shot. Patch only the intended fields and keep assignments intact. A successful save and re-read proves persistence only; it does not prove direction, frame feasibility, motion, or sound.
 
 ## Build a reference map and visual system
 

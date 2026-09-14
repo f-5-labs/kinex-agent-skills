@@ -27,11 +27,11 @@ Fill the same production spine H3 can hold, in H3 language:
 
 - **GEO:** stable layout, subject positions, eyelines, axis, screen direction.
 - **First frame:** motion-safe occupancy, pose, prop contact, and the readable start of the action.
-- **Exactly one camera move:** movement type + amplitude + speed. Stacking two moves is the number-one jitter cause. Make subject and environment motion agree with that one path.
+- **One coherent camera plan:** movement type + amplitude + speed. Prefer a simple path the shot can sustain; complexity must serve the action. Make subject and environment motion agree with that one path.
 - **One continuous shot, no cuts, no zoom.** With a final frame, describe a single path that lands on the final composition; do not write a montage between the two images.
-- **Slow motion** is `recorded at 240fps, played back at 24fps` — never “slow motion”.
+- **Slow motion:** describe the desired temporal effect and use advertised speed/frame controls when available. Capture/playback numbers in prose express intent, not verified recording metadata.
 - **Performance and physics:** observable behavior, contact, weight, cloth, hair, water. No emotion adjectives.
-- **Must-hold outcomes:** identity, product geometry, composition, and the useful transfer from each attached reference. H3 has no separate `Preserve:` line — state these inside the description for text-only and frame-led work, and in `Reference Retention` for the mixed-reference operation. Omitting them is the number-one drift cause.
+- **Must-hold outcomes:** identity, product geometry, composition, and the useful transfer from each attached reference. H3 has no separate `Preserve:` line — state these inside the description for text-only and frame-led work, and in `Reference Retention` for the mixed-reference operation. Review the actual take to verify they held.
 - **No negative prompts.** Write the desired state: “identity holds”, “label stays legible”, “edges stay stable”.
 
 For mixed references, attach only materials needed by this shot and label them in the prompt as `<Subject N>`, `<Picture N>`, `<Video N>`, and `<Audio N>`. Give each one a single retained role:
@@ -60,11 +60,11 @@ For the mixed-reference operation, use the reference-aware structure in [H3 prom
 
 ## Preflight, then generate
 
-Run this checklist in the same turn, then generate. It is advice, not a silent QA gate.
+Read the current shot with `shot_get` and apply [shared shot composition](../kinex-agent-workspace/references/shot-composition.md) before compiling the provider prompt. Repair known direction or audio contradictions within scope, then run this preflight and execute authorized generation. If the user explicitly requests a test with open creative issues, record those issues and keep the verdict unverified; do not turn preflight into another approval loop.
 
 1. One H3 operation from the live notes; duration and ratio match that contract.
 2. GEO and a motion-safe first frame are stated.
-3. Exactly one camera move; one continuous path to the ending state.
+3. One coherent camera plan, including locked-off, through the ending state.
 4. Each attached reference has one retained role; no unattached labels.
 5. Performance is observable; quoted or `<d>` dialogue is exact.
 6. Must-hold outcomes are stated positively — inside the description, or in `Reference Retention` for mixed references.
@@ -74,8 +74,10 @@ If they asked to generate, do not stop the turn after the checklist.
 
 ## Execute and review through Kinex
 
-For an Agent Workspace project, read the Production Plan and Project Bible. A current-turn generate request approves the current plan; then call `workspace_execute_command` using the operation returned by the live registry. Record a duration split or reference-role decision in the plan when it affects coverage or continuity.
+For an Agent Workspace project, read the Production Plan, Project Bible, current `shot_get` card, and assigned variants. Reconcile authored `imagePrompt/videoPrompt` after card changes, verify the chosen nested `audio` route, and retain the actual compiled prompt and operation inputs. A current-turn generate request approves the current plan; then call `workspace_execute_command` using the operation returned by the live registry. Record a duration split or reference-role decision in the plan when it affects coverage or continuity.
 
 Poll `task_get`, inspect the completed beat or shot, and review the output before calling the work complete. Repair the failed control at its source—operation selection, frame selection, reference retention, camera path, or soundscape—rather than piling on generic prompt text. Never fabricate a completed clip.
 
 Read [tool map](references/tool-map.md) for Kinex routing and review boundaries.
+
+For a standalone installation without the sibling reference, read the [published shot composition contract](https://github.com/f-5-labs/kinex-agent-skills/blob/main/skills/kinex-agent-workspace/references/shot-composition.md) and refresh the live tool schema before project writes. If neither is available, keep the proposed patch local and report the gap; prompt-only work can continue.
