@@ -2,17 +2,17 @@
 
 Use this reference only when the deliverable contains scenes, shots, motion, or an edited film. Keep image-only and non-temporal Agent Workspace projects on the lighter plan, canon, entity, generation, and review path.
 
-The durable lesson is production control, not allegiance to one model. Use the live Kinex registry for capabilities and treat every provider recommendation as replaceable. Lock → still → motion is the recommended path. It does not refuse generation. If the user asked to produce the scene, generate; name missing locks as advice.
+The durable lesson is production control, not allegiance to one model. Use the live Kinex registry for capabilities and treat every provider recommendation as replaceable. Lock → still → motion is the recommended path. Missing asset locks remain advice unless the user asks to stop on them. Known direction defects are different: repair `REVISE` before motion, and hold only a `BLOCKED` shot whose source, geography, audio ownership, or required control cannot yet be made truthful.
 
 ## Recommend scene-level production
 
-Represent the following as stable Production Plan checklist outcomes. They are a recommended film OS, not release valves. A direct instruction to produce a scene approves the current creative plan and is authority to generate. Suggest closing source, continuity, and asset gaps in the same turn; do not refuse because a checklist row is open.
+Represent the following as stable Production Plan outcomes. A direct instruction to produce a scene authorizes narrow, source-faithful repairs and generation without a second approval loop. The outcomes must still say what is actually ready; a checked row or successful readback is not evidence for a later stage.
 
 1. **Story gate:** inspect the source; lock the requested story range, target duration, dialogue or copy, and unresolved facts.
 2. **Breakdown gate:** create the scene breakdown, preliminary coverage, full scene asset list, state variants, complex elements, and visual-dramaturgy notes.
 3. **Visual-system gate:** approve the style direction, reference roles, palette, light logic, optics, movement language, image texture, cutting rhythm, and sound direction.
 4. **Asset gate:** define canonical entities, make only required variants, attach or generate their reference media, stress-test recurring locks, and record a review verdict.
-5. **Scene-readiness gate:** verify the scene-to-assets coverage and whether every entity or variant assigned to the scene has distinct reviewed evidence. A variant's lock should carry media different from its canonical Base and sibling state locks; `status: locked` alone is not proof. Recommend this check before motion; it does not block generation.
+5. **Direction-readiness gate:** verify scene-to-assets coverage, then test audience information, playable behavior, full prop paths, sightlines, camera purpose, motivated cuts, natural spoken timing, exact format fields, light and colour logic, and truthful audio routes. Return `PASS`, `REVISE`, or `BLOCK` for the affected coverage. Repair `REVISE` before motion; a variant's asset-lock gap alone remains advisory.
 6. **Selects gate:** retain accepted takes, their exact prompts and inputs, and the reason each was chosen. A completed generation is not automatically a select.
 7. **Picture-lock gate:** assemble scenes, close coverage holes, verify joins and runtime, save the approved cut, and freeze picture before global finishing.
 8. **Finish-and-master gate:** close artifact repairs before color treatment, verify sound and rights, run technical QC, export required versions, and retain reproducibility records.
@@ -23,9 +23,9 @@ Advance by scene or production block. Do not wait for every asset in a long proj
 
 When the project starts from a screenplay, narration, treatment, or proposed script, review it before the breakdown. Identify intent and audience, causal structure, scene function, character objectives and playable behavior, dialogue or narration, rhythm and duration, source fidelity, production load, exact copy, rights, and unresolved facts.
 
-For every scene, identify its entry state, active objective, obstacle, tactic, visible change, exit state, and causal handoff. Return `PASS`, `REVISE`, or `BLOCK` with location-specific evidence and the smallest useful changes. Preserve strengths and distinguish defects from preferences. Do not rewrite a script during a read-only review.
+For every scene, identify whose uncertainty matters, what the audience understands before and after, its entry state, active objective, obstacle, tactic, visible change, exit state, and causal handoff. Return `PASS`, `REVISE`, or `BLOCK` with location-specific evidence and the smallest useful changes. Preserve strengths and distinguish defects from preferences. Do not rewrite a script during a read-only review.
 
-Release the breakdown after the user approves the script or explicitly accepts remaining non-blocking notes. Script approval is planning advice, not a media-generation lock. If they asked to generate, generate.
+Release the breakdown after the user approves the script or explicitly accepts remaining non-blocking notes. Script approval is planning advice, not a media-generation lock. If they asked to generate, continue through the direction-readiness gate and generate in the same turn once the requested coverage is `PASS`.
 
 ## Break down each scene
 
@@ -44,10 +44,12 @@ Treat vehicle interiors, designed screens, typography, crowds, water, fire, smok
 ### Direction lane
 
 - why the shot exists;
+- whose uncertainty it carries and the audience-information change it earns;
 - the playable task stated as a verb;
 - the visible change from start to end;
 - blocking and first-frame occupancy;
-- performance objective, obstacle, tactics, subtext, eye behavior, hand business, interruption, and reaction;
+- performance objective, obstacle, tactic, perceived trigger, listening, visible response, subtext, eye behavior, physical business, and exit state;
+- for every handled prop: starting owner and state, reachable path, contact, release, ending owner and state;
 - the shot's visual device or story motif.
 
 ### Camera lane
@@ -55,18 +57,21 @@ Treat vehicle interiors, designed screens, typography, crowds, water, fire, smok
 - observable shot size and any intentional size change;
 - camera movement plus what must remain stable;
 - field of view or lens behavior;
-- camera height, side, angle, and the scene's working action axis.
+- camera height, physical zone, side, angle, and the scene's working action axis;
+- why this view reveals the decisive action or listener response better than the neighbouring setup.
 
 ### Edit lane
 
 - intended cut or transition;
 - pace and trim expectation;
 - incoming and outgoing movement, eyeline, sound, or composition hook;
+- the event that motivates the cut and a natural read-through estimate for spoken material;
+- speaker ownership and the viable route for multi-speaker, offscreen, device, or playback sound;
 - neighbouring shot dependencies and required cutaways.
 
-The shot card is the source for the generation instruction and later join review. Do not let the prompt introduce a new cast member, prop, geography, action, or line that is absent from the approved card.
+The shot card is the source for the generation instruction and later join review. Do not let the prompt introduce a new cast member, prop, geography, action, or line that is absent from the approved card. Do not treat prohibitions such as “no push-in” as a camera plan; specify the useful view, operator behaviour, and reason for the cut. A gesture is not physical business unless a trigger changes the task or relationship.
 
-Keep the complete four-lane card in the Production Plan. Map only supported fields into `shot_define` or `shot_update`; do not invent tool inputs for dramatic purpose, edit intent, or transition notes. When recommended locks already exist, finalize film shots with `requireLockedEntities: true`. If the user asked to produce without them, generate and name the gap.
+Keep scene reasoning and open decisions in the Production Plan. Persist the executable four-lane card in the shot's supported `direction`, `camera`, `edit`, and `audio` groups using [shared shot composition](shot-composition.md). Read it back with `shot_get`; canvas notes alone do not update the shot. Patch only the intended fields and keep assignments intact. A successful save and re-read proves persistence only; it does not prove direction, frame feasibility, motion, or sound.
 
 ## Build a reference map and visual system
 
@@ -77,7 +82,7 @@ Gather evidence along two axes:
 
 Give each reference one declared job and record what must not transfer. A location reference may control geometry, materials, and light without controlling the next shot's framing. A motion reference may control timing or camera path without transferring its performer or set.
 
-Persist approved facts and visual rules in the Project Bible. Keep exploratory boards, rejected directions, temporary task notes, provider settings, and take logs in the Production Plan or media history. Convert visual agreements into observable language; a moodboard without written decisions is not a lock.
+Persist approved facts and visual rules in the Project Bible. Keep exploratory boards, rejected directions, temporary task notes, provider settings, and take logs in the Production Plan or media history. Convert visual agreements into observable language; a moodboard without written decisions is not a lock. Record the exact delivery ratio and its structured setting, synchronize supported native camera fields, compose for that frame before considering a crop, and verify actual output dimensions at frame review. Establish a dominant motivated source, its direction and camera relation, plus the intended colour profile and scene progression; camera-brand or stock vocabulary cannot supply these decisions.
 
 ## Maintain an asset passport
 

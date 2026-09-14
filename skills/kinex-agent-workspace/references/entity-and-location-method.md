@@ -25,6 +25,8 @@ For a human character, persist only approved or source-visible identity facts: a
 
 For a non-human character, persist subject class, silhouette, proportions, limb or construction rules, species or material traits, palette, line and shape language, expression system, movement constraints, and source-visible distinctive features. Do not apply human casting, skin, makeup, or anatomy rules unless the subject is human.
 
+For characters, include the required `attributes.voicePrompt` describing the established vocal identity; distinguish delivery and visible-body/voice mappings from operator identity.
+
 Add observable performance behavior: default posture, gaze habits, hand business or equivalent gesture system, movement rhythm, behavior under pressure, and any approved voice or delivery facts. These are playable continuity facts, not emotion adjectives.
 
 If a source is a single portrait or cropped view, mark occluded anatomy, wardrobe, accessories, back views, and construction unresolved. A derived sheet must preserve visible identity; it must not turn guesses into canon.
@@ -77,7 +79,7 @@ Architecture, distances, materials, permanent set dressing, and palette must rem
 
 1. List and read existing entities before defining a new one.
 2. Persist stable canon on the entity and Project Bible before asking any image model to visualize it.
-   Store each materially different production state under a stable key in `attributes.variants` with `label`, `descriptor`, `stateDelta`, `requiredShotIds`, and `status` (`planned`, `queued`, or `locked`); add `mediaItemId` and `imageUrl` only when media is actually locked.
+   Author each materially different production state under a stable key in `attributes.variants` with `label`, `descriptor`, `stateDelta`, and `requiredShotIds`. Status, media ids, URLs, and lock provenance are system-owned: use the advertised lock operation or external attach flow and verify them by re-reading.
 3. Give every supplied or generated reference one job: identity, wardrobe or garment, location geometry and materials, style, composition, or another explicit role. Identity and physical geometry outrank mood and style when references conflict.
 4. When generation happens outside Kinex, use the host image generator, upload the result as project-scoped media, and attach it deliberately as hero, continuity anchor, or both. For a named variant, use `workspace_attach_external_media` with the `entity_variant` target and exact `variantKey`; do not write system-owned lock fields through an entity patch.
 5. Keep the neutral canonical lock separate from cinematic shot treatment. Shot prompts carry angle, action, weather, emotion, and lighting unless those facts define a named approved variant.

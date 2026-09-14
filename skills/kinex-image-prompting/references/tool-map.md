@@ -10,7 +10,9 @@
 - Project-scoped stills, entity heroes, start frames, and edits: `workspace_execute_command` with the discovered operation.
 - Standalone or reusable library images: `library_generate_image` through `$kinex-media-library`.
 - Project canon and approval: `plan_get`, `plan_save`, `context_get`.
-- Existing evidence: `workspace_read_entity`, `media_list_project`, `workspace_preview_entity`.
+- Existing evidence: `shot_get`, `workspace_read_entity`, `media_list_project`, `workspace_preview_entity`.
+
+When the user requests built-in ImageGen or external stills, keep that route through generation, visual inspection, actual pixel-dimension verification, project upload, attach, and `shot_get`/entity readback. Use the live supported target slot; never substitute library upload or a Kinex generation call.
 
 ## Review before reporting
 

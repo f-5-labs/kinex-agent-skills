@@ -34,7 +34,7 @@ Search before creating duplicates. Keep media and entity ids internally, reuse p
 
 For a reusable recurring character, location, or prop, treat the library entity and its media as a compact reference passport: stable identity, source-grounded description, explicit role for every reference, required views or states, current approved version, and unresolved facts. Gather references by asset purpose—identity, wardrobe, geometry, material, scale, or state—and separately by craft purpose—light, palette, optics, movement, texture, edit rhythm, or sound. State what each reference controls and what must not transfer.
 
-Keep variants and alternate views linked to the same reusable identity when the live entity schema supports them. Do not treat a library item as a project continuity lock automatically: when production begins, use `$kinex-agent-workspace` and verify the project-scoped hero, anchor, variants, and shot assignments there.
+Keep variants and alternate views linked to the same reusable identity when the live entity schema supports them. Do not treat a library item as a project continuity lock automatically: when production begins, use `$kinex-agent-workspace` and verify the project-scoped hero, anchor, variants, and exact `castVariantKeys`, `locationVariantKey`, and `propVariantKeys` assignments there. Re-read the target with `shot_get`; a library selection or prompt mention alone changes none of those fields.
 
 Before `library_create_entity` creates a reusable location, plan a minimal floor map from available evidence: footprint, zones, entrances and exits, permanent landmarks, relative scale, elevation, occlusions, and motivated light. Put supported stable geometry in the location description or live schema fields and mark unknown space unresolved. A library location still needs project-specific blocking and axis decisions when reused.
 
@@ -43,3 +43,6 @@ For async work, poll `task_get` or recover with `task_list_library`. Re-list med
 Confirm entity deletion or media archival, then re-list the affected collection.
 
 Read [tool map](references/tool-map.md) for library-versus-project boundaries.
+Read [shared shot composition](../kinex-agent-workspace/references/shot-composition.md) when handing library assets into project-shot assignments.
+
+For a standalone installation without the sibling reference, read the [published shot composition contract](https://github.com/f-5-labs/kinex-agent-skills/blob/main/skills/kinex-agent-workspace/references/shot-composition.md) and refresh the live tool schema before project writes. If neither is available, keep the proposed patch local and report the gap; prompt-only work can continue.

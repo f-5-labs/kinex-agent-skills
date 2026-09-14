@@ -1,0 +1,562 @@
+{
+  "version": 1,
+  "description": "Synthetic review-note consistency regressions, NOT shot API payloads or independent creative evaluations. Evidence booleans are declarations, not proof; PASS is only a lint verdict.",
+  "baseline": {
+    "targetStage": "DIRECTION_READY",
+    "sourceUnitCount": 2,
+    "scene": {
+      "uncertaintyHolder": "the audience, aligned with the listener",
+      "audienceBefore": "the offer appears routine",
+      "audienceAfter": "the listener recognizes the hidden cost and refuses it"
+    },
+    "format": {
+      "requestedRatio": "7:3",
+      "structuredRatio": "21:9",
+      "compositionPlan": "Keep the handoff path and both eyelines inside the native wide frame before any delivery crop.",
+      "nativeCameraFieldsSynchronized": true,
+      "actualDimensionsVerified": false
+    },
+    "visualSystem": {
+      "motivatedLight": true,
+      "dominantSource": "window light from frame-right, with a warmer practical behind the giver",
+      "colorArc": "neutral task light cools as the refusal isolates the giver, while the practical remains physically consistent",
+      "colorProfile": "SDR Rec.709 delivery target; source metadata must be verified after generation"
+    },
+    "evidence": {
+      "savedFieldReadback": true,
+      "creativeReviewCompleted": true,
+      "frameReviewCompleted": false,
+      "motionObserved": false,
+      "audioReviewed": false
+    },
+    "shots": [
+      {
+        "id": "U1-A",
+        "sourceUnit": "U1",
+        "splitReason": "source_transition",
+        "purpose": "Establish the ordinary task and let the audience see the loaded offer before the listener accepts it.",
+        "audience": {
+          "before": "the tray task appears routine",
+          "after": "a folded note has entered the shared space"
+        },
+        "direction": {
+          "objective": "Giver pressures Listener to accept the note without discussion.",
+          "tactic": "Hide the offer inside the ordinary tray return.",
+          "trigger": "The note touches the tray edge.",
+          "listening": "Listener registers the paper sound and tracks the giver's withdrawing fingers.",
+          "response": "Listener stops the tray before the giver can release it.",
+          "exitState": "Both retain contact with the tray; the note remains visible between them.",
+          "physicalBusiness": {
+            "kind": "prop_task",
+            "trigger": "The giver slides the note beneath the tray rim.",
+            "causalRole": "changes_relationship",
+            "object": "folded note",
+            "propPath": {
+              "startOwner": "Giver",
+              "path": "Giver's near hand moves from apron pocket to the visible tray edge.",
+              "contact": "The note touches the tray while Listener still supports it.",
+              "release": "Giver releases only after Listener looks down.",
+              "endOwner": "Listener"
+            }
+          }
+        },
+        "blocking": {
+          "firstFrame": "Listener supports the tray at frame-left; Giver approaches from the clear aisle at frame-right.",
+          "sightlineStatus": "verified"
+        },
+        "camera": {
+          "setup": "worker_side_oblique_two_shot",
+          "plan": "Locked waist-level oblique two-shot from the clear aisle; hands and both faces remain readable.",
+          "motivation": "The audience must see the offer before the listener does without hiding either person's reaction.",
+          "reads": [
+            "note path",
+            "listener's delayed recognition",
+            "both hands on the tray"
+          ],
+          "progressionReason": "Begin in shared task space before isolating the listener's assessment."
+        },
+        "lighting": {
+          "source": "window frame-right",
+          "direction": "side-back",
+          "cameraRelation": "camera remains on the shadow side"
+        },
+        "edit": {
+          "incomingHook": "tray enters the marked service position",
+          "cutMotivation": "cut when Listener's eyes leave the giver and find the note",
+          "outgoingHook": "Listener's stopped hand carries into the closer view"
+        },
+        "timing": {
+          "targetSeconds": 6,
+          "naturalReadSeconds": 4.8,
+          "actionCompleteSeconds": 5,
+          "holdAfterActionSeconds": 1,
+          "holdMotivation": "usable reaction trim"
+        },
+        "audio": {
+          "kind": "dialogue",
+          "speakers": [
+            "Giver"
+          ],
+          "assignedSpeaker": "Giver",
+          "separateVoices": true,
+          "routeStatus": "ready"
+        }
+      },
+      {
+        "id": "U1-B",
+        "sourceUnit": "U1",
+        "splitReason": "performance_turn",
+        "purpose": "Stay with the listener through assessment and make the refusal, not the offer, the scene's turn.",
+        "audience": {
+          "before": "the listener may comply",
+          "after": "the listener refuses the hidden transaction"
+        },
+        "direction": {
+          "objective": "Listener makes Giver take responsibility for the offer.",
+          "tactic": "Keep the tray physically shared and ask one plain question.",
+          "trigger": "Giver releases the note and begins to withdraw.",
+          "listening": "Listener watches the retreating hand before looking up.",
+          "response": "Listener holds the tray still and asks who authorized the payment.",
+          "exitState": "Listener owns the note but has not moved the tray; Giver is stopped in the aisle.",
+          "physicalBusiness": {
+            "kind": "task_hold",
+            "trigger": "Giver releases the note.",
+            "causalRole": "holds_partner_in_scene"
+          }
+        },
+        "blocking": {
+          "firstFrame": "Listener's stopped hand and the note match the outgoing position; Giver remains at the frame-right edge.",
+          "sightlineStatus": "verified"
+        },
+        "camera": {
+          "setup": "dirty_listener_single",
+          "plan": "Locked dirty single over Giver's near shoulder; Listener's eyes, stopped hand, and note share focus.",
+          "motivation": "The listener's assessment is the decisive information; the giver remains present as pressure, not as equal coverage.",
+          "reads": [
+            "assessment before speech",
+            "stopped task",
+            "giver held at frame edge"
+          ],
+          "progressionReason": "Point of view shifts from shared task to the listener who now controls the exchange."
+        },
+        "lighting": {
+          "source": "window frame-right",
+          "direction": "side-back",
+          "cameraRelation": "camera remains on the same shadow side"
+        },
+        "edit": {
+          "incomingHook": "match Listener's stopped hand from U1-A",
+          "cutMotivation": "cut after the question redirects attention to Giver",
+          "outgoingHook": "Giver's halted step motivates the consequence shot"
+        },
+        "timing": {
+          "targetSeconds": 5,
+          "naturalReadSeconds": 3.6,
+          "actionCompleteSeconds": 4,
+          "holdAfterActionSeconds": 1,
+          "holdMotivation": "listener reaction trim"
+        },
+        "audio": {
+          "kind": "dialogue",
+          "speakers": [
+            "Listener"
+          ],
+          "assignedSpeaker": "Listener",
+          "separateVoices": true,
+          "routeStatus": "ready"
+        }
+      },
+      {
+        "id": "U2-A",
+        "sourceUnit": "U2",
+        "splitReason": "source_transition",
+        "purpose": "Show the practical consequence as the giver retrieves the note and clears the route.",
+        "audience": {
+          "before": "the refusal may remain verbal",
+          "after": "the giver physically accepts the refusal"
+        },
+        "direction": {
+          "objective": "Giver ends the exposure and restores the work route.",
+          "tactic": "Retrieve the note without defending the offer.",
+          "trigger": "Listener tips the tray edge toward Giver.",
+          "listening": "Giver sees the offered edge and stops arguing.",
+          "response": "Giver takes the note and steps back into the aisle.",
+          "exitState": "Giver owns the note; Listener resumes the tray route; the aisle is clear.",
+          "physicalBusiness": {
+            "kind": "prop_task",
+            "trigger": "Listener presents the note edge.",
+            "causalRole": "resolves_transaction",
+            "object": "folded note",
+            "propPath": {
+              "startOwner": "Listener",
+              "path": "Listener tips the near tray edge within Giver's reach.",
+              "contact": "Giver pinches the exposed edge while Listener keeps the tray level.",
+              "release": "Listener releases after Giver has full control.",
+              "endOwner": "Giver"
+            }
+          }
+        },
+        "blocking": {
+          "firstFrame": "Both remain on the established aisle side with the note between their hands.",
+          "sightlineStatus": "verified"
+        },
+        "camera": {
+          "setup": "side_profile_medium_wide",
+          "plan": "Fixed profile medium-wide that keeps the handoff, retreat path, and resumed tray route in one view.",
+          "motivation": "The consequence is physical and spatial; the wider profile proves the route clears.",
+          "reads": [
+            "reverse handoff",
+            "giver's retreat",
+            "listener resuming work"
+          ],
+          "progressionReason": "Scale widens only when the consequence becomes movement through space."
+        },
+        "lighting": {
+          "source": "window frame-right",
+          "direction": "side-back",
+          "cameraRelation": "camera holds the established side"
+        },
+        "edit": {
+          "incomingHook": "Giver's halted step resolves into the reverse handoff",
+          "cutMotivation": "cut when the aisle and task return to their ordinary state",
+          "outgoingHook": "tray movement carries into the next source unit"
+        },
+        "timing": {
+          "targetSeconds": 5,
+          "naturalReadSeconds": null,
+          "actionCompleteSeconds": 4,
+          "holdAfterActionSeconds": 1,
+          "holdMotivation": "movement trim"
+        },
+        "audio": {
+          "kind": "none",
+          "speakers": [],
+          "assignedSpeaker": null,
+          "separateVoices": true,
+          "routeStatus": "ready"
+        }
+      }
+    ]
+  },
+  "cases": [
+    {
+      "id": "pass-motivated-coverage",
+      "description": "Every split changes audience information or performance state, the prop path is complete, and camera, timing, light, and audio routes are executable.",
+      "mutations": [],
+      "expected": {
+        "verdict": "PASS",
+        "codes": []
+      }
+    },
+    {
+      "id": "fail-audience-and-playable-intent",
+      "description": "The card names emotion but not whose uncertainty matters, what the audience learns, or a playable trigger, tactic, listening process, response, and exit state.",
+      "mutations": [
+        {
+          "path": "scene.uncertaintyHolder",
+          "value": null
+        },
+        {
+          "path": "shots.0.audience.after",
+          "value": null
+        },
+        {
+          "path": "shots.0.direction.objective",
+          "value": null
+        },
+        {
+          "path": "shots.0.direction.tactic",
+          "value": null
+        },
+        {
+          "path": "shots.0.direction.trigger",
+          "value": null
+        },
+        {
+          "path": "shots.0.direction.listening",
+          "value": null
+        },
+        {
+          "path": "shots.0.direction.response",
+          "value": null
+        },
+        {
+          "path": "shots.0.direction.exitState",
+          "value": null
+        }
+      ],
+      "expected": {
+        "verdict": "REVISE",
+        "codes": [
+          "AUDIENCE_INTENT_MISSING",
+          "EXIT_STATE_MISSING",
+          "LISTENING_MISSING",
+          "OBJECTIVE_MISSING",
+          "RESPONSE_MISSING",
+          "SHOT_INFORMATION_CHANGE_MISSING",
+          "TACTIC_MISSING",
+          "TRIGGER_MISSING"
+        ]
+      }
+    },
+    {
+      "id": "fail-repeated-frontal-two-shots",
+      "description": "Three identical frontal two-shots are split for provider duration, and one cut has no event behind it.",
+      "mutations": [
+        {
+          "path": "shots.0.camera.setup",
+          "value": "frontal_two_shot"
+        },
+        {
+          "path": "shots.0.camera.progressionReason",
+          "value": null
+        },
+        {
+          "path": "shots.1.camera.setup",
+          "value": "frontal_two_shot"
+        },
+        {
+          "path": "shots.1.camera.progressionReason",
+          "value": null
+        },
+        {
+          "path": "shots.2.camera.setup",
+          "value": "frontal_two_shot"
+        },
+        {
+          "path": "shots.2.camera.progressionReason",
+          "value": null
+        },
+        {
+          "path": "shots.1.splitReason",
+          "value": "provider_duration"
+        },
+        {
+          "path": "shots.1.edit.cutMotivation",
+          "value": ""
+        }
+      ],
+      "expected": {
+        "verdict": "REVISE",
+        "codes": [
+          "CAMERA_REPETITION_UNEARNED",
+          "CUT_UNMOTIVATED",
+          "FRAGMENTATION_UNEARNED"
+        ]
+      }
+    },
+    {
+      "id": "fail-inert-prop-gesture",
+      "description": "A pointed utensil is decorative rather than triggered physical business, and its custody path disappears.",
+      "mutations": [
+        {
+          "path": "shots.0.direction.physicalBusiness.trigger",
+          "value": null
+        },
+        {
+          "path": "shots.0.direction.physicalBusiness.causalRole",
+          "value": "decorative"
+        },
+        {
+          "path": "shots.0.direction.physicalBusiness.propPath.contact",
+          "value": ""
+        },
+        {
+          "path": "shots.0.direction.physicalBusiness.propPath.release",
+          "value": ""
+        }
+      ],
+      "expected": {
+        "verdict": "REVISE",
+        "codes": [
+          "PHYSICAL_BUSINESS_DECORATIVE",
+          "PROP_PATH_INCOMPLETE"
+        ]
+      }
+    },
+    {
+      "id": "fail-negative-camera-and-eight-second-hold",
+      "description": "Generic no-push instructions replace a positive camera plan, and completed action is padded to eight seconds.",
+      "mutations": [
+        {
+          "path": "shots.0.camera.plan",
+          "value": ""
+        },
+        {
+          "path": "shots.0.camera.prohibitions",
+          "value": [
+            "no push-in",
+            "no drift"
+          ]
+        },
+        {
+          "path": "shots.0.timing.targetSeconds",
+          "value": 8
+        },
+        {
+          "path": "shots.0.timing.actionCompleteSeconds",
+          "value": 2
+        },
+        {
+          "path": "shots.0.timing.holdAfterActionSeconds",
+          "value": 6
+        },
+        {
+          "path": "shots.0.timing.holdMotivation",
+          "value": null
+        }
+      ],
+      "expected": {
+        "verdict": "REVISE",
+        "codes": [
+          "ARBITRARY_HOLD",
+          "CAMERA_NEGATIVE_ONLY"
+        ]
+      }
+    },
+    {
+      "id": "block-impossible-elevated-sightline",
+      "description": "The shot claims a view across an established wall and level change that the floor map rules out.",
+      "mutations": [
+        {
+          "path": "shots.1.blocking.sightlineStatus",
+          "value": "impossible"
+        }
+      ],
+      "expected": {
+        "verdict": "BLOCK",
+        "codes": [
+          "SIGHTLINE_IMPOSSIBLE"
+        ]
+      }
+    },
+    {
+      "id": "block-falsified-speaker-ownership",
+      "description": "A two-person exchange is routed through one convenient speaker identity.",
+      "mutations": [
+        {
+          "path": "shots.0.audio.speakers",
+          "value": [
+            "Giver",
+            "Listener"
+          ]
+        },
+        {
+          "path": "shots.0.audio.assignedSpeaker",
+          "value": "Giver"
+        },
+        {
+          "path": "shots.0.audio.separateVoices",
+          "value": false
+        }
+      ],
+      "expected": {
+        "verdict": "BLOCK",
+        "codes": [
+          "AUDIO_OWNERSHIP_FALSIFIED"
+        ]
+      }
+    },
+    {
+      "id": "block-held-dialogue-route",
+      "description": "The route remains honestly held when the current operation cannot preserve the exchange.",
+      "mutations": [
+        {
+          "path": "shots.1.audio.routeStatus",
+          "value": "held"
+        }
+      ],
+      "expected": {
+        "verdict": "BLOCK",
+        "codes": [
+          "AUDIO_ROUTE_HELD"
+        ]
+      }
+    },
+    {
+      "id": "block-readback-claimed-as-motion-pass",
+      "description": "A successful save is presented as a motion pass although no frame, motion, or sound was inspected.",
+      "mutations": [
+        {
+          "path": "targetStage",
+          "value": "MOTION_PASS"
+        },
+        {
+          "path": "evidence.creativeReviewCompleted",
+          "value": false
+        }
+      ],
+      "expected": {
+        "verdict": "BLOCK",
+        "codes": [
+          "AUDIO_EVIDENCE_MISSING",
+          "CREATIVE_REVIEW_MISSING",
+          "FRAME_EVIDENCE_MISSING",
+          "MOTION_EVIDENCE_MISSING"
+        ]
+      }
+    },
+    {
+      "id": "fail-unsynced-format-and-generic-colour",
+      "description": "The prose promises a wide frame and cinematic colour, but structured format, composition, motivated light, and colour progression are absent.",
+      "mutations": [
+        {
+          "path": "format.structuredRatio",
+          "value": "16:9"
+        },
+        {
+          "path": "format.compositionPlan",
+          "value": null
+        },
+        {
+          "path": "format.nativeCameraFieldsSynchronized",
+          "value": false
+        },
+        {
+          "path": "visualSystem.motivatedLight",
+          "value": false
+        },
+        {
+          "path": "visualSystem.colorArc",
+          "value": null
+        },
+        {
+          "path": "visualSystem.colorProfile",
+          "value": null
+        }
+      ],
+      "expected": {
+        "verdict": "REVISE",
+        "codes": [
+          "COLOR_PROGRESSION_MISSING",
+          "COLOR_PROFILE_MISSING",
+          "COMPOSITION_PLAN_MISSING",
+          "CAMERA_FIELDS_UNSYNCED",
+          "FORMAT_UNSYNCED",
+          "LIGHTING_UNMOTIVATED"
+        ]
+      }
+    },
+    {
+      "id": "fail-natural-spoken-timing",
+      "description": "One dialogue shot was never read aloud and another cannot fit its target without rushing.",
+      "mutations": [
+        {
+          "path": "shots.0.timing.naturalReadSeconds",
+          "value": null
+        },
+        {
+          "path": "shots.1.timing.naturalReadSeconds",
+          "value": 6
+        }
+      ],
+      "expected": {
+        "verdict": "REVISE",
+        "codes": [
+          "DIALOGUE_TIMING_UNFIT",
+          "NATURAL_TIMING_UNVERIFIED"
+        ]
+      }
+    }
+  ]
+}

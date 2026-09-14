@@ -37,11 +37,11 @@ Map people, products, props, and locations separately. Do not use upload order, 
 Seedance 2 reasons before it generates. Hand it a clear problem and a short, unambiguous prompt. Say each thing once.
 
 - **No negative prompts.** Phrase the desired state: “edges stay stable”, “identity holds”, “label stays legible”. “No warping” and “don’t change the face” spend words without helping.
-- **Timestamps are hard cuts, not labels.** A `[MM:SS – MM:SS]` boundary tells the model where to cut. If a cut is not reading, write `cut to`, `camera switch`, or `camera cut to`.
-- **Exactly one camera move per shot.** Stacking two moves is the number-one jitter cause. If unsure, use `locked-off`.
+- **Time ranges describe pacing.** State a cut explicitly when intended; do not treat each action timestamp as an automatic camera change. A continuous shot can contain multiple timed triggers and responses.
+- **One coherent camera plan per shot.** Prefer a simple path the shot can sustain; complexity must serve the action. If unsure, use `locked-off`.
 - **One continuous shot** unless a cut is intentional. Say it: “one continuous shot, no cuts, no zoom”. Without that line Seedance often cuts between angles.
-- **Slow motion** is `recorded at 240fps, played back at 24fps` — never “slow motion”.
-- **Omitting Preserve is the number-one drift cause.** Always include it. Fold every must-hold outcome into that one line.
+- **Slow motion:** describe the desired temporal effect and use advertised speed/frame controls when available. Capture/playback numbers in prose express intent, not verified recording metadata.
+- **Preserve:** collect the shot's must-hold outcomes once, then verify them in the actual take.
 
 ```text
 @Image1 = <role> — call it "<token>"
@@ -55,7 +55,7 @@ GEO: <stable layout, subject positions, eyelines, axis, screen direction>
 First frame: <exact frame-zero blocking and readable action state>
 
 Shot 1 (0–Xs): <size> — <one numbered action + one ambient drift> — <one camera rig>
-(≈1 motion cue/sec · ≤4 cues per shot · cut only on shot lines)
+(Use only the action beats the source requires; label intentional cuts explicitly.)
 
 Performance: <observable behavior, physical business, gaze, breath, pause, reaction>
 Physics: <contact, weight, cloth/hair/water response, secondary motion>
@@ -80,7 +80,7 @@ Keep quoted dialogue exact and short. Re-anchor the token each beat: `Amina (@Im
 
 Prefer concrete camera, pacing, light, and material words over adjectives.
 
-**Camera (exactly one):** `dolly in/out` · `push-in` · `pan left/right` · `tilt up/down` · `tracking / follow` · `orbit / arc` · `crane rise/descend` · `drone-style forward glide` · `rack focus` · `zoom` (sparingly).
+**Camera (choose a coherent plan):** `dolly in/out` · `push-in` · `pan left/right` · `tilt up/down` · `tracking / follow` · `orbit / arc` · `crane rise/descend` · `drone-style forward glide` · `rack focus` · `zoom` (sparingly).
 
 **Pacing:** `slow` · `smooth` · `stable` · `gentle` · `slowly` · `quickly` · `violently` · `with large amplitude`. Demand “fast” and you often lose coherence.
 
@@ -107,11 +107,11 @@ For a start-frame or start-and-end-frame operation, bind only the required sourc
 
 ## Preflight, then generate
 
-Run this checklist in the same turn, then generate. It is advice, not a silent QA gate.
+Read the current shot with `shot_get` and apply [shared shot composition](../kinex-agent-workspace/references/shot-composition.md) before compiling the provider prompt. Repair known direction or audio contradictions within scope, then run this preflight and execute authorized generation. If the user explicitly requests a test with open creative issues, record those issues and keep the verdict unverified; do not turn preflight into another approval loop.
 
 1. Each activated reference has one job and a token.
 2. GEO, first frame, and screen direction are stated.
-3. Exactly one camera move; one continuous shot unless a cut is intentional.
+3. One coherent camera plan, including locked-off; one continuous shot unless a cut is intentional.
 4. Performance is observable; quoted dialogue is exact.
 5. Physics and one motivated light source are concrete.
 6. Constraints are positive. Preserve is present.
@@ -121,8 +121,10 @@ If they asked to generate, do not stop the turn after the checklist.
 
 ## Execute only through the approved Kinex path
 
-For an Agent Workspace project, read the Production Plan and Project Bible. A current-turn generate request approves the current plan; save it with `approvalConfirmed: true` when that write is still needed, then use `workspace_execute_command` with the discovered operation and a fresh clip prompt. Keep model selection, reference-role reasoning, and any duration split in the Production Plan when it affects coverage.
+For an Agent Workspace project, read the Production Plan, Project Bible, current `shot_get` card, and assigned variants. Reconcile authored `imagePrompt/videoPrompt` after card changes, verify the chosen nested `audio` route, and retain the actual compiled prompt and operation inputs. A current-turn generate request approves the current plan; save it with `approvalConfirmed: true` when that write is still needed, then use `workspace_execute_command` with the discovered operation and a fresh clip prompt. Keep model selection, reference-role reasoning, and any duration split in the Production Plan when it affects coverage.
 
 Poll `task_get`, re-read the affected beat or shot, and review the actual output before calling it complete. Repair a failed control at its source—role mapping, Preserve, camera move, end state, frame selection, or structured operation input—rather than adding generic prompt bulk. Never fabricate a completed clip.
 
 Read [tool map](references/tool-map.md) for operation discovery, routing, and review boundaries.
+
+For a standalone installation without the sibling reference, read the [published shot composition contract](https://github.com/f-5-labs/kinex-agent-skills/blob/main/skills/kinex-agent-workspace/references/shot-composition.md) and refresh the live tool schema before project writes. If neither is available, keep the proposed patch local and report the gap; prompt-only work can continue.

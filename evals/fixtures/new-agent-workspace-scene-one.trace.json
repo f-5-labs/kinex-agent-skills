@@ -16,7 +16,7 @@
       "type": "tool_call",
       "tool": "project_create_from_brief",
       "input": {
-        "title": "Soft Work \u2014 Scene 1",
+        "title": "Two-person kitchen scene",
         "workspaceId": "workspace-active",
         "workspaceMode": "agent"
       }
@@ -120,7 +120,9 @@
         "castEntityIds": [
           "character-1"
         ],
-        "requireLockedEntities": true
+        "camera": {
+          "shotSize": "medium two-shot"
+        }
       }
     },
     {
