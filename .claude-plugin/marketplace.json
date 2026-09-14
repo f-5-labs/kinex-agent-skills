@@ -5,8 +5,8 @@
     {
       "name": "kinex",
       "source": "./",
-      "description": "Source-grounded, variant-aware image, video, and mixed-media production through Kinex MCP.",
-      "version": "0.6.2",
+      "description": "Source-grounded, variant-aware image, video, mixed-media, and typed Flow production through Kinex MCP.",
+      "version": "0.6.3",
       "skills": [
         {
           "name": "agent-workspace",
@@ -17,6 +17,11 @@
           "name": "media-library",
           "path": "skills/kinex-media-library",
           "invoke": "/kinex:media-library"
+        },
+        {
+          "name": "flow-builder",
+          "path": "skills/kinex-flow-builder",
+          "invoke": "/kinex:flow-builder"
         },
         {
           "name": "review-and-export",

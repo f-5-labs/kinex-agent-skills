@@ -9,6 +9,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const expectedSkills = [
   'kinex-agent-workspace',
   'kinex-audio-prompting',
+  'kinex-flow-builder',
   'kinex-hailuo-h3',
   'kinex-image-prompting',
   'kinex-media-library',

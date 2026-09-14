@@ -1,0 +1,298 @@
+{
+  "scenarioId": "flow-motion-video-and-subject-still",
+  "host": "external-mcp-client",
+  "events": [
+    {
+      "type": "tool_call",
+      "tool": "library_upload_media",
+      "input": {
+        "files": [
+          {
+            "filename": "movement-reference.mp4",
+            "mimeType": "video/mp4",
+            "base64": "AAAAIGZ0eXBpc29t"
+          }
+        ]
+      }
+    },
+    {
+      "type": "tool_result",
+      "tool": "library_upload_media",
+      "output": { "items": [{ "mediaItemId": "media-motion", "type": "video" }] }
+    },
+    {
+      "type": "tool_call",
+      "tool": "library_list_media",
+      "input": { "type": "image", "limit": 20 }
+    },
+    {
+      "type": "tool_result",
+      "tool": "library_list_media",
+      "output": { "items": [{ "id": "media-subject", "type": "image" }] }
+    },
+    {
+      "type": "tool_call",
+      "tool": "flow_create",
+      "input": {
+        "name": "Subject motion reference",
+        "description": "Animate the supplied subject using the movement clip as a motion reference."
+      }
+    },
+    {
+      "type": "tool_result",
+      "tool": "flow_create",
+      "output": { "flow": { "id": "flow-1" } }
+    },
+    {
+      "type": "tool_call",
+      "tool": "flow_get",
+      "input": { "flowId": "flow-1" }
+    },
+    {
+      "type": "tool_result",
+      "tool": "flow_get",
+      "output": { "graphRevision": "r0", "graph": { "nodes": [], "edges": [] } }
+    },
+    {
+      "type": "tool_call",
+      "tool": "flow_plan_get",
+      "input": { "flowId": "flow-1" }
+    },
+    {
+      "type": "tool_call",
+      "tool": "flow_plan_save",
+      "input": {
+        "flowId": "flow-1",
+        "title": "Subject motion reference",
+        "markdown": "## Outcome\nCreate one reference-conditioned subject clip.\n\n## Inputs\n- Subject still controls appearance.\n- Movement clip is a motion reference, not a first frame.\n\n## Run order\n- [ ] Bind both verified inputs.\n- [ ] Validate the typed graph.\n- [ ] Run only after approval."
+      }
+    },
+    {
+      "type": "tool_result",
+      "tool": "flow_plan_save",
+      "output": { "graphRevision": "r1" }
+    },
+    {
+      "type": "tool_call",
+      "tool": "flow_capabilities_get",
+      "input": { "mediaType": "video" }
+    },
+    {
+      "type": "tool_result",
+      "tool": "flow_capabilities_get",
+      "output": {
+        "nodeTypes": [
+          {
+            "typeId": "flow.asset.static",
+            "inputPorts": [],
+            "outputPorts": [{ "id": "output", "modality": "image" }]
+          },
+          {
+            "typeId": "flow.media.video",
+            "inputPorts": [
+              { "id": "reference", "modality": "image", "role": "referenceImage" },
+              { "id": "referenceVideo", "modality": "video", "role": "referenceVideo" }
+            ],
+            "outputPorts": [{ "id": "output", "modality": "video" }]
+          }
+        ],
+        "models": [
+          {
+            "modelId": "provider/video-reference-model",
+            "modes": [
+              {
+                "id": "reference",
+                "assets": [
+                  { "role": "referenceImage" },
+                  { "role": "referenceVideo" }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "tool_call",
+      "tool": "flow_node_add",
+      "input": {
+        "flowId": "flow-1",
+        "expectedRevision": "r1",
+        "typeId": "flow.asset.static",
+        "nodeId": "motion-source",
+        "label": "Movement reference"
+      }
+    },
+    {
+      "type": "tool_result",
+      "tool": "flow_node_add",
+      "output": { "graphRevision": "r2" }
+    },
+    {
+      "type": "tool_call",
+      "tool": "flow_node_add",
+      "input": {
+        "flowId": "flow-1",
+        "expectedRevision": "r2",
+        "typeId": "flow.asset.static",
+        "nodeId": "subject-source",
+        "label": "Subject still"
+      }
+    },
+    {
+      "type": "tool_result",
+      "tool": "flow_node_add",
+      "output": { "graphRevision": "r3" }
+    },
+    {
+      "type": "tool_call",
+      "tool": "flow_node_add",
+      "input": {
+        "flowId": "flow-1",
+        "expectedRevision": "r3",
+        "typeId": "flow.media.video",
+        "nodeId": "subject-motion",
+        "label": "Subject motion clip",
+        "config": {
+          "modelId": "provider/video-reference-model",
+          "prompt": "Preserve the subject's appearance while following the reference clip's broad body movement."
+        }
+      }
+    },
+    {
+      "type": "tool_result",
+      "tool": "flow_node_add",
+      "output": { "graphRevision": "r4" }
+    },
+    {
+      "type": "tool_call",
+      "tool": "flow_media_input_set",
+      "input": {
+        "flowId": "flow-1",
+        "expectedRevision": "r4",
+        "nodeId": "motion-source",
+        "mediaItemId": "media-motion",
+        "expectedModality": "video"
+      }
+    },
+    {
+      "type": "tool_result",
+      "tool": "flow_media_input_set",
+      "output": { "graphRevision": "r5", "media": { "modality": "video" } }
+    },
+    {
+      "type": "tool_call",
+      "tool": "flow_get",
+      "input": { "flowId": "flow-1" }
+    },
+    {
+      "type": "tool_result",
+      "tool": "flow_get",
+      "output": {
+        "graphRevision": "r5",
+        "graph": {
+          "nodes": [
+            {
+              "id": "motion-source",
+              "data": {
+                "typeId": "flow.asset.static",
+                "config": { "modality": "video", "mediaItemId": "media-motion" }
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "tool_call",
+      "tool": "flow_capabilities_get",
+      "input": {
+        "typeId": "flow.asset.static",
+        "config": { "modality": "video", "mediaItemId": "media-motion" }
+      }
+    },
+    {
+      "type": "tool_call",
+      "tool": "flow_media_input_set",
+      "input": {
+        "flowId": "flow-1",
+        "expectedRevision": "r5",
+        "nodeId": "subject-source",
+        "mediaItemId": "media-subject",
+        "expectedModality": "image"
+      }
+    },
+    {
+      "type": "tool_result",
+      "tool": "flow_media_input_set",
+      "output": { "graphRevision": "r6", "media": { "modality": "image" } }
+    },
+    {
+      "type": "tool_call",
+      "tool": "flow_get",
+      "input": { "flowId": "flow-1" }
+    },
+    {
+      "type": "tool_result",
+      "tool": "flow_get",
+      "output": { "graphRevision": "r6" }
+    },
+    {
+      "type": "tool_call",
+      "tool": "flow_capabilities_get",
+      "input": {
+        "typeId": "flow.asset.static",
+        "config": { "modality": "image", "mediaItemId": "media-subject" }
+      }
+    },
+    {
+      "type": "tool_call",
+      "tool": "flow_nodes_connect",
+      "input": {
+        "flowId": "flow-1",
+        "expectedRevision": "r6",
+        "sourceNodeId": "motion-source",
+        "sourcePortId": "output",
+        "targetNodeId": "subject-motion",
+        "targetPortId": "referenceVideo"
+      }
+    },
+    {
+      "type": "tool_result",
+      "tool": "flow_nodes_connect",
+      "output": { "graphRevision": "r7" }
+    },
+    {
+      "type": "tool_call",
+      "tool": "flow_nodes_connect",
+      "input": {
+        "flowId": "flow-1",
+        "expectedRevision": "r7",
+        "sourceNodeId": "subject-source",
+        "sourcePortId": "output",
+        "targetNodeId": "subject-motion",
+        "targetPortId": "reference"
+      }
+    },
+    {
+      "type": "tool_result",
+      "tool": "flow_nodes_connect",
+      "output": { "graphRevision": "r8" }
+    },
+    {
+      "type": "tool_call",
+      "tool": "flow_validate",
+      "input": { "flowId": "flow-1" }
+    },
+    {
+      "type": "tool_result",
+      "tool": "flow_validate",
+      "output": { "ok": true, "graphIssues": [], "mediaInputs": [] }
+    },
+    {
+      "type": "tool_call",
+      "tool": "flow_get",
+      "input": { "flowId": "flow-1" }
+    }
+  ]
+}

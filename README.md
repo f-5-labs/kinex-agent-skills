@@ -2,7 +2,7 @@
 
 [![Validate](https://github.com/f-5-labs/kinex-agent-skills/actions/workflows/validate.yml/badge.svg)](https://github.com/f-5-labs/kinex-agent-skills/actions/workflows/validate.yml)
 
-Plan-first image, video, and mixed-media production through [Kinex](https://kinex.studio). The bundle connects an agent to the authenticated Kinex MCP server and adds seven focused skills for Agent Workspace production, model-specific direction, image and audio prompt craft, media reuse, review, and delivery. Agent Workspace is the only production path; the old project-page skills are not shipped.
+Plan-first, variant-aware image, video, mixed-media, and typed Flow production through [Kinex](https://kinex.studio). The bundle connects an agent to the authenticated Kinex MCP server and adds eight focused skills for Agent Workspace production, editable Flow graphs, model-specific direction, image and audio prompt craft, media reuse, review, and delivery. Agent Workspace owns project production; normal Flows remain a separate graph-building surface. The old project-page skills are not shipped.
 
 ## Install
 
@@ -45,7 +45,7 @@ gemini mcp add kinex https://api.kinex.studio/mcp --transport http
 npx skills add f-5-labs/kinex-agent-skills --skill '*'
 ```
 
-For end-to-end project work, install all seven skills together: the specialist skills share the Agent Workspace composition reference. Individual prompt-only installs can use the published fallback linked from their skill.
+For end-to-end Agent Workspace work, install the seven production skills together: the specialist skills share the Agent Workspace composition reference. `kinex-flow-builder` is self-contained. Individual prompt-only installs can use the published fallback linked from their skill.
 
 The first Kinex tool call opens browser sign-in and consent. No API key needs to be copied into the agent.
 
@@ -55,6 +55,7 @@ The first Kinex tool call opens browser sign-in and consent. No API key needs to
 | ------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
 | [`kinex-agent-workspace`](./skills/kinex-agent-workspace)     | Creating or continuing image, film, campaign, and mixed-media Agent Workspace projects. |
 | [`kinex-media-library`](./skills/kinex-media-library)         | Generating, finding, and reusing standalone media and library entities.                 |
+| [`kinex-flow-builder`](./skills/kinex-flow-builder)           | Building, repairing, validating, and optionally running normal editable Flow graphs.    |
 | [`kinex-review-and-export`](./skills/kinex-review-and-export) | Evidence-backed quality review, timeline assembly, render, and delivery.                |
 | [`kinex-hailuo-h3`](./skills/kinex-hailuo-h3)                 | Directing H3 audiovisual shots with its own frame, reference, and sound prompt grammar. |
 | [`kinex-seedance-2-5`](./skills/kinex-seedance-2-5)           | Directing Seedance references and beats, defaulting to full-quality Seedance 2.0.       |
@@ -105,7 +106,7 @@ node --test scripts/*.test.mjs
 npx skills add . --list
 ```
 
-The seven skills share [shot composition and pipeline handoffs](./skills/kinex-agent-workspace/references/shot-composition.md), aligned to the final merged Helios PR #196. Confirm the connected server advertises that contract before writing; merged source is not deployment proof.
+The seven Agent Workspace production skills share [shot composition and pipeline handoffs](./skills/kinex-agent-workspace/references/shot-composition.md), aligned to the final merged Helios PR #196. The Flow Builder skill uses its separate live typed-graph contract. Confirm the connected server advertises the relevant contract before writing; merged source is not deployment proof.
 
 Validation checks packaging, nested trace expectations, and review-record consistency. Checked-in traces are synthetic tool-call examples, not server executions. Review-record PASS means only that declared fields are consistent; creative quality, saved-state integrity, operation compilation, image dimensions, motion, and sound require their own evidence. Scenarios' prose `checks` are a manual evaluation rubric, not assertions executed by the trace checker.
 
