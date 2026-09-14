@@ -13,10 +13,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: 22
       - run: node scripts/validate.mjs
+      - name: Require a version bump for published bundle changes
+        if: github.event_name == 'pull_request'
+        run: node scripts/check-version-bump.mjs "${{ github.event.pull_request.base.sha }}" HEAD
       - run: node --test scripts/*.test.mjs
       - run: node scripts/evaluate-external-trace.mjs new-agent-workspace-scene-one evals/fixtures/new-agent-workspace-scene-one.trace.json
       - run: node scripts/evaluate-external-trace.mjs film-scene-readiness-blocks-generation evals/fixtures/film-scene-readiness-blocks-generation.trace.json
