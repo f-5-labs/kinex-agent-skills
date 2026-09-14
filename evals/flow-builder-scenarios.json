@@ -1,0 +1,279 @@
+{
+  "version": 1,
+  "description": "Focused routing cases for normal editable Kinex Flow boards through the public typed-graph contract.",
+  "scenarios": [
+    {
+      "id": "flow-empty-board-build-only",
+      "skill": "kinex-flow-builder",
+      "request": "Create a new Flow that turns my product still into one short vertical video. Build and validate the board, but do not run it.",
+      "expectedTools": [
+        "flow_create",
+        "flow_get",
+        "flow_plan_get",
+        "flow_plan_save",
+        "flow_capabilities_get",
+        "flow_node_add",
+        "flow_media_input_set",
+        "flow_nodes_connect",
+        "flow_validate"
+      ],
+      "orderedTools": [
+        "flow_create",
+        "flow_get",
+        "flow_plan_get",
+        "flow_plan_save",
+        "flow_capabilities_get",
+        "flow_node_add",
+        "flow_media_input_set",
+        "flow_get",
+        "flow_capabilities_get",
+        "flow_nodes_connect",
+        "flow_validate",
+        "flow_get"
+      ],
+      "requiredToolCalls": [
+        {
+          "tool": "flow_capabilities_get",
+          "input": { "mediaType": "video" }
+        }
+      ],
+      "forbiddenTools": [
+        "flow_run_graph",
+        "flow_run_node",
+        "run_flow_template"
+      ],
+      "checks": [
+        "creates the shared plan before graph construction",
+        "discovers live node types, ports, models, and fields instead of hardcoding them",
+        "builds only the input and video-generation path the outcome needs",
+        "validates and re-reads without starting generation"
+      ]
+    },
+    {
+      "id": "flow-existing-board-typed-repair",
+      "skill": "kinex-flow-builder",
+      "request": "Repair the unsupported duration and disconnected output on my existing Launch Cut Flow. Keep every valid branch and do not run it.",
+      "expectedTools": [
+        "flow_list",
+        "flow_get",
+        "flow_plan_get",
+        "flow_validate",
+        "flow_capabilities_get",
+        "flow_node_update",
+        "flow_nodes_connect"
+      ],
+      "orderedTools": [
+        "flow_list",
+        "flow_get",
+        "flow_plan_get",
+        "flow_validate",
+        "flow_capabilities_get",
+        "flow_node_update",
+        "flow_nodes_connect",
+        "flow_validate",
+        "flow_get"
+      ],
+      "requiredToolCalls": [
+        {
+          "tool": "flow_capabilities_get",
+          "input": { "mediaType": "video" }
+        }
+      ],
+      "forbiddenTools": [
+        "flow_delete",
+        "flow_plan_save",
+        "flow_run_graph",
+        "flow_run_node",
+        "run_flow_template"
+      ],
+      "checks": [
+        "establishes the actual validation failure before repair",
+        "reads and preserves the existing shared plan without rewriting it",
+        "patches only the failing node and typed connection",
+        "preserves existing ids, media settings, and unaffected branches",
+        "validates and re-reads the repaired board"
+      ]
+    },
+    {
+      "id": "flow-motion-video-and-subject-still",
+      "skill": "kinex-flow-builder",
+      "request": "Upload this movement-reference video and use my existing subject still in a new Flow. Build a reference-conditioned video node, but do not generate yet and do not promise exact ComfyUI parity.",
+      "expectedTools": [
+        "library_upload_media",
+        "library_list_media",
+        "flow_create",
+        "flow_get",
+        "flow_plan_get",
+        "flow_plan_save",
+        "flow_capabilities_get",
+        "flow_node_add",
+        "flow_media_input_set",
+        "flow_nodes_connect",
+        "flow_validate"
+      ],
+      "orderedTools": [
+        "library_upload_media",
+        "library_list_media",
+        "flow_create",
+        "flow_get",
+        "flow_plan_get",
+        "flow_plan_save",
+        "flow_capabilities_get",
+        "flow_node_add",
+        "flow_node_add",
+        "flow_node_add",
+        "flow_media_input_set",
+        "flow_get",
+        "flow_capabilities_get",
+        "flow_media_input_set",
+        "flow_get",
+        "flow_capabilities_get",
+        "flow_nodes_connect",
+        "flow_nodes_connect",
+        "flow_validate",
+        "flow_get"
+      ],
+      "requiredToolCalls": [
+        {
+          "tool": "flow_capabilities_get",
+          "input": { "mediaType": "video" }
+        },
+        {
+          "tool": "flow_node_add",
+          "input": { "typeId": "flow.asset.static" }
+        },
+        {
+          "tool": "flow_node_add",
+          "input": { "typeId": "flow.asset.static" }
+        },
+        {
+          "tool": "flow_node_add",
+          "input": { "typeId": "flow.media.video" }
+        },
+        {
+          "tool": "flow_media_input_set",
+          "input": { "expectedModality": "video" }
+        },
+        {
+          "tool": "flow_media_input_set",
+          "input": { "expectedModality": "image" }
+        },
+        {
+          "tool": "flow_capabilities_get",
+          "input": { "typeId": "flow.asset.static", "config": { "modality": "video" } }
+        },
+        {
+          "tool": "flow_capabilities_get",
+          "input": { "typeId": "flow.asset.static", "config": { "modality": "image" } }
+        },
+        {
+          "tool": "flow_nodes_connect",
+          "input": { "targetPortId": "referenceVideo" }
+        },
+        {
+          "tool": "flow_nodes_connect",
+          "input": { "targetPortId": "reference" }
+        }
+      ],
+      "forbiddenTools": [
+        "library_generate_video",
+        "library_generate_image",
+        "workspace_execute_command",
+        "flow_run_graph",
+        "flow_run_node"
+      ],
+      "checks": [
+        "keeps the motion video and subject still as distinct verified workspace media records",
+        "binds both real media items instead of patching guessed URLs",
+        "uses each static node's instance-aware output modality and the discovered target reference role",
+        "does not promise exact motion transfer or ComfyUI node parity"
+      ]
+    },
+    {
+      "id": "flow-run-and-verify-output",
+      "skill": "kinex-flow-builder",
+      "request": "The existing board is ready. Run the whole Flow, wait for it to finish, and show me the resulting assets.",
+      "expectedTools": [
+        "flow_get",
+        "flow_plan_get",
+        "flow_validate",
+        "flow_run_graph",
+        "flow_run_get",
+        "flow_list_media"
+      ],
+      "requiredToolCalls": [
+        {
+          "tool": "flow_run_graph",
+          "input": { "requestKey": "run-flow-1-approved-v1" }
+        }
+      ],
+      "orderedTools": [
+        "flow_get",
+        "flow_plan_get",
+        "flow_validate",
+        "flow_run_graph",
+        "flow_run_get",
+        "flow_run_get",
+        "flow_list_media"
+      ],
+      "forbiddenTools": [
+        "run_flow_template",
+        "workspace_execute_command",
+        "flow_run_node"
+      ],
+      "checks": [
+        "validates immediately before starting the requested full-board run",
+        "polls the returned run rather than launching duplicates",
+        "waits for success before treating Flow-owned media as completed output",
+        "reports only output records and URLs proved by live responses"
+      ]
+    },
+    {
+      "id": "flow-active-run-status-and-cancel",
+      "skill": "kinex-flow-builder",
+      "request": "That Flow run is still going. Check its status, then cancel it and make sure it stopped.",
+      "expectedTools": [
+        "flow_run_get",
+        "flow_run_cancel"
+      ],
+      "orderedTools": [
+        "flow_run_get",
+        "flow_run_cancel",
+        "flow_run_get"
+      ],
+      "forbiddenTools": [
+        "flow_run_graph",
+        "flow_run_node",
+        "task_cancel"
+      ],
+      "checks": [
+        "checks the named run rather than starting another",
+        "cancels only the active requested run",
+        "re-reads the run and reports its proven terminal status",
+        "does not retry cancelled work"
+      ]
+    },
+    {
+      "id": "flow-unsupported-private-parity",
+      "skill": "kinex-flow-builder",
+      "request": "Make this empty Flow exactly match my private ComfyUI graph, including its proprietary motion-transfer node and pricing. Do not run anything.",
+      "expectedTools": [
+        "flow_get",
+        "flow_plan_get",
+        "flow_capabilities_get"
+      ],
+      "forbiddenTools": [
+        "flow_node_add",
+        "flow_run_graph",
+        "flow_run_node",
+        "run_flow_template"
+      ],
+      "checks": [
+        "reports that the requested private node and exact parity are not proved by the public capability catalog",
+        "does not invent provider prices or an equivalent node",
+        "offers only supported alternatives demonstrated by the live response",
+        "leaves the empty board unchanged"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "scenarioId": "flow-run-and-verify-output",
+  "host": "external-mcp-client",
+  "events": [
+    {
+      "type": "tool_call",
+      "tool": "flow_get",
+      "input": { "flowId": "flow-1" }
+    },
+    {
+      "type": "tool_call",
+      "tool": "flow_plan_get",
+      "input": { "flowId": "flow-1" }
+    },
+    {
+      "type": "tool_call",
+      "tool": "flow_validate",
+      "input": { "flowId": "flow-1" }
+    },
+    {
+      "type": "tool_result",
+      "tool": "flow_validate",
+      "output": { "ok": true, "graphIssues": [], "mediaInputs": [] }
+    },
+    {
+      "type": "tool_call",
+      "tool": "flow_run_graph",
+      "input": { "flowId": "flow-1", "requestKey": "run-flow-1-approved-v1" }
+    },
+    {
+      "type": "tool_result",
+      "tool": "flow_run_graph",
+      "output": { "runId": "run-1", "workflowInstanceId": "instance-1" }
+    },
+    {
+      "type": "tool_call",
+      "tool": "flow_run_get",
+      "input": { "runId": "run-1" }
+    },
+    {
+      "type": "tool_result",
+      "tool": "flow_run_get",
+      "output": {
+        "run": { "id": "run-1", "status": "running" },
+        "nodeRuns": [{ "nodeId": "video-1", "status": "running", "outputJson": null }]
+      }
+    },
+    {
+      "type": "tool_call",
+      "tool": "flow_run_get",
+      "input": { "runId": "run-1" }
+    },
+    {
+      "type": "tool_result",
+      "tool": "flow_run_get",
+      "output": {
+        "run": { "id": "run-1", "status": "success" },
+        "nodeRuns": [
+          {
+            "nodeId": "video-1",
+            "status": "ok",
+            "outputJson": {
+              "kind": "video",
+              "mediaItemId": "flow-output-1",
+              "url": "/api/media/flow-output-1"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "tool_call",
+      "tool": "flow_list_media",
+      "input": { "flowId": "flow-1" }
+    }
+  ]
+}

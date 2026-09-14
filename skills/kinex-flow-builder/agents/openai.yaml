@@ -1,0 +1,11 @@
+interface:
+  display_name: "Build Kinex Flows"
+  short_description: "Build and validate typed Flow graphs"
+  default_prompt: "Use $kinex-flow-builder to build the smallest valid Kinex Flow for this outcome, and run it only if I explicitly ask."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "kinex"
+      description: "Kinex creative production MCP server"
+      transport: "streamable_http"
+      url: "https://api.kinex.studio/mcp"

@@ -1,7 +1,7 @@
 {
   "name": "kinex",
-  "version": "0.6.2",
-  "description": "Source-grounded, variant-aware image, video, and mixed-media production through the authenticated Kinex MCP server.",
+  "version": "0.6.3",
+  "description": "Source-grounded, variant-aware image, video, mixed-media, and typed Flow production through the authenticated Kinex MCP server.",
   "author": {
     "name": "Kinex Studio",
     "email": "support@kinex.studio",
@@ -14,13 +14,14 @@
     "video-production",
     "creative-direction",
     "storyboarding",
+    "flows",
     "mcp"
   ],
   "skills": "./skills/",
   "interface": {
     "displayName": "Kinex",
-    "shortDescription": "Plan, direct, review, and export AI videos",
-    "longDescription": "Kinex turns Codex into a plan-first production partner. Reconcile the shared checklist, distinguish hero and anchor locks from generation history, recommend asset locks without gating generation, direct performance and editorial coverage, retain surgical take history, and export only a verified final cut.",
+    "shortDescription": "Plan, direct, build typed Flows, and export",
+    "longDescription": "Kinex turns Codex into a plan-first production partner for Agent Workspace projects and editable typed Flows. Build from live node, port, model, and media capabilities; preserve source-grounded, variant-aware continuity; and run or export only when requested and verified.",
     "developerName": "Kinex Studio",
     "category": "Design",
     "capabilities": ["Read", "Write", "Interactive"],
@@ -28,7 +29,8 @@
     "defaultPrompt": [
       "Turn this brief into a production-ready Kinex plan",
       "Direct this project from brief to approved final cut",
-      "Review this Kinex project and export the final video"
+      "Review this Kinex project and export the final video",
+      "Build the smallest valid Kinex Flow for this workflow"
     ],
     "brandColor": "#7C3AED",
     "composerIcon": "./assets/icon.svg",

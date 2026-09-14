@@ -1,8 +1,12 @@
 import { readFile } from 'node:fs/promises';
 
-/** Loads shared routing scenarios plus the focused composition handoffs for both CLI and tests. */
+/** Loads shared routing scenarios plus focused composition and Flow Builder handoffs. */
 export async function loadScenarios() {
-  const files = ['scenarios.json', 'shot-composition-scenarios.json'];
+  const files = [
+    'scenarios.json',
+    'shot-composition-scenarios.json',
+    'flow-builder-scenarios.json',
+  ];
   const suites = await Promise.all(files.map(async (file) => JSON.parse(
     await readFile(new URL(`../evals/${file}`, import.meta.url), 'utf8'),
   )));
