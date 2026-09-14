@@ -50,6 +50,8 @@ Shot count is a consequence of storytelling and feasibility, never a quality sco
 
 Do not reject a plan from its ratio alone. A large split can be correct; every added unit must still earn its cut and viable sound route.
 
+Count generated clips, not board panels. One shot record should own one coherent generated clip and may use a 4-, 9-, or 12-panel sequence sheet to plan internal camera cuts, actions, reactions, and exact dialogue. Choose only the panels the event needs; if the live schema lacks the desired board-size enum, state the plan in supported prose instead of inventing a field. Treat the sheet as a typed generation reference, not a start frame. A clip may use the selected operation's supported 10–15-second range when the natural action requires it, but never stretch a short exchange, rush its words, or force a long multi-part proof into one nominal 30–45-second record.
+
 ## Compact card evidence
 
 Keep the four normal lanes. Ensure they answer these questions without inventing unsupported schema fields:

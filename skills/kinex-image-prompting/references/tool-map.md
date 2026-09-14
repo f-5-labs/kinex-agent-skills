@@ -20,4 +20,6 @@ Poll `task_get`, re-read the affected entity or shot, and inspect every persiste
 
 For a claimed camera change, review the image with captions and diagrams hidden. Compare foreground occlusion and scale, near/far face visibility, background parallax, action-path readability, handedness, prop ownership, and body-bound accessories against the planned floor-map station. Labels and focal-length metadata are not visual evidence. If the failed image is still current, withdraw its PASS and repair that selection only within the user's authorized scope; retain rejected media in history.
 
+Sequence sheets plan one generated clip. Use a typed sequence/reference attachment when advertised; never bind the full grid as `start_frame` or `end_frame`. If no such attachment exists, keep the sheet's ownership in the Production Plan and provide or generate a clean single frame for frame-required operations.
+
 Check what already exists before generating: `workspace_read_entity` for an entity hero, `media_list_project` and `task_get` for a shot's still. Announce a repeat run as a numbered take using the prior-take count Kinex reports on the queued task, keep earlier takes available, and name the one control that changed for this take. Do not queue two generations of the same target in one turn.

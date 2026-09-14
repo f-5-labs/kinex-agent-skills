@@ -2,7 +2,7 @@
   "$schema": "https://cursor.com/schemas/cursor-plugin/plugin.json",
   "name": "kinex",
   "displayName": "Kinex",
-  "version": "0.6.3",
+  "version": "0.6.4",
   "description": "Source-grounded, variant-aware image, video, mixed-media, and typed Flow production through Kinex MCP.",
   "author": { "name": "Kinex Studio", "email": "support@kinex.studio" },
   "publisher": "FPoint5Labs",

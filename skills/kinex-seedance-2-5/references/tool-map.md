@@ -10,6 +10,7 @@
 
 - Agent Workspace canon and approval: `plan_get`, `plan_save`, `context_get`, `context_update_section`.
 - Structure and evidence: `beat_list`, `shot_list`, `shot_get`, `workspace_read_entity`, `workspace_preview_entity`.
+- Treat each shot record as one generated clip. A sequence sheet may plan its internal cuts and performance stages only through an advertised typed reference role; never pass the grid as frame zero.
 - Approved generation router: `workspace_execute_command`.
 - Task completion: `task_get`, then re-read the affected beat or shot and use `workspace_preview_timeline` for cut review.
 

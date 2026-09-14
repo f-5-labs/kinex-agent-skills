@@ -96,12 +96,14 @@ Prefer concrete camera, pacing, light, and material words over adjectives.
 
 ## Direct a whole beat deliberately
 
-When a requested beat is at most the selected operation's advertised duration, it can be one Seedance clip only when it is one coherent dramatic event. A capability maximum is not a creative recommendation. Prefer Seedance 2.0 for this route unless the user has opted into 2.5. Write consecutive stages, not unrelated shots:
+When a requested beat is at most the selected operation's advertised duration, represent it as one shot record and one Seedance clip only when it is one coherent dramatic event. That clip may contain motivated internal camera cuts described by a sequence sheet and prompt; do not create records per panel, angle, micro-action, or reaction. A capability maximum is not a creative recommendation. Prefer Seedance 2.0 for this route unless the user has opted into 2.5. Use a natural 10–15-second window when the live operation supports it and the event needs it, but do not pad a short exchange, rush exact dialogue, or compress an unrelated long proof into a nominal 30–45-second clip. Write consecutive stages, not unrelated scenes:
 
 1. Give each stage one main state change and a concrete end state.
 2. At each transition, state what carries forward from the previous stage.
 3. Use exact time ranges only for a genuinely critical entrance, handoff, exit, transition, or user-requested beat.
 4. If the runtime exceeds the live maximum, the beat contains unrelated coverage, or continuity cannot survive the requested action, split at a clear end state and retain the existing per-shot route.
+
+A sequence sheet may guide these stages as a typed reference, but the full grid is never `startFrame`, `openingFrame`, or literal frame zero. When the selected operation needs a frame input, use a clean single-frame asset and keep the sheet in its advertised sequence/reference role.
 
 For a start-frame or start-and-end-frame operation, bind only the required source frames and preserve their visual continuity. If the operation reports an Adaptive-only ratio, the source image governs composition. Use the full-modal reference operation when the scene genuinely needs image, motion, and audio materials together.
 
