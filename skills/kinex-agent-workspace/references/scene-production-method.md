@@ -12,7 +12,7 @@ Represent the following as stable Production Plan outcomes. A direct instruction
 2. **Breakdown gate:** create the scene breakdown, preliminary coverage, full scene asset list, state variants, complex elements, and visual-dramaturgy notes.
 3. **Visual-system gate:** approve the style direction, reference roles, palette, light logic, optics, movement language, image texture, cutting rhythm, and sound direction.
 4. **Asset gate:** define canonical entities, make only required variants, attach or generate their reference media, stress-test recurring locks, and record a review verdict.
-5. **Direction-readiness gate:** verify scene-to-assets coverage, then test audience information, playable behavior, full prop paths, sightlines, camera purpose, motivated cuts, natural spoken timing, exact format fields, light and colour logic, and truthful audio routes. Return `PASS`, `REVISE`, or `BLOCK` for the affected coverage. Repair `REVISE` before motion; a variant's asset-lock gap alone remains advisory.
+5. **Direction-readiness gate:** verify scene-to-assets coverage, then test audience information, playable behavior, full prop paths, sightlines, camera purpose, motivated cuts, natural spoken timing, exact format fields, light and colour logic, and truthful audio routes. When a camera sheet or start frame exists, hide its captions and verify that actual occlusion, scale, face visibility, background parallax, and prop/hand continuity prove each station. Return `PASS`, `REVISE`, or `BLOCK` for the affected coverage. Repair `REVISE` before motion; a variant's asset-lock gap alone remains advisory.
 6. **Selects gate:** retain accepted takes, their exact prompts and inputs, and the reason each was chosen. A completed generation is not automatically a select.
 7. **Picture-lock gate:** assemble scenes, close coverage holes, verify joins and runtime, save the approved cut, and freeze picture before global finishing.
 8. **Finish-and-master gate:** close artifact repairs before color treatment, verify sound and rights, run technical QC, export required versions, and retain reproducibility records.
@@ -59,6 +59,7 @@ Treat vehicle interiors, designed screens, typography, crowds, water, fire, smok
 - field of view or lens behavior;
 - camera height, physical zone, side, angle, and the scene's working action axis;
 - why this view reveals the decisive action or listener response better than the neighbouring setup.
+- the visible foreground mask, near/far scale, face visibility, background landmarks, and full hand/prop path that will prove the station in an uncaptioned frame.
 
 ### Edit lane
 
@@ -81,6 +82,8 @@ Gather evidence along two axes:
 - **By cross-cutting craft choice:** light, palette and grade direction, optics and composition, camera movement, texture, editing rhythm, sound, and music.
 
 Give each reference one declared job and record what must not transfer. A location reference may control geometry, materials, and light without controlling the next shot's framing. A motion reference may control timing or camera path without transferring its performer or set.
+
+For a camera-position repair, use identity sheets to carry appearance and a location sheet or floor map to carry space; explicitly withhold their composition. Do not use the failed shot as the composition reference. If an edit keeps the same frontal perspective, regenerate from the identity/location evidence and rebuild the station instead of preserving the failed pixels.
 
 Persist approved facts and visual rules in the Project Bible. Keep exploratory boards, rejected directions, temporary task notes, provider settings, and take logs in the Production Plan or media history. Convert visual agreements into observable language; a moodboard without written decisions is not a lock. Record the exact delivery ratio and its structured setting, synchronize supported native camera fields, compose for that frame before considering a crop, and verify actual output dimensions at frame review. Establish a dominant motivated source, its direction and camera relation, plus the intended colour profile and scene progression; camera-brand or stock vocabulary cannot supply these decisions.
 

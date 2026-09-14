@@ -48,11 +48,17 @@ None of these operations take a negative prompt in the prose, and naming what to
 
 For project frames, read `shot_get` and the assigned entities/variants first. Compile `imagePrompt` from `direction.blocking`, `camera`, and `spatialLayout`; preserve the executable assignments. Compose for the exact target ratio before cropping, then inspect actual dimensions and action readability. An Adaptive operation inherits the source frame ratio. Follow [shared shot composition](../kinex-agent-workspace/references/shot-composition.md) when a frame changes the shot.
 
+## Prove the camera in the pixels
+
+Choose what the audience must learn before choosing the viewpoint. Put the camera at a named floor-map station on the intended side of the action axis, then describe visible geometry rather than relying on “south,” “reverse,” “OTS,” or a focal length. For OTS work, specify which near back/shoulder masks the frame, how large it is, whose face is hidden or dominant, which hand/object path remains visible, and which background landmarks shift with parallax. A head turn, tighter crop, or lens label inside the same frontal two-person composition is not a camera change.
+
+Use identity sheets to preserve people and approved location references to preserve space, while explicitly withholding their composition. Do not feed a rejected frontal shot back as the composition anchor for a new OTS or detail. If a targeted edit preserves the wrong perspective, rebuild the image from the identity and location references. Across reverses, verify left/right hands, complete fingers, prop ownership, and visible body-bound accessories such as a watch before accepting the frame. When an accessory's correct limb is hidden, report it as unverified instead of inferring continuity from its absence on the wrong limb.
+
 ## Cut, then generate, then look
 
 Before sending, delete every clause that is not doing work. Past a point, extra sentences dilute attention rather than adding control; a shorter prompt with the same specifics beats a longer one.
 
-Then generate through the route the project uses, poll the task, and actually look at the returned image. Repair at the source — job classification, reference role, light, framing, structured field — rather than appending adjectives to the prompt that already failed.
+Then generate through the route the project uses, poll the task, and actually look at the returned image. Hide captions, panel labels, and diagrams while judging a claimed camera change. Compare foreground occlusion and scale, face visibility, action-path readability, and background perspective against the planned station. Disqualify an attractive sheet when the uncaptioned image contradicts the camera plan. Repair at the source — job classification, reference role, light, framing, structured field — rather than appending adjectives to the prompt that already failed.
 
 Read [tool map](references/tool-map.md) for discovery, routing, and review boundaries.
 

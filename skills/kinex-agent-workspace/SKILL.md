@@ -73,6 +73,8 @@ Do not invent classic `script_*`, `visual_*`, `scene_*`, or `generation_*` wizar
 
 Prefer planning assets before shots. Stress-test identity locks across useful views, lighting, poses, and ensembles; create only the variants the production needs. For film work, give every shot an identity-and-asset lane, direction lane, camera lane, and edit lane; when generation is requested, repair a known lane defect in scope before invoking motion. Specify active cast and reference roles, first-frame occupancy and geography, observable framing, camera behavior, timed action, performance beats, physical behavior, lighting, exact audio or copy constraints, and the intended join. Keep unused references and unrelated scene history out of the prompt.
 
+Choose the audience information before choosing the angle. Map each camera station against the action axis and the prop paths that must remain visible. A caption, compass label, crop, lens change, or head turn does not prove that the generated viewpoint changed. Before a camera sheet or start frame passes, inspect it with captions hidden and verify the intended foreground occlusion, near/far scale, face visibility, and background perspective. Use identity and location sheets to rebuild a failed viewpoint; do not let a rejected frontal shot keep anchoring the composition.
+
 Prefer one coherent take unless a cut is intentional. Every split should earn its place through an audience-information change, a performance turn, a necessary action phase, a feasible point of view, or a source-motivated transition. Shot count is never a quality target; audit repeated setups, tiny units, natural speech timing, and new multi-speaker or playback routes as fragmentation and audio debt before adding coverage. Preserve gaze, screen direction, complete prop custody, wardrobe, weather, and performance state across cuts. Keep a take ledger with the exact operation, structured inputs, active references, prompt, one changed control, result, and verdict. If repeated attempts exhaust the agreed retry budget, simplify or split the shot instead of adding prompt bulk.
 
 Build and review the edit while generation proceeds. Missing coverage is a planning problem; do not conceal it with broad regeneration.
@@ -84,6 +86,8 @@ For character and location review, keep four states distinct: selected preview, 
 A generated hero is not an assigned hero. Kinex auto-assigns the first hero when an entity has none; every later replacement stays a deliberate act. Assign the take the user chose with `workspace_update_entity`, then re-read the entity and compare ids to confirm `primaryMediaId` points at that take — verify the assignment rather than trusting the write.
 
 Use `media_list_project` and `task_get` for shot alternatives. Use `workspace_preview_entity` for identity and look review and `workspace_preview_timeline` for the current cut. Keep the conversation about creative outcomes, decisions, evidence, and blockers—not ids or tool mechanics.
+
+When visual evidence contradicts a prior PASS, withdraw that PASS immediately. Keep the failed media in history, but do not describe it as the current approved hero, anchor, start frame, or selected take. When the user's scope and live surface support selection repair, promote a valid replacement or clear the failed role and re-read it; otherwise record the mismatch and exact required action without claiming the selection changed.
 
 Hand final assembly and rendering to `$kinex-review-and-export` only when the project needs a timeline or final render.
 

@@ -30,6 +30,8 @@
 
 For any shot write, read [shared shot composition](shot-composition.md). MCP and Director coauthor the same nested groups; preserve omitted values, beat-local ordering, exact variant selectors, and the difference between saved fields and reviewed work.
 
+When a camera sheet or frame is under review, inspect the actual media with captions hidden before recording a PASS. Compare the planned station and floor-map axis to foreground occlusion/scale, face visibility, background parallax, and complete hand/prop/accessory continuity. A camera label, crop, lens note, or head turn is not evidence of a new position. Keep failed media in history; change a current hero, anchor, or frame role only when the user authorized that repair and the live surface exposes the write.
+
 ## Generation-router families
 
 Use the live schema for exact payloads. Route entity heroes, scene images/video/SFX, beat frames/clips, shot regeneration, and image edits through `workspace_execute_command`. Entity CRUD, plan, context, style, beat, and shot writes have dedicated tools.
