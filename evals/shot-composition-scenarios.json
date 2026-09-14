@@ -180,6 +180,37 @@
         "workspace_execute_command",
         "timeline_save"
       ]
+    },
+    {
+      "id": "camera-labels-do-not-prove-viewpoint",
+      "skill": "kinex-review-and-export",
+      "request": "This attractive 12-panel sheet is labelled south and south-west, and we previously passed it. Verify the camera progression and keep it current only if the images really match the plan. Do not regenerate.",
+      "expectedTools": [
+        "plan_get",
+        "shot_get",
+        "media_list_project",
+        "media_get_public_url"
+      ],
+      "orderedTools": [
+        "shot_get",
+        "media_list_project",
+        "media_get_public_url"
+      ],
+      "forbiddenTools": [
+        "workspace_execute_command",
+        "workspace_update_entity",
+        "workspace_attach_external_media",
+        "timeline_save"
+      ],
+      "checks": [
+        "raw visual evidence: with captions hidden, the supposed angle change remains essentially the same frontal two-person composition",
+        "rejects compass, OTS and lens labels as proof when foreground occlusion and scale, face visibility and background parallax do not change",
+        "withdraws the previous PASS and does not describe the failed sheet as current or approved",
+        "chooses each setup from its audience information, maps same-side camera stations against the action axis and preserves the full hand and prop path",
+        "checks anatomical handedness, prop custody and visible body-bound accessories across the reverse, leaving occluded accessory custody unverified",
+        "recommends rebuilding perspective from identity and location sheets rather than reusing the failed frontal shot as a composition anchor",
+        "keeps the failed media in history and makes no selection, generation or timeline write because the review found a mismatch"
+      ]
     }
   ]
 }

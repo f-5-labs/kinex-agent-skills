@@ -10,7 +10,7 @@ Report `PASS`, `REVISE`, or `BLOCK` independently for the stages in scope:
 | --- | --- |
 | Persistence | The intended values survived a re-read. |
 | Direction | Audience before/after, playable behaviour, feasible blocking and custody, camera/light purpose, synchronized supported camera/format fields, motivated edit, natural timing, and truthful audio route all hold against the source. |
-| Frame | The actual inspected composition preserves required action, sightlines, light, identity, and exact dimensions. |
+| Frame | With captions hidden, the actual composition preserves required action, sightlines, light, identity, exact dimensions, and visibly proves its planned camera station through occlusion, scale, face visibility, and background parallax. |
 | Motion | Watched action and performance, camera behaviour, continuity, and joins hold in the actual take. |
 | Sound | The actual heard result preserves words, speaker ownership, voice, timing, perspective, and tails. |
 
@@ -23,7 +23,7 @@ Follow the story's causal units rather than treating each card as independent.
 - **Audience:** Whose uncertainty matters? What can the audience know before and after each shot? Does the cut reveal a cause, assessment, response, or consequence?
 - **Performance:** Is each objective aimed at a partner and expressed through a current tactic? What exact cue is perceived? Does listening precede the response? Does physical business change or expose the task, or is it an inert gesture?
 - **Space and objects:** Can bodies, camera, eyelines, and sound occupy the stated geography? Trace every handled prop from starting owner and state through path, contact, release, and ending owner and state. Reject impossible balcony, floor, wall, screen, or occlusion claims even when the prose sounds precise.
-- **Camera and look:** What information makes this view necessary? Flag runs of frontal two-shots or locked setups that do not preserve a deliberate relationship or progress point of view, scale, depth, or access. Require a positive camera plan and a motivated light source, direction, camera relation, and colour progression.
+- **Camera and look:** What audience information makes this view necessary? Hide captions and diagrams before comparing the image to the planned floor-map station. Flag runs of frontal two-shots or locked setups that merely change a head turn, crop, or lens label. A real OTS/reverse changes foreground occlusion and scale, near/far face visibility, and background parallax while respecting the chosen side of the action axis and keeping the required hand/prop path readable. Require a positive camera plan and a motivated light source, direction, camera relation, and colour progression.
 - **Edit, timing, and audio:** Use a timed natural read when available; label text-only timing estimates unverified. Flag finished actions held to fill a model duration, cuts with no trigger, and speech accelerated or dropped to fit. Preserve labelled speakers and distinguish room, offscreen, device, and playback routes.
 
 ## Audit coverage and route debt
@@ -38,6 +38,8 @@ When a revision expands the shot plan, report old and new counts without treatin
 - the smallest merges, reframes, or route holds that preserve all source events.
 
 A high shot count may pass; a low count may fail. The test is whether the audience information, physical action, camera, cut, timing, and sound route work together.
+
+When reviewing reverses, trace left/right hands, complete fingers, prop ownership, and visible body-bound accessories from one view to the next. A watch appearing on the microphone or tool wrist is a continuity failure, not harmless texture. If its correct limb is occluded, report accessory custody as unverified; not seeing it on the wrong limb does not prove the right placement. If a prior PASS fails this visual test, withdraw the verdict and remove the failed image from any claimed current/approved role within the user's authorized scope; retain it only as generation history. Rebuild perspective from identity/location sheets when the failed shot itself keeps anchoring the wrong composition.
 
 ## Keep the report decision-sized
 
