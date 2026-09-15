@@ -1,6 +1,6 @@
 ---
 name: kinex-flow-builder
-description: Build, inspect, repair, validate, and optionally run normal editable Kinex Flow boards through typed nodes, live ports, model-aware multimodal AI Text analysis, source-node mentions, and real workspace media references. Use for new or existing Flow canvases and graph workflows. Not for Agent Workspace production, standalone library generation, templates, publishing, or specialized creative-direction work.
+description: Build, inspect, repair, validate, and optionally run normal editable Kinex Flow boards through typed nodes, live ports, model-aware multimodal LLM analysis, source-node mentions, and real workspace media references. Use for new or existing Flow canvases and graph workflows. Not for Agent Workspace production, standalone library generation, templates, publishing, or specialized creative-direction work.
 ---
 
 # Build Kinex Flows
@@ -37,18 +37,18 @@ For an ambiguous brief, ask only for information that changes the graph material
 
 For an existing board, change only what the request requires. Validate before repairing an unclear failure, preserve unaffected branches, and do not remove or replace nodes without a reason grounded in the current board.
 
-## Use AI Text for multimodal analysis
+## Use the LLM node for multimodal analysis
 
-Use `flow.ai.llm` when the workflow needs a model to inspect connected text, images, or video and produce text for a later node. It is the normal Flow reasoning node; do not invent a separate media-analysis node when AI Text exposes the required live modalities.
+Use `flow.ai.llm` when the workflow needs a model to inspect connected text, images, or video and produce text for a later node. It is the normal Flow reasoning node; do not invent a separate media-analysis node when the LLM exposes the required live modalities.
 
 1. Call `flow_capabilities_get` for `flow.ai.llm` and the intended saved `modelId`. Its returned `supported` flags on `prompt`, `context`, `images`, and `videos` are authoritative. Model menus and modality support can change; never infer video understanding from a model name.
-2. Add or update AI Text with that supported `modelId`, then re-run capability discovery with the saved config before connecting media. A model change can enable or invalidate image/video ports.
+2. Add or update the LLM with that supported `modelId`, then re-run capability discovery with the saved config before connecting media. A model change can enable or invalidate image/video ports.
 3. Connect one instruction source to `prompt`, optional supporting text sources to `context`, image sources to `images`, and video sources to `videos` only when those exact live ports are supported. Respect returned connection limits.
 4. Write the instruction using the connected source-node handles, for example: `Analyze @style-video for motion, timing, camera, and texture. Preserve the identity and silhouette in @subject-image. Follow @creative-instructions. Return only a production-ready video prompt.` The handles come from source labels; `images`, `videos`, and `prompt` remain connector ids, not mention names.
-5. Connect AI Text's text output to the downstream generator's discovered prompt port. When visual fidelity matters, also connect the original subject image and style video directly to the generator's compatible reference ports. The analysis augments real references; it does not replace them.
+5. Connect the LLM's text output to the downstream generator's discovered prompt port. When visual fidelity matters, also connect the original subject image and style video directly to the generator's compatible reference ports. The analysis augments real references; it does not replace them.
 6. Validate after every model or media-modality change. If a saved edge is now unsupported, choose a live model that accepts it or remove the edge deliberately before proceeding.
 
-Read [multimodal AI Text example](references/multimodal-ai-text.md) for the full reusable graph, mention rules, and run proof.
+Read [multimodal LLM example](references/multimodal-ai-text.md) for the full reusable graph, mention rules, and run proof.
 
 ## Validate and re-read
 

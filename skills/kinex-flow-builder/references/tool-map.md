@@ -7,7 +7,7 @@ Use only tools currently advertised by the connected Kinex server. Input schemas
 | Find or create a board | `flow_list`, `flow_create` | Normal editable Flows only |
 | Read board and plan | `flow_get`, `flow_plan_get` | Read before graph writes |
 | Save the shared plan | `flow_plan_save` | Pass the current `graphRevision` as `expectedRevision`; automatic only for a newly created empty board; an existing plan changes only with explicit user direction |
-| Discover graph vocabulary | `flow_capabilities_get` | Source of node types, instance-aware ports, model-specific AI Text modalities, media models, fields, roles, and current limits |
+| Discover graph vocabulary | `flow_capabilities_get` | Source of node types, instance-aware ports, model-specific LLM modalities, media models, fields, roles, and current limits |
 | Add or patch a node | `flow_node_add`, `flow_node_update` | Prompts, text, scripts, and supported model settings are caller-editable; generated output artifacts are not |
 | Bind real input media | `flow_media_input_set` | Verifies workspace ownership, active media, modality, and backing object |
 | Connect typed ports | `flow_nodes_connect` | Use returned node ids and discovered source/target port ids |
@@ -28,7 +28,7 @@ Node add/update, typed connect, and media binding use optimistic concurrency. St
 
 Plan saves use the same optimistic-concurrency contract with the `graphRevision` returned by `flow_plan_get` or `flow_get`. A static text node may receive caller-supplied text through its discovered config. For generated nodes, never add or replace `outputBundle.artifacts`; only `outputBundle.selectedIndex` may be patched after the server has written the bundle.
 
-`flow.ai.llm` is the multimodal AI Text node. Resolve it once to choose a live `modelId`, then call `flow_capabilities_get` again with that saved config before wiring `images` or `videos`; their `supported` flags vary by model. Its text output can feed a media generator's prompt input. Name every upstream source clearly and use the source node's lowercase kebab-case label as the downstream mention handle (`Style video` becomes `@style-video`). Input port ids such as `videos`, `images`, or `prompt` are not mention handles. Keep source labels unique so duplicate-token suffixes are unnecessary.
+`flow.ai.llm` is the multimodal LLM node. Resolve it once to choose a live `modelId`, then call `flow_capabilities_get` again with that saved config before wiring `images` or `videos`; their `supported` flags vary by model. Its text output can feed a media generator's prompt input. Name every upstream source clearly and use the source node's lowercase kebab-case label as the downstream mention handle (`Style video` becomes `@style-video`). Input port ids such as `videos`, `images`, or `prompt` are not mention handles. Keep source labels unique so duplicate-token suffixes are unnecessary.
 
 `flow_get` also reports the active native board run. Do not start a duplicate run when matching work is already active; use `flow_run_get` with the known run id. Starting graph or node execution also requires the OAuth grant to include `generation:queue`.
 

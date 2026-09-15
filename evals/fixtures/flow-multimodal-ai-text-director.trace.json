@@ -45,7 +45,7 @@
         "flowId": "flow-1",
         "expectedRevision": "r0",
         "title": "Multimodal prompt director",
-        "markdown": "## Outcome\nAnalyze the subject image and style video, then generate one referenced clip.\n\n## Inputs\n- Subject image preserves identity.\n- Style video supplies motion and visual direction.\n- Creative instructions constrain the result.\n\n## Validation\n- [ ] AI Text model accepts image and video.\n- [ ] Original references also reach the video generator.\n- [ ] Persisted output is verified after the run."
+        "markdown": "## Outcome\nAnalyze the subject image and style video, then generate one referenced clip.\n\n## Inputs\n- Subject image preserves identity.\n- Style video supplies motion and visual direction.\n- Creative instructions constrain the result.\n\n## Validation\n- [ ] LLM model accepts image and video.\n- [ ] Original references also reach the video generator.\n- [ ] Persisted output is verified after the run."
       }
     },
     { "type": "tool_result", "tool": "flow_plan_save", "output": { "graphRevision": "r1" } },

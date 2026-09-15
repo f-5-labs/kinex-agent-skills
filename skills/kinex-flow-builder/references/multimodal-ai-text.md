@@ -1,4 +1,4 @@
-# Multimodal AI Text Flow
+# Multimodal LLM Flow
 
 Use this pattern when a Flow must accept a subject image, a style or motion video, and written instructions; analyze all three; then generate a new video from both the analysis and the original references.
 
@@ -6,13 +6,13 @@ Use this pattern when a Flow must accept a subject image, a style or motion vide
 
 | Source or stage | Brief-specific label | Connection |
 | --- | --- | --- |
-| Upload Media image | `Subject image` | `output` to AI Text `images`; also to the generator's discovered image-reference port |
-| Upload Media video | `Style video` | `output` to AI Text `videos`; also to the generator's discovered video-reference port |
-| Text source | `Creative instructions` | `output` to AI Text `prompt` |
-| AI Text | `Prompt director` | `output` to the generator's discovered text-prompt port |
+| Upload Media image | `Subject image` | `output` to LLM `images`; also to the generator's discovered image-reference port |
+| Upload Media video | `Style video` | `output` to LLM `videos`; also to the generator's discovered video-reference port |
+| Text source | `Creative instructions` | `output` to LLM `prompt` |
+| LLM | `Prompt director` | `output` to the generator's discovered text-prompt port |
 | Video generation | `Directed motion clip` | final generated video |
 
-The AI Text stage extracts useful direction; the direct media connections preserve the actual visual and motion references. Do not replace those references with prose alone.
+The LLM stage extracts useful direction; the direct media connections preserve the actual visual and motion references. Do not replace those references with prose alone.
 
 ## Build sequence
 
@@ -54,7 +54,7 @@ This is an example structure, not a fixed provider prompt. Tailor the analysis d
 
 ## Model changes
 
-AI Text inputs are model-specific. After selecting or changing `modelId`, call `flow_capabilities_get` again with `typeId: flow.ai.llm` and that config. If `images` or `videos` returns `supported: false`, do one of two things:
+LLM inputs are model-specific. After selecting or changing `modelId`, call `flow_capabilities_get` again with `typeId: flow.ai.llm` and that config. If `images` or `videos` returns `supported: false`, do one of two things:
 
 - select another currently advertised model that supports the required modality; or
 - deliberately remove that media edge and explain the reduced analysis.
@@ -67,7 +67,7 @@ When execution is requested:
 
 1. Validate immediately before the run.
 2. Run the graph or the final video node's ancestor closure with a fresh caller-stable `requestKey`.
-3. Poll the returned run id until success, failure, or cancellation. AI Text must succeed before its generated prompt can feed the video node.
+3. Poll the returned run id until success, failure, or cancellation. The LLM must succeed before its generated prompt can feed the video node.
 4. On success, inspect node results and call `flow_list_media` for the persisted Flow-owned output.
 5. Re-read the Flow and confirm that server-written output bundles and their selected outputs remain present. Never patch artifact URLs into `outputBundle` yourself.
 
