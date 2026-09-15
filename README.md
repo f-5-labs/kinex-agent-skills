@@ -92,7 +92,7 @@ See [creative examples](./examples/creative-prompts.md) for prompts you can adap
 - Treat a direct request to create a named visual deliverable as plan approval and continue execution after host confirmation instead of asking again.
 - Treat stop and cancel as authoritative; never retry cancelled work without a new instruction.
 - Check what already exists before generating, announce a repeat run as a numbered take, and keep earlier takes available until the user picks one.
-- Treat a generated hero as unassigned until `primaryMediaId` is verified by re-reading the entity; Kinex auto-assigns only an entity's first hero.
+- Treat every generated hero, including the first, as a review candidate; inspect pixels before explicit assignment, then verify `primaryMediaId` by re-reading. An assignment alone never proves creative approval.
 - Treat queued work as pending, not complete.
 - Re-read saved artifacts after writes and verify outputs before claiming success.
 - Claim only finishing work the live Kinex surface proves; prepare an explicit external handoff for grade, sound post, interchange, or delivery formats outside it.
