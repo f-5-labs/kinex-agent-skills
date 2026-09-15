@@ -10,7 +10,7 @@ For campaigns, give each deliverable family its own beat and artifact target. Sh
 
 ## Ground a real-world story before prompting
 
-When real geography, culture, era, community, institution, or work practice is load-bearing to the story, complete [grounded production design](grounded-production-design.md) before writing an image or video prompt. Carry its sourced facts, proposed choices, and unresolved questions into the canonical entities, floor map, prompt, and later review. The pass happens inside ordinary preflight; it does not add a separate approval ceremony or delay a direct, otherwise executable generation request.
+When real context matters, complete [grounded production design](grounded-production-design.md) during asset design, before the first image. Research and review the source, identity, wardrobe, work practice, and usable geography together; persist accepted decisions in the executable records. Later shots inherit that design and review only changed requirements. This adds no separate approval ceremony.
 
 ## Build references before coverage
 

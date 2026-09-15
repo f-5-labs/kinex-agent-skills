@@ -1,27 +1,140 @@
 {
   "scenarioId": "grounded-story-research-design-before-prompt",
-  "host": "external-mcp-client",
+  "host": "synthetic-contract-fixture",
   "events": [
-    { "type": "tool_call", "tool": "plan_get", "input": { "projectId": "project-1" } },
-    { "type": "tool_call", "tool": "context_get", "input": { "projectId": "project-1" } },
+    {
+      "type": "tool_call",
+      "tool": "plan_get",
+      "input": {
+        "projectId": "project-1"
+      }
+    },
+    {
+      "type": "tool_call",
+      "tool": "context_get",
+      "input": {
+        "projectId": "project-1"
+      }
+    },
     {
       "type": "tool_call",
       "tool": "context_update_section",
-      "input": { "projectId": "project-1", "section": "Grounded production design" }
+      "input": {
+        "projectId": "project-1",
+        "section": "World Building",
+        "mode": "append",
+        "content": "Sourced: ref-1 shows the workshop's blue steel gate."
+      }
     },
-    { "type": "tool_call", "tool": "plan_save", "input": { "projectId": "project-1" } },
-    { "type": "tool_call", "tool": "shot_get", "input": { "projectId": "project-1", "shotId": "shot-1" } },
+    {
+      "type": "tool_call",
+      "tool": "plan_save",
+      "input": {
+        "projectId": "project-1",
+        "plan": {
+          "direction": "Use the reviewed Old Port asset design for the approved opening.",
+          "creativeDecisions": [
+            "Sourced: ref-1 shows a blue steel gate; it does not establish unseen machinery."
+          ],
+          "milestones": [
+            "Opening still"
+          ],
+          "acceptanceCriteria": [
+            "Gate and latch remain visible; visitor waits until release."
+          ],
+          "checklist": [
+            {
+              "id": "opening",
+              "label": "Generate opening still",
+              "status": "planned"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "tool_call",
+      "tool": "workspace_update_entity",
+      "input": {
+        "projectId": "project-1",
+        "kind": "location",
+        "entityId": "location-1",
+        "attributesPatch": {
+          "visualLock": "Workshop with a blue steel gate."
+        }
+      }
+    },
+    {
+      "type": "tool_call",
+      "tool": "workspace_read_entity",
+      "input": {
+        "projectId": "project-1",
+        "kind": "location",
+        "entityId": "location-1"
+      }
+    },
+    {
+      "type": "tool_result",
+      "tool": "workspace_read_entity",
+      "output": {
+        "entity": {
+          "entityId": "location-1",
+          "attributes": {
+            "visualLock": "Workshop with a blue steel gate."
+          }
+        }
+      }
+    },
+    {
+      "type": "tool_call",
+      "tool": "shot_update",
+      "input": {
+        "projectId": "project-1",
+        "shotId": "shot-1",
+        "locationEntityId": "location-1",
+        "direction": {
+          "blocking": "Worker holds the gate latch; visitor waits outside."
+        }
+      }
+    },
+    {
+      "type": "tool_call",
+      "tool": "shot_get",
+      "input": {
+        "projectId": "project-1",
+        "shotId": "shot-1"
+      }
+    },
+    {
+      "type": "tool_result",
+      "tool": "shot_get",
+      "output": {
+        "shot": {
+          "shotId": "shot-1",
+          "locationEntityId": "location-1",
+          "direction": {
+            "blocking": "Worker holds the gate latch; visitor waits outside."
+          }
+        }
+      }
+    },
     {
       "type": "tool_call",
       "tool": "workspace_execute_command",
       "input": {
-        "type": "shot.generateImage",
+        "type": "scene.generateImage",
         "projectId": "project-1",
-        "shotId": "shot-1",
-        "operationKey": "image.generate",
+        "sceneId": "shot-1",
+        "operationKey": "image/seedream/seedream/5-lite:text-to-image",
         "inputs": {}
       }
     },
-    { "type": "tool_call", "tool": "task_get", "input": { "taskId": "task-1" } }
+    {
+      "type": "tool_call",
+      "tool": "task_get",
+      "input": {
+        "taskId": "task-1"
+      }
+    }
   ]
 }

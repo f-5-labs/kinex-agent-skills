@@ -47,6 +47,6 @@ On failure, report the failing stage and repair path; do not blindly restart an 
 
 Read [tool map](references/tool-map.md) for the export state machine.
 Read [shared shot composition](../kinex-agent-workspace/references/shot-composition.md) for partial repairs, stale cards, ordering, prompt refresh, and shot deletion blockers. A shot-order change does not rewrite the saved timeline.
-Read [direction review](references/direction-review.md) when reviewing planned coverage, scene readiness, generated motion, or a disputed creative pass.
+Read [direction review](references/direction-review.md) when reviewing planned coverage, scene readiness, generated stills or asset locks, motion, or a disputed creative pass. Source/design review belongs before the first asset image; this result review verifies pixels and sound, not the research already settled upstream.
 
 For a standalone installation without the sibling reference, read the [published shot composition contract](https://github.com/f-5-labs/kinex-agent-skills/blob/main/skills/kinex-agent-workspace/references/shot-composition.md) and refresh the live tool schema before project writes. If neither is available, keep the proposed patch local and report the gap; prompt-only work can continue.

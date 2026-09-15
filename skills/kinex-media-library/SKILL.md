@@ -7,7 +7,7 @@ description: Generate, upload, find, reuse, update, and organize standalone Kine
 
 Treat the workspace library as reusable source material, not as a substitute for project-scoped entities or scene media. External assets intended to lock an Agent Workspace entity or shot must use `$kinex-agent-workspace`, which uploads them into the project before attachment.
 
-If an image is meant to establish people, place, work, or cultural context for a grounded story, it is project-scoped production work: route it through `$kinex-agent-workspace` and complete its [grounded production design](../kinex-agent-workspace/references/grounded-production-design.md) before prompting. A standalone library asset may remain here, but do not present a country or community as a generic visual style or call uninspected cultural detail sourced.
+Destination determines ownership, not cultural specificity. A researched reusable character, workshop, or prop stays in the library unless the user requests project attachment. During asset design, use the source and design-review checks in [grounded production design](../kinex-agent-workspace/references/grounded-production-design.md) when available; retain sourced facts, proposed choices, reference limits, and unresolved details with the asset's supported description/attributes. Those checks also apply standalone without creating a project. Review before its first image; downstream prompts inherit the design instead of restarting research.
 
 ## Route the request
 

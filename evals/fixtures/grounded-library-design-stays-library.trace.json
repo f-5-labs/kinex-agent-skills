@@ -1,0 +1,24 @@
+{
+  "scenarioId": "grounded-library-design-stays-library",
+  "host": "synthetic-contract-fixture",
+  "events": [
+    {
+      "type": "tool_call",
+      "tool": "library_list_entities",
+      "input": {
+        "kind": "locations"
+      }
+    },
+    {
+      "type": "tool_call",
+      "tool": "library_create_entity",
+      "input": {
+        "kind": "locations",
+        "name": "Workshop",
+        "data": {
+          "description": "Sourced: ref-1 shows a blue steel gate. Unresolved: space behind the gate."
+        }
+      }
+    }
+  ]
+}

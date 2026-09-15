@@ -1,0 +1,116 @@
+{
+  "scenarioId": "grounded-character-design-before-first-image",
+  "host": "synthetic-contract-fixture",
+  "events": [
+    {
+      "type": "tool_call",
+      "tool": "plan_get",
+      "input": {
+        "projectId": "project-1"
+      }
+    },
+    {
+      "type": "tool_call",
+      "tool": "context_get",
+      "input": {
+        "projectId": "project-1"
+      }
+    },
+    {
+      "type": "tool_call",
+      "tool": "plan_save",
+      "input": {
+        "projectId": "project-1",
+        "plan": {
+          "direction": "Design the mechanic from ref-1 before the first identity image.",
+          "milestones": [
+            "Reviewed character design",
+            "First identity image"
+          ],
+          "acceptanceCriteria": [
+            "Preserve the blue cotton work coat; do not infer unseen badges."
+          ],
+          "checklist": [
+            {
+              "id": "design",
+              "label": "Review sourced identity and wardrobe",
+              "status": "complete"
+            },
+            {
+              "id": "identity",
+              "label": "Generate first identity image",
+              "status": "planned"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "design_review",
+      "stage": "before_image",
+      "sourceRefs": [
+        "ref-1"
+      ],
+      "decisions": {
+        "sourced": "Blue cotton work coat.",
+        "unresolved": "Unseen badges and back construction."
+      },
+      "verdict": "READY_FOR_REQUESTED_IMAGE"
+    },
+    {
+      "type": "tool_call",
+      "tool": "workspace_define_entity",
+      "input": {
+        "projectId": "project-1",
+        "kind": "character",
+        "name": "Mechanic",
+        "description": "Adult mechanic in the supplied blue cotton work coat.",
+        "attributes": {
+          "visualLock": "Adult mechanic in a blue cotton work coat.",
+          "voicePrompt": "Established casting: low conversational register with measured pacing."
+        }
+      }
+    },
+    {
+      "type": "tool_call",
+      "tool": "workspace_read_entity",
+      "input": {
+        "projectId": "project-1",
+        "kind": "character",
+        "entityId": "mechanic-1"
+      }
+    },
+    {
+      "type": "tool_result",
+      "tool": "workspace_read_entity",
+      "output": {
+        "entity": {
+          "entityId": "mechanic-1",
+          "attributes": {
+            "visualLock": "Adult mechanic in a blue cotton work coat.",
+            "voicePrompt": "Established casting: low conversational register with measured pacing."
+          }
+        }
+      }
+    },
+    {
+      "type": "tool_call",
+      "tool": "workspace_execute_command",
+      "input": {
+        "projectId": "project-1",
+        "type": "entity.generateHero",
+        "entityKind": "character",
+        "entityId": "mechanic-1",
+        "operationKey": "image/seedream/seedream/5-lite:text-to-image",
+        "inputs": {}
+      }
+    },
+    {
+      "type": "tool_call",
+      "tool": "task_get",
+      "input": {
+        "taskId": "task-1"
+      }
+    }
+  ]
+}

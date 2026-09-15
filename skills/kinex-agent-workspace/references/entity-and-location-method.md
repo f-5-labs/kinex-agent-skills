@@ -21,6 +21,8 @@ Maintain a compact asset passport for every recurring lock: canonical entity id 
 
 Inspect every supplied source first. It is evidence, not permission to redesign or invent hidden facts.
 
+When real context matters, complete [grounded production design](grounded-production-design.md) here for characters, props, and locations together. Review proposed identity, wardrobe, work practice, geometry, reference roles, and required states before the first image. Reuse that design downstream; prompt craft checks only changed requirements. This pre-generation design review cannot approve pixels that do not yet exist.
+
 For a human character, persist only approved or source-visible identity facts: adult age descriptor, build and body proportions, facial structure and feature spacing, skin tone and texture, hair, distinctive marks, wardrobe construction and fit, footwear, accessories, and props. Preserve natural texture and asymmetry appropriate to the brief. Do not add sensitive traits or distinctive marks as generic realism cues.
 
 For a non-human character, persist subject class, silhouette, proportions, limb or construction rules, species or material traits, palette, line and shape language, expression system, movement constraints, and source-visible distinctive features. Do not apply human casting, skin, makeup, or anatomy rules unless the subject is human.
@@ -78,7 +80,7 @@ Architecture, distances, materials, permanent set dressing, and palette must rem
 ## Generate and persist the lock
 
 1. List and read existing entities before defining a new one.
-2. Persist stable canon on the entity and Project Bible before asking any image model to visualize it.
+2. Persist reviewed stable canon on the entity and sourced facts in the Project Bible before asking any image model to visualize it. Use the [shared prompt handoff](shot-composition.md#persist-decisions-before-film-compilation) so accepted details reach the compiler, not only descriptive notes.
    Author each materially different production state under a stable key in `attributes.variants` with `label`, `descriptor`, `stateDelta`, and `requiredShotIds`. Status, media ids, URLs, and lock provenance are system-owned: use the advertised lock operation or external attach flow and verify them by re-reading.
 3. Give every supplied or generated reference one job: identity, wardrobe or garment, location geometry and materials, style, composition, or another explicit role. Identity and physical geometry outrank mood and style when references conflict.
 4. When generation happens outside Kinex, use the host image generator, upload the result as project-scoped media, and attach it deliberately as hero, continuity anchor, or both. For a named variant, use `workspace_attach_external_media` with the `entity_variant` target and exact `variantKey`; do not write system-owned lock fields through an entity patch.

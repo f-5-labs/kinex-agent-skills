@@ -18,6 +18,22 @@ MCP uses `shot_define / shot_get / shot_update / shot_delete` with `projectId`, 
 
 These are fields on the shot-tool input, not wrapped in `breakdown`. Read responses may also expose `breakdown` and flat convenience projections; they are not extra authoring inputs. Do not copy the whole response into a write. Removed inputs include `requireLockedEntities`, `cameraNotes`, `shotType`, `firstFrameBlocking`, `performanceNotes`, top-level dialogue/voice fields, and the retired flat snake_case camera adapter. A camera preset catalogue is unnecessary; use optional live package/hue ids only when useful.
 
+## Persist decisions before film compilation
+
+For the film-contract generation path, software builds the model-ready prompt from persisted records; submitted `imagePrompt`, `videoPrompt`, or operation prompt prose is not an override. The Plan and Project Bible explain provenance but are not read by this compiler. Before generation, map accepted design decisions into their existing owners:
+
+| Decision | Executable owner |
+| --- | --- |
+| Stable character, wardrobe, prop, material and location appearance | Entity `attributes.visualLock`; named state in `attributes.variants` with its `visualLock`/`descriptor` and the shot's exact variant selectors |
+| Stable place geometry | Location `attributes.geoSpatialLayout`; keep actors and temporary action out of this map |
+| Starting occupancy, work mechanics and prop custody | Shot `direction.blocking` and `spatialLayout`; progression in `actionLine` |
+| Scene-specific performance | Shot `direction.acting`, separate from entity `actingProfile` and `voicePrompt` |
+| View, light, timing and sound | Shot `camera`, `edit`, and `audio`; project-wide style through the existing style tools |
+
+Use advertised entity and shot writes, preserve unrelated fields, then re-read assignments and changed records before queueing. Inspect actual compiled task inputs when exposed; if unavailable, report compilation as unverified, not passed. Repair a missing instruction at its record owner and recompile, rather than appending a second prompt.
+
+For an explicitly external generator, standalone library image, or path that accepts authored prose, compose it from the same accepted decisions and reference roles. Prompt-only requests produce a proposal, not remote writes or generation. Never switch execution paths to evade a missing compiler capability.
+
 ## One record owns one generated clip
 
 A shot record is the unit sent to one video-generation operation. It can direct a coherent event with intentional internal camera cuts, micro-actions, listener reactions, and exact dialogue; it is not a database row for each panel, angle, cut, or gesture. Keep the complete clip contract together: source coverage, cast and variants, props, location, opening state, action/reaction progression, audio ownership, prompt, duration, internal cuts, and outgoing handoff.
