@@ -1,0 +1,298 @@
+{
+  "scenarioId": "flow-multimodal-ai-text-director",
+  "host": "external-mcp-client",
+  "events": [
+    {
+      "type": "tool_call",
+      "tool": "library_upload_media",
+      "input": {
+        "files": [
+          { "filename": "subject.png", "mimeType": "image/png", "base64": "iVBORw0KGgo=" },
+          { "filename": "style.mp4", "mimeType": "video/mp4", "base64": "AAAAIGZ0eXBpc29t" }
+        ]
+      }
+    },
+    {
+      "type": "tool_result",
+      "tool": "library_upload_media",
+      "output": {
+        "items": [
+          { "mediaItemId": "media-subject", "type": "image" },
+          { "mediaItemId": "media-style", "type": "video" }
+        ]
+      }
+    },
+    {
+      "type": "tool_call",
+      "tool": "flow_create",
+      "input": {
+        "name": "Multimodal prompt director",
+        "description": "Analyze a subject image, style video, and instructions before generating a referenced video."
+      }
+    },
+    { "type": "tool_result", "tool": "flow_create", "output": { "flow": { "id": "flow-1" } } },
+    { "type": "tool_call", "tool": "flow_get", "input": { "flowId": "flow-1" } },
+    {
+      "type": "tool_result",
+      "tool": "flow_get",
+      "output": { "graphRevision": "r0", "graph": { "nodes": [], "edges": [] } }
+    },
+    { "type": "tool_call", "tool": "flow_plan_get", "input": { "flowId": "flow-1" } },
+    {
+      "type": "tool_call",
+      "tool": "flow_plan_save",
+      "input": {
+        "flowId": "flow-1",
+        "expectedRevision": "r0",
+        "title": "Multimodal prompt director",
+        "markdown": "## Outcome\nAnalyze the subject image and style video, then generate one referenced clip.\n\n## Inputs\n- Subject image preserves identity.\n- Style video supplies motion and visual direction.\n- Creative instructions constrain the result.\n\n## Validation\n- [ ] AI Text model accepts image and video.\n- [ ] Original references also reach the video generator.\n- [ ] Persisted output is verified after the run."
+      }
+    },
+    { "type": "tool_result", "tool": "flow_plan_save", "output": { "graphRevision": "r1" } },
+    { "type": "tool_call", "tool": "flow_capabilities_get", "input": {} },
+    {
+      "type": "tool_result",
+      "tool": "flow_capabilities_get",
+      "output": {
+        "nodeTypes": [
+          { "typeId": "flow.asset.static" },
+          { "typeId": "flow.text.prompt" },
+          { "typeId": "flow.ai.llm" },
+          { "typeId": "flow.media.video" }
+        ]
+      }
+    },
+    {
+      "type": "tool_call",
+      "tool": "flow_node_add",
+      "input": {
+        "flowId": "flow-1",
+        "expectedRevision": "r1",
+        "typeId": "flow.asset.static",
+        "nodeId": "subject-image",
+        "label": "Subject image"
+      }
+    },
+    { "type": "tool_result", "tool": "flow_node_add", "output": { "graphRevision": "r2" } },
+    {
+      "type": "tool_call",
+      "tool": "flow_node_add",
+      "input": {
+        "flowId": "flow-1",
+        "expectedRevision": "r2",
+        "typeId": "flow.asset.static",
+        "nodeId": "style-video",
+        "label": "Style video"
+      }
+    },
+    { "type": "tool_result", "tool": "flow_node_add", "output": { "graphRevision": "r3" } },
+    {
+      "type": "tool_call",
+      "tool": "flow_node_add",
+      "input": {
+        "flowId": "flow-1",
+        "expectedRevision": "r3",
+        "typeId": "flow.text.prompt",
+        "nodeId": "creative-instructions",
+        "label": "Creative instructions",
+        "config": {
+          "text": "Analyze @style-video for motion, timing, camera, lighting, and texture. Preserve the identity and silhouette in @subject-image. Return only a production-ready video prompt with ordered beats and continuity constraints."
+        }
+      }
+    },
+    { "type": "tool_result", "tool": "flow_node_add", "output": { "graphRevision": "r4" } },
+    {
+      "type": "tool_call",
+      "tool": "flow_node_add",
+      "input": {
+        "flowId": "flow-1",
+        "expectedRevision": "r4",
+        "typeId": "flow.ai.llm",
+        "nodeId": "prompt-director",
+        "label": "Prompt director",
+        "config": { "modelId": "google/gemini-3.5-flash" }
+      }
+    },
+    { "type": "tool_result", "tool": "flow_node_add", "output": { "graphRevision": "r5" } },
+    {
+      "type": "tool_call",
+      "tool": "flow_node_add",
+      "input": {
+        "flowId": "flow-1",
+        "expectedRevision": "r5",
+        "typeId": "flow.media.video",
+        "nodeId": "directed-motion",
+        "label": "Directed motion clip",
+        "config": { "modelId": "provider/video-reference-model" }
+      }
+    },
+    { "type": "tool_result", "tool": "flow_node_add", "output": { "graphRevision": "r6" } },
+    {
+      "type": "tool_call",
+      "tool": "flow_media_input_set",
+      "input": {
+        "flowId": "flow-1",
+        "expectedRevision": "r6",
+        "nodeId": "subject-image",
+        "mediaItemId": "media-subject",
+        "expectedModality": "image"
+      }
+    },
+    { "type": "tool_result", "tool": "flow_media_input_set", "output": { "graphRevision": "r7" } },
+    {
+      "type": "tool_call",
+      "tool": "flow_media_input_set",
+      "input": {
+        "flowId": "flow-1",
+        "expectedRevision": "r7",
+        "nodeId": "style-video",
+        "mediaItemId": "media-style",
+        "expectedModality": "video"
+      }
+    },
+    { "type": "tool_result", "tool": "flow_media_input_set", "output": { "graphRevision": "r8" } },
+    { "type": "tool_call", "tool": "flow_get", "input": { "flowId": "flow-1" } },
+    {
+      "type": "tool_result",
+      "tool": "flow_get",
+      "output": { "graphRevision": "r8", "graph": { "nodes": [], "edges": [] } }
+    },
+    {
+      "type": "tool_call",
+      "tool": "flow_capabilities_get",
+      "input": { "typeId": "flow.asset.static", "config": { "modality": "image", "mediaItemId": "media-subject" } }
+    },
+    {
+      "type": "tool_call",
+      "tool": "flow_capabilities_get",
+      "input": { "typeId": "flow.asset.static", "config": { "modality": "video", "mediaItemId": "media-style" } }
+    },
+    {
+      "type": "tool_call",
+      "tool": "flow_capabilities_get",
+      "input": { "typeId": "flow.ai.llm", "config": { "modelId": "google/gemini-3.5-flash" } }
+    },
+    {
+      "type": "tool_result",
+      "tool": "flow_capabilities_get",
+      "output": {
+        "nodeTypes": [
+          {
+            "typeId": "flow.ai.llm",
+            "inputPorts": [
+              { "id": "prompt", "modality": "text", "supported": true },
+              { "id": "context", "modality": "text", "supported": true },
+              { "id": "images", "modality": "image", "supported": true },
+              { "id": "videos", "modality": "video", "supported": true }
+            ],
+            "outputPorts": [{ "id": "output", "modality": "text" }]
+          }
+        ]
+      }
+    },
+    {
+      "type": "tool_call",
+      "tool": "flow_capabilities_get",
+      "input": { "typeId": "flow.media.video", "config": { "modelId": "provider/video-reference-model" } }
+    },
+    {
+      "type": "tool_call",
+      "tool": "flow_nodes_connect",
+      "input": {
+        "flowId": "flow-1",
+        "expectedRevision": "r8",
+        "sourceNodeId": "subject-image",
+        "sourcePortId": "output",
+        "targetNodeId": "prompt-director",
+        "targetPortId": "images"
+      }
+    },
+    { "type": "tool_result", "tool": "flow_nodes_connect", "output": { "graphRevision": "r9" } },
+    {
+      "type": "tool_call",
+      "tool": "flow_nodes_connect",
+      "input": {
+        "flowId": "flow-1",
+        "expectedRevision": "r9",
+        "sourceNodeId": "style-video",
+        "sourcePortId": "output",
+        "targetNodeId": "prompt-director",
+        "targetPortId": "videos"
+      }
+    },
+    { "type": "tool_result", "tool": "flow_nodes_connect", "output": { "graphRevision": "r10" } },
+    {
+      "type": "tool_call",
+      "tool": "flow_nodes_connect",
+      "input": {
+        "flowId": "flow-1",
+        "expectedRevision": "r10",
+        "sourceNodeId": "creative-instructions",
+        "sourcePortId": "output",
+        "targetNodeId": "prompt-director",
+        "targetPortId": "prompt"
+      }
+    },
+    { "type": "tool_result", "tool": "flow_nodes_connect", "output": { "graphRevision": "r11" } },
+    {
+      "type": "tool_call",
+      "tool": "flow_nodes_connect",
+      "input": {
+        "flowId": "flow-1",
+        "expectedRevision": "r11",
+        "sourceNodeId": "prompt-director",
+        "sourcePortId": "output",
+        "targetNodeId": "directed-motion",
+        "targetPortId": "prompt"
+      }
+    },
+    { "type": "tool_result", "tool": "flow_nodes_connect", "output": { "graphRevision": "r12" } },
+    {
+      "type": "tool_call",
+      "tool": "flow_nodes_connect",
+      "input": {
+        "flowId": "flow-1",
+        "expectedRevision": "r12",
+        "sourceNodeId": "subject-image",
+        "sourcePortId": "output",
+        "targetNodeId": "directed-motion",
+        "targetPortId": "reference"
+      }
+    },
+    { "type": "tool_result", "tool": "flow_nodes_connect", "output": { "graphRevision": "r13" } },
+    {
+      "type": "tool_call",
+      "tool": "flow_nodes_connect",
+      "input": {
+        "flowId": "flow-1",
+        "expectedRevision": "r13",
+        "sourceNodeId": "style-video",
+        "sourcePortId": "output",
+        "targetNodeId": "directed-motion",
+        "targetPortId": "referenceVideo"
+      }
+    },
+    { "type": "tool_result", "tool": "flow_nodes_connect", "output": { "graphRevision": "r14" } },
+    { "type": "tool_call", "tool": "flow_validate", "input": { "flowId": "flow-1" } },
+    { "type": "tool_result", "tool": "flow_validate", "output": { "ok": true, "graphIssues": [], "mediaInputs": [] } },
+    {
+      "type": "tool_call",
+      "tool": "flow_run_graph",
+      "input": { "flowId": "flow-1", "requestKey": "multimodal-prompt-director-v1" }
+    },
+    { "type": "tool_result", "tool": "flow_run_graph", "output": { "runId": "run-1" } },
+    { "type": "tool_call", "tool": "flow_run_get", "input": { "runId": "run-1" } },
+    {
+      "type": "tool_result",
+      "tool": "flow_run_get",
+      "output": { "run": { "id": "run-1", "status": "success" } }
+    },
+    { "type": "tool_call", "tool": "flow_list_media", "input": { "flowId": "flow-1" } },
+    {
+      "type": "tool_result",
+      "tool": "flow_list_media",
+      "output": { "items": [{ "id": "flow-output-1", "type": "video" }] }
+    },
+    { "type": "tool_call", "tool": "flow_get", "input": { "flowId": "flow-1" } }
+  ]
+}
