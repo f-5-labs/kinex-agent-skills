@@ -1,0 +1,10 @@
+{
+  "scenarioId": "visual-realism-pixel-review",
+  "host": "external-mcp-client",
+  "events": [
+    { "type": "tool_call", "tool": "shot_list", "input": { "projectId": "project-1" } },
+    { "type": "tool_call", "tool": "shot_get", "input": { "projectId": "project-1", "shotId": "shot-1" } },
+    { "type": "tool_call", "tool": "media_list_project", "input": { "projectId": "project-1" } },
+    { "type": "tool_call", "tool": "workspace_preview_timeline", "input": { "projectId": "project-1" } }
+  ]
+}

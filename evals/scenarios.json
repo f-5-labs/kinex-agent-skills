@@ -224,6 +224,37 @@
       ]
     },
     {
+      "id": "grounded-story-research-design-before-prompt",
+      "skill": "kinex-agent-workspace",
+      "request": "Generate the approved opening still for our source-grounded drama in the documented Old Port repair district. Do the research-and-design pass before prompting, carry the real work and gate handoff into the frame, and do not turn the district into a generic regional look.",
+      "expectedTools": [
+        "plan_get",
+        "context_get",
+        "context_update_section",
+        "plan_save",
+        "shot_get",
+        "workspace_execute_command",
+        "task_get"
+      ],
+      "orderedTools": [
+        "plan_get",
+        "context_get",
+        "workspace_execute_command",
+        "task_get"
+      ],
+      "forbiddenTools": [
+        "library_generate_image",
+        "generation_generate_video"
+      ],
+      "checks": [
+        "records the actual setting, relevant reference roles, and source limits before drafting the prompt",
+        "labels durable decisions as sourced, proposed, or unresolved instead of inventing local detail",
+        "carries the context into wardrobe, work practice, prop custody, occupancy, material wear, signage or artefacts, and camera blocking",
+        "uses a focused research pass without adding a second approval loop before the requested generation",
+        "does not reduce a country, community, or district to a generic visual style"
+      ]
+    },
+    {
       "id": "performance-aware-shot-revision",
       "skill": "kinex-agent-workspace",
       "request": "The close-up feels generically sad. Revise the shot direction so the actor has a playable objective, physical business, and a reaction beat, without changing the approved story.",
@@ -640,6 +671,36 @@
         "distinguishes generated, accepted, active, and selected media",
         "checks eyelines, action axis, identity, props, geography, light, movement, performance, and audio tails",
         "reports coverage holes as shot orders instead of broad regeneration"
+      ]
+    },
+    {
+      "id": "visual-realism-pixel-review",
+      "skill": "kinex-review-and-export",
+      "request": "Read-only review the generated stills and clips for the Old Port scene before anything is approved. Inspect the pixels and watched frames, not the prompts: test the gate mechanism, occupied repair surfaces and wear, the promised profile camera angle, and continuity of wardrobe and tool custody across the cut.",
+      "expectedTools": [
+        "shot_list",
+        "shot_get",
+        "media_list_project",
+        "workspace_preview_timeline"
+      ],
+      "orderedTools": [
+        "shot_list",
+        "shot_get",
+        "media_list_project",
+        "workspace_preview_timeline"
+      ],
+      "forbiddenTools": [
+        "workspace_execute_command",
+        "timeline_save",
+        "timeline_export",
+        "shot_update"
+      ],
+      "checks": [
+        "requires generated pixel or watched-frame evidence before approving a still or clip",
+        "checks physical mechanics, lived-in occupancy, material condition, and the promised camera angle",
+        "compares wardrobe, props, task phase, geography, light, and camera-side continuity across affected shots",
+        "reports the first material failure and one targeted repair rather than approving a specific prompt",
+        "keeps sourced and proposed grounded-context decisions distinct"
       ]
     },
     {

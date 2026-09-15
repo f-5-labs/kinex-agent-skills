@@ -16,6 +16,18 @@ Report `PASS`, `REVISE`, or `BLOCK` independently for the stages in scope:
 
 Never infer a later pass from an earlier one. Queued or completed generation is not an accepted take. A planning note about exact aspect ratio is not verified dimensions, and a canvas camera note does not prove supported native fields were updated. Camera-brand wording is not evidence of a colour profile, motivated light, or colour continuity.
 
+## Run the visual-realism gate before acceptance
+
+Inspect what the generated pixels actually show. For a still, inspect the completed image at a useful scale. For a clip, inspect its opening, decisive action, and ending frames while watching the action; sample any internal cut or transition that carries a continuity burden. A detailed prompt, queued task, saved card, or model response cannot pass this gate.
+
+- **Physical mechanics:** Verify support, connection, contact, weight, inertia, and plausible paths for hands, tools, doors, vehicles, structures, cloth, liquid, and body-bound items. Trace a required prop from owner through transfer and release; do not hide a missing connection or impossible action with a closer crop.
+- **Lived-in occupancy:** When the scene claims an inhabited working place, check that it is occupied and used in a way the scene and its sources support: relevant work surfaces, task residue, access paths, personal effects, material wear, repairs, and light response. Do not reward generic clutter or use a country, community, or ethnicity as a decorative visual preset.
+- **Camera-angle compliance:** With captions and diagrams hidden, compare the planned camera station, axis, height, foreground occlusion, subject scale, face visibility, prop path, and background parallax with the image. A claimed OTS needs the near shoulder/back and the promised relation; a profile and an establishing wide must visibly be those views.
+- **Cross-shot continuity:** Compare approved neighbours for identity, wardrobe, hair, body-bound items, prop custody, task phase, location geometry, occupancy, material condition, light, weather, screen direction, and camera-side logic. When a detail is hidden, record it as unverified rather than treating absence as continuity.
+- **Grounded provenance:** For a grounded story, compare visible wardrobe, work practice, objects, signage or artefacts, occupancy, and wear against the research-and-design record. State whether each important decision is sourced or proposed; do not promote a generic visual association into a factual claim.
+
+Record `asset or shot | relevant reference and decision label | planned view | observed pixels or frames | mechanics | occupancy/material condition | camera compliance | continuity comparison | verdict | one repair`. PASS only when the required evidence is visibly present. REVISE or BLOCK on the first material failure, name the failing control precisely, and repair that control before reconsidering acceptance. For a deliberately stylized project, retain the mechanics, camera, and continuity checks while judging occupancy and material treatment against its approved visual language rather than a photoreal surface.
+
 ## Audit the authored sequence
 
 Follow the story's causal units rather than treating each card as independent.

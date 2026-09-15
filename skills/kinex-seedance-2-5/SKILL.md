@@ -111,6 +111,8 @@ For a start-frame or start-and-end-frame operation, bind only the required sourc
 
 Read the current shot with `shot_get` and apply [shared shot composition](../kinex-agent-workspace/references/shot-composition.md) before compiling the provider prompt. Repair known direction or audio contradictions within scope, then run this preflight and execute authorized generation. If the user explicitly requests a test with open creative issues, record those issues and keep the verdict unverified; do not turn preflight into another approval loop.
 
+For a grounded story, read or complete [grounded production design](../kinex-agent-workspace/references/grounded-production-design.md) before compiling the clip. Carry the relevant sourced or proposed context into reference roles, wardrobe, work, prop paths, occupancy, materials, signage, and blocking; never use a country or community label as a style shortcut. This focused pass remains part of preflight, so an otherwise executable direct request continues after it.
+
 1. Each activated reference has one job and a token.
 2. GEO, first frame, and screen direction are stated.
 3. One coherent camera plan, including locked-off; one continuous shot unless a cut is intentional.

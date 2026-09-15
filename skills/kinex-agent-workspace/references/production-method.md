@@ -8,6 +8,10 @@ Extract the deliverable, audience, duration, aspect ratio, exact copy or dialogu
 
 For campaigns, give each deliverable family its own beat and artifact target. Share canon and identity locks across the campaign; do not invent a batch abstraction or encode a marketing skill as a tool.
 
+## Ground a real-world story before prompting
+
+When real geography, culture, era, community, institution, or work practice is load-bearing to the story, complete [grounded production design](grounded-production-design.md) before writing an image or video prompt. Carry its sourced facts, proposed choices, and unresolved questions into the canonical entities, floor map, prompt, and later review. The pass happens inside ordinary preflight; it does not add a separate approval ceremony or delay a direct, otherwise executable generation request.
+
 ## Build references before coverage
 
 - Choose the lightest sufficient artifact from downstream use: reuse an approved lock, a one-off hero, a quick lock, a full character master sheet, a wardrobe or garment lock, or a location reference sheet. Follow the character and location method for exact coverage and review gates.

@@ -7,6 +7,8 @@ description: Write the image prompt itself for Kinex work — identity locks, he
 
 This skill is about prompt craft. Model choice belongs to `$kinex-media-library`, project routing to `$kinex-agent-workspace`, and motion to the model skills. What arrives here is one image that has to do one job.
 
+For a grounded story, read or complete the project's [grounded production design](../kinex-agent-workspace/references/grounded-production-design.md) before drafting the image. Let its **Sourced**, **Proposed**, and **Unresolved** decisions set the boundary for wardrobe, work practice, prop custody, occupancy, materials, signage, and blocking. A country or community label is not a substitute for relevant references, and a specific prompt still needs pixel review before the image can be approved.
+
 ## Classify the job before writing a word
 
 A prompt that mixes jobs drifts, because the jobs pull against each other:

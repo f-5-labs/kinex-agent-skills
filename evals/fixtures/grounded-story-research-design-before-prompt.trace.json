@@ -1,0 +1,27 @@
+{
+  "scenarioId": "grounded-story-research-design-before-prompt",
+  "host": "external-mcp-client",
+  "events": [
+    { "type": "tool_call", "tool": "plan_get", "input": { "projectId": "project-1" } },
+    { "type": "tool_call", "tool": "context_get", "input": { "projectId": "project-1" } },
+    {
+      "type": "tool_call",
+      "tool": "context_update_section",
+      "input": { "projectId": "project-1", "section": "Grounded production design" }
+    },
+    { "type": "tool_call", "tool": "plan_save", "input": { "projectId": "project-1" } },
+    { "type": "tool_call", "tool": "shot_get", "input": { "projectId": "project-1", "shotId": "shot-1" } },
+    {
+      "type": "tool_call",
+      "tool": "workspace_execute_command",
+      "input": {
+        "type": "shot.generateImage",
+        "projectId": "project-1",
+        "shotId": "shot-1",
+        "operationKey": "image.generate",
+        "inputs": {}
+      }
+    },
+    { "type": "tool_call", "tool": "task_get", "input": { "taskId": "task-1" } }
+  ]
+}

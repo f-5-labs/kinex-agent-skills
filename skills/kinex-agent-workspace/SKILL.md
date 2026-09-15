@@ -23,9 +23,10 @@ Empower the user without manufacturing readiness. A direct generation request au
 
 1. Read the immediate brief or supplied source plus `plan_get` and `context_get`.
 2. Within the first few useful actions, save a substantive draft with `plan_save`. Use exactly `## Direction`, `## Assumptions and Open Questions`, `## Milestones`, and `## Checklist`; write checklist rows as `- [ ] (stable-step-id) concise outcome` (`[x]` complete, `[-]` blocked).
-3. Put durable, sourced creative facts in the Project Bible with `context_update_section`; never use it for speculative options, unsupported product claims, or temporary tasks.
-4. At the start of every later user turn, re-read the plan and reconcile its checklist with the latest direction before material action. Retain relevant outcomes, remove superseded work, and reorder priorities. Save only when the shared roadmap materially changes; do not create a confirmation loop by rewriting an unchanged plan.
-5. Re-read each saved record after writing it. Use the latest `etag` as `expectedEtag` when replacing an existing plan.
+3. When a story depends on a real geography, culture, era, community, institution, or work practice, complete the research-and-design pass before drafting an image or video prompt. Keep durable sourced facts in the Project Bible, label production choices as proposed, and preserve unknowns as unresolved. This is normal prompt preparation, not another approval gate: after the focused pass, continue a direct generation request in the same turn.
+4. Put durable, sourced creative facts in the Project Bible with `context_update_section`; never use it for speculative options, unsupported product claims, or temporary tasks.
+5. At the start of every later user turn, re-read the plan and reconcile its checklist with the latest direction before material action. Retain relevant outcomes, remove superseded work, and reorder priorities. Save only when the shared roadmap materially changes; do not create a confirmation loop by rewriting an unchanged plan.
+6. Re-read each saved record after writing it. Use the latest `etag` as `expectedEtag` when replacing an existing plan.
 
 The Production Plan is the living roadmap. The Project Bible is the durable creative canon. Do not create a shadow plan in chat.
 
@@ -95,6 +96,7 @@ Hand final assembly and rendering to `$kinex-review-and-export` only when the pr
 
 Read [tool map](references/tool-map.md) for command families and confirmation boundaries.
 Read [character and location method](references/entity-and-location-method.md) when choosing, generating, or reviewing recurring identity and environment locks.
+Read [grounded production design](references/grounded-production-design.md) before prompting a story whose real-world setting or cultural context carries dramatic or visual meaning.
 Read [production method](references/production-method.md) when designing entities, variants, performance, shot prompts, or iteration passes.
 Read [scene production method](references/scene-production-method.md) for any project that contains scenes, motion, an edit, or final delivery.
 Read [direction readiness](references/direction-readiness.md) before finalizing motion coverage or invoking motion generation for a scene.
