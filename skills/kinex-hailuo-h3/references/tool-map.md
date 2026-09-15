@@ -9,6 +9,7 @@
 
 - Agent Workspace canon and approval: `plan_get`, `plan_save`, `context_get`, `context_update_section`.
 - Structure and evidence: `beat_list`, `shot_list`, `shot_get`, `workspace_read_entity`, `workspace_preview_entity`.
+- One shot record owns one H3 clip. Do not pass a sequence-sheet grid as a frame input or claim internal hard cuts the live H3 operation does not support.
 - Approved generation router: `workspace_execute_command`.
 - Completion and cut review: `task_get`, then re-read the affected beat or shot and use `workspace_preview_timeline`.
 

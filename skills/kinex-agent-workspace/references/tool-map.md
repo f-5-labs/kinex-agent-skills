@@ -32,6 +32,10 @@ For any shot write, read [shared shot composition](shot-composition.md). MCP and
 
 When a camera sheet or frame is under review, inspect the actual media with captions hidden before recording a PASS. Compare the planned station and floor-map axis to foreground occlusion/scale, face visibility, background parallax, and complete hand/prop/accessory continuity. A camera label, crop, lens note, or head turn is not evidence of a new position. Keep failed media in history; change a current hero, anchor, or frame role only when the user authorized that repair and the live surface exposes the write.
 
+A shot record owns one generated clip. Keep sequence sheets in an advertised typed reference role and never attach a grid to a start/end-frame slot. If the live surface lacks a sequence-reference or requested panel-count field, persist the association and panel plan in supported Production Plan/prompt fields and report the gap rather than inventing input.
+
+For record consolidation, read `plan_get`, `beat_list`, `shot_list` and affected `shot_get` cards, entity assignments and `requiredShotIds`, `media_list_project`, `task_list_project`, and `timeline_get` before deletion. Inspect live schemas, patch full collection membership, update survivors and dependencies, and re-read. Use `shot_delete` only when the user explicitly authorized it and the record is unreferenced; normalize zero-based order after safe deletes.
+
 ## Generation-router families
 
 Use the live schema for exact payloads. Route entity heroes, scene images/video/SFX, beat frames/clips, shot regeneration, and image edits through `workspace_execute_command`. Entity CRUD, plan, context, style, beat, and shot writes have dedicated tools.

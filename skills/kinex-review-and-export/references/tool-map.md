@@ -12,3 +12,5 @@
 States: not ready → repair; ready for save → load latest; saved → verify; verified → export when authorized; queued/rendering → poll; complete → deliver URL; failed → diagnose smallest repair.
 
 Camera-sheet and start-frame review uses the actual media returned by project history or preview. Hide captions before comparing the pixels with the card and floor map. A label saying OTS/reverse is not a camera proof; require changed foreground mask and scale, face visibility, background parallax, and complete hand/prop/accessory continuity. Withdraw any contradicted PASS and do not leave a rejected image described as current or approved.
+
+For a record consolidation, build and verify the old → survivor mapping before deletion. Read plan/card source coverage, entities and `requiredShotIds`, shot media and tasks, and master/beat timelines; update and re-read survivors and dependencies first. A sequence sheet belongs to one generated clip as a typed reference, not to its literal first frame.

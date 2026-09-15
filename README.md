@@ -86,6 +86,7 @@ See [creative examples](./examples/creative-prompts.md) for prompts you can adap
 - Keep shot direction, camera, edit intent, exact prompt inputs, take verdicts, and join QC reproducible rather than relying on agent memory.
 - Require direction-ready motion coverage to earn its audience change, blocking, camera, cut, natural timing, and audio route; a successful record readback proves persistence, not creative or motion quality.
 - Treat camera position as a visual claim: hide captions and verify foreground occlusion/scale, face visibility, background parallax, action paths, handedness, prop custody, and body-bound accessories before a sheet or frame passes.
+- Treat one shot record as one coherent generated clip. Sequence-sheet panels may describe internal cuts, actions, reactions, and exact dialogue, but never become separate records or literal frame zero.
 - Generate images externally when requested, then upload and attach them as project-scoped continuity media.
 - Keep hero/master plate, continuity anchor, selected preview, and generation history distinct for characters and locations.
 - Treat a direct request to create a named visual deliverable as plan approval and continue execution after host confirmation instead of asking again.

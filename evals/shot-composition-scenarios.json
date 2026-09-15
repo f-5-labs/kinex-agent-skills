@@ -182,6 +182,55 @@
       ]
     },
     {
+      "id": "consolidate-records-into-coherent-clips",
+      "skill": "kinex-agent-workspace",
+      "request": "Five shot records fragment three short dialogue events into panels and tiny actions. Consolidate them into three coherent generated-clip records, preserving every source event and exact line. Use a 9-panel sheet for Event A, retain the existing 12-panel multi-station sheet for Event B, and plan a 4-panel sheet for Event C even though the live shotStrategy enum has no 4-panel value. Delete the two obsolete records only after the full dependency preflight proves it safe. Do not generate or alter the saved timeline.",
+      "expectedTools": [
+        "plan_get",
+        "beat_list",
+        "shot_list",
+        "shot_get",
+        "workspace_list_entities",
+        "workspace_read_entity",
+        "task_list_project",
+        "media_list_project",
+        "timeline_get",
+        "shot_update",
+        "workspace_update_entity",
+        "plan_save",
+        "shot_delete"
+      ],
+      "orderedTools": [
+        "plan_get",
+        "shot_list",
+        "task_list_project",
+        "media_list_project",
+        "timeline_get",
+        "shot_update",
+        "workspace_update_entity",
+        "plan_save",
+        "shot_delete",
+        "shot_list"
+      ],
+      "forbiddenTools": [
+        "workspace_execute_command",
+        "timeline_save",
+        "task_cancel"
+      ],
+      "checks": [
+        "treats each survivor shot record as one coherent generated clip rather than one record per panel, angle, cut, action or reaction",
+        "writes an auditable old-record to survivor-record map before any deletion",
+        "reconciles complete source and dialogue coverage, combined cast and variant assignments, props, location, audio route, prompts, opening state and outgoing tail on each survivor",
+        "keeps each sequence sheet owned by its survivor as a typed generation reference and never binds a grid as literal frame zero",
+        "uses the 9-panel and 12-panel supported strategies while recording the 4-panel plan honestly in supported plan or prompt prose instead of inventing an enum",
+        "checks entity requiredShotIds, project media, running tasks and saved master or beat timelines before deleting obsolete records",
+        "updates and re-reads survivors, entities and plan counts before authorized deletion, then re-lists the final three records",
+        "deletes safe obsolete records individually and normalizes final zero-based survivor order afterward because deletion may shift indices",
+        "retains obsolete-record media as auditable history and leaves the saved timeline unchanged",
+        "fits natural dialogue timing within live operation limits without padding short exchanges, rushing words or compressing unrelated long coverage"
+      ]
+    },
+    {
       "id": "camera-labels-do-not-prove-viewpoint",
       "skill": "kinex-review-and-export",
       "request": "This attractive 12-panel sheet is labelled south and south-west, and we previously passed it. Verify the camera progression and keep it current only if the images really match the plan. Do not regenerate.",

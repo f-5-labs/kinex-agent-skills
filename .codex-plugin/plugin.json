@@ -1,6 +1,6 @@
 {
   "name": "kinex",
-  "version": "0.6.3",
+  "version": "0.6.4",
   "description": "Source-grounded, variant-aware image, video, mixed-media, and typed Flow production through the authenticated Kinex MCP server.",
   "author": {
     "name": "Kinex Studio",

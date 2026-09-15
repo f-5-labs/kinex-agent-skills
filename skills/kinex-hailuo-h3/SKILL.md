@@ -21,7 +21,7 @@ Keep duration, resolution, ratio, and uploaded materials as structured operation
 
 ## Build an H3 shot, not a Seedance beat
 
-H3 works best as one continuous audiovisual event within the live duration range. State an opening composition, a physically plausible action and camera path, and the exact visible ending state. Do not use Seedance `@Image` tags, staged multi-beat grammar, hard-cut timecodes, or Seedance reference-role prose.
+One Agent Workspace shot record still owns one generated H3 clip; do not create records per storyboard panel or micro-action. H3 works best as one continuous audiovisual event within the live duration range. State an opening composition, a physically plausible action and camera path, and the exact visible ending state. If a sequence sheet calls for internal hard cuts that the live H3 operation cannot execute, choose a capable route or split at an earned state boundary instead of hiding the limitation. Do not use Seedance `@Image` tags, staged multi-beat grammar, hard-cut timecodes, or Seedance reference-role prose. A board may remain planning evidence, but it is not an H3 start frame unless a clean single panel is explicitly selected as that frame.
 
 Fill the same production spine H3 can hold, in H3 language:
 

@@ -29,7 +29,7 @@ Release the breakdown after the user approves the script or explicitly accepts r
 
 ## Break down each scene
 
-Create one preliminary shot card per intended piece of coverage. Keep four lanes distinct so an attractive image cannot hide weak dramatic or editorial reasoning.
+Create one preliminary shot card per coherent clip you intend to generate. Do not create a record for each storyboard panel, internal camera station, small action, or reaction. A single card may contain motivated internal cuts when one continuous dramatic event can be generated and reviewed as one clip. Keep four lanes distinct so an attractive image cannot hide weak dramatic or editorial reasoning.
 
 ### Identity and asset lane
 
@@ -38,6 +38,7 @@ Create one preliminary shot card per intended piece of coverage. Keep four lanes
 - active cast including extras or animals, with exact named variants;
 - story-significant props, vehicles, screens, titles, or in-frame text;
 - observable action or dialogue, estimated duration, and complexity risks.
+- the sequence-sheet size and ownership when used, chosen from the event rather than treated as a record or cut count.
 
 Treat vehicle interiors, designed screens, typography, crowds, water, fire, smoke, stunts, and other failure-prone elements as explicit production needs. Separate in-frame text into a dedicated generation or finishing task when the selected model cannot hold it reliably.
 
@@ -64,13 +65,14 @@ Treat vehicle interiors, designed screens, typography, crowds, water, fire, smok
 ### Edit lane
 
 - intended cut or transition;
+- any internal cuts, with the exact action, reaction, or audience-information change that motivates each one;
 - pace and trim expectation;
 - incoming and outgoing movement, eyeline, sound, or composition hook;
 - the event that motivates the cut and a natural read-through estimate for spoken material;
 - speaker ownership and the viable route for multi-speaker, offscreen, device, or playback sound;
 - neighbouring shot dependencies and required cutaways.
 
-The shot card is the source for the generation instruction and later join review. Do not let the prompt introduce a new cast member, prop, geography, action, or line that is absent from the approved card. Do not treat prohibitions such as “no push-in” as a camera plan; specify the useful view, operator behaviour, and reason for the cut. A gesture is not physical business unless a trigger changes the task or relationship.
+The shot card is the source for one generated clip and its later join review. Its board may describe the clip's opening, internal camera cuts, micro-actions, reactions, exact dialogue, and tail, but those panels are planning states rather than separate records. Do not let the prompt introduce a new cast member, prop, geography, action, or line that is absent from the approved card. Do not treat prohibitions such as “no push-in” as a camera plan; specify the useful view, operator behaviour, and reason for the cut. A gesture is not physical business unless a trigger changes the task or relationship.
 
 Keep scene reasoning and open decisions in the Production Plan. Persist the executable four-lane card in the shot's supported `direction`, `camera`, `edit`, and `audio` groups using [shared shot composition](shot-composition.md). Read it back with `shot_get`; canvas notes alone do not update the shot. Patch only the intended fields and keep assignments intact. A successful save and re-read proves persistence only; it does not prove direction, frame feasibility, motion, or sound.
 
