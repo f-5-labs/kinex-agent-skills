@@ -229,6 +229,91 @@
       ]
     },
     {
+      "id": "flow-multimodal-ai-text-director",
+      "skill": "kinex-flow-builder",
+      "request": "Build and run a Flow that takes my subject image, style video, and written instructions. Use an LLM node that can actually inspect both media types to write a stronger prompt, pass that prompt plus the original references to a video node, then prove the generated media persisted.",
+      "expectedTools": [
+        "library_upload_media",
+        "flow_create",
+        "flow_get",
+        "flow_plan_get",
+        "flow_plan_save",
+        "flow_capabilities_get",
+        "flow_node_add",
+        "flow_media_input_set",
+        "flow_nodes_connect",
+        "flow_validate",
+        "flow_run_graph",
+        "flow_run_get",
+        "flow_list_media"
+      ],
+      "orderedTools": [
+        "library_upload_media",
+        "flow_create",
+        "flow_get",
+        "flow_plan_get",
+        "flow_plan_save",
+        "flow_capabilities_get",
+        "flow_node_add",
+        "flow_media_input_set",
+        "flow_nodes_connect",
+        "flow_validate",
+        "flow_run_graph",
+        "flow_run_get",
+        "flow_list_media",
+        "flow_get"
+      ],
+      "requiredToolCalls": [
+        {
+          "tool": "flow_node_add",
+          "input": { "typeId": "flow.asset.static", "label": "Subject image" }
+        },
+        {
+          "tool": "flow_node_add",
+          "input": { "typeId": "flow.asset.static", "label": "Style video" }
+        },
+        {
+          "tool": "flow_node_add",
+          "input": { "typeId": "flow.text.prompt", "label": "Creative instructions" }
+        },
+        {
+          "tool": "flow_node_add",
+          "input": { "typeId": "flow.ai.llm", "label": "Prompt director" }
+        },
+        {
+          "tool": "flow_capabilities_get",
+          "input": { "typeId": "flow.ai.llm" }
+        },
+        {
+          "tool": "flow_nodes_connect",
+          "input": { "sourceNodeId": "subject-image", "targetNodeId": "prompt-director", "targetPortId": "images" }
+        },
+        {
+          "tool": "flow_nodes_connect",
+          "input": { "sourceNodeId": "style-video", "targetNodeId": "prompt-director", "targetPortId": "videos" }
+        },
+        {
+          "tool": "flow_nodes_connect",
+          "input": { "sourceNodeId": "creative-instructions", "targetNodeId": "prompt-director", "targetPortId": "prompt" }
+        },
+        {
+          "tool": "flow_nodes_connect",
+          "input": { "sourceNodeId": "prompt-director", "targetNodeId": "directed-motion", "targetPortId": "prompt" }
+        }
+      ],
+      "forbiddenTools": [
+        "run_flow_template",
+        "workspace_execute_command",
+        "library_generate_video"
+      ],
+      "checks": [
+        "discovers the LLM again with the saved model and requires both image and video ports to be supported",
+        "uses unique source labels and writes source-label mentions such as @subject-image and @style-video instead of connector-name mentions",
+        "feeds LLM analysis into the video prompt while retaining direct subject-image and style-video reference edges",
+        "validates before execution, polls the one requested run, lists persisted Flow media, and re-reads server-written outputs"
+      ]
+    },
+    {
       "id": "flow-active-run-status-and-cancel",
       "skill": "kinex-flow-builder",
       "request": "That Flow run is still going. Check its status, then cancel it and make sure it stopped.",
