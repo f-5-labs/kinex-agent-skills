@@ -96,7 +96,7 @@
     {
       "id": "external-imagegen-entity-lock",
       "skill": "kinex-agent-workspace",
-      "request": "Use the host image generator\u2014not Kinex generation\u2014to create Nia's approved identity image, then save it as her Agent Workspace lock.",
+      "request": "Use the host image generator—not Kinex generation—to create Nia's approved identity image, then save it as her Agent Workspace lock.",
       "expectedTools": [
         "workspace_list_entities",
         "workspace_upload_external_media",
@@ -222,6 +222,160 @@
         "shares sourced canon without inventing claims",
         "does not encode the campaign workflow as a tool"
       ]
+    },
+    {
+      "id": "grounded-story-research-design-before-prompt",
+      "skill": "kinex-agent-workspace",
+      "request": "Generate the approved opening still for our Old Port drama. The reviewed asset-design ledger cites source photograph ref-1: the workshop has a blue steel gate. The approved action is that the worker holds its latch while the visitor waits. Correct missing saved design inputs before generation; do not research the unchanged setting again.",
+      "expectedTools": [
+        "plan_get",
+        "context_get",
+        "context_update_section",
+        "plan_save",
+        "workspace_update_entity",
+        "workspace_read_entity",
+        "shot_update",
+        "shot_get",
+        "workspace_execute_command",
+        "task_get"
+      ],
+      "orderedTools": [
+        "plan_get",
+        "context_get",
+        "context_update_section",
+        "plan_save",
+        "workspace_update_entity",
+        "workspace_read_entity",
+        "shot_update",
+        "shot_get",
+        "workspace_execute_command",
+        "task_get"
+      ],
+      "forbiddenTools": [
+        "library_generate_image",
+        "generation_generate_video"
+      ],
+      "checks": [
+        "inherits the reviewed asset design, repairing only missing executable fields before generation",
+        "labels durable decisions as sourced, proposed, or unresolved instead of inventing local detail",
+        "carries the context into wardrobe, work practice, prop custody, occupancy, material wear, signage or artefacts, and camera blocking",
+        "uses a focused research pass without adding a second approval loop before the requested generation",
+        "does not reduce a country, community, or district to a generic visual style"
+      ],
+      "beforeTool": "workspace_execute_command",
+      "requiredEvents": [
+        {
+          "type": "tool_call",
+          "tool": "context_update_section",
+          "input": {
+            "projectId": "project-1",
+            "section": "World Building",
+            "mode": "append",
+            "content": "Sourced: ref-1 shows the workshop's blue steel gate."
+          }
+        },
+        {
+          "type": "tool_call",
+          "tool": "plan_save",
+          "input": {
+            "projectId": "project-1",
+            "plan": {
+              "direction": "Use the reviewed Old Port asset design for the approved opening.",
+              "creativeDecisions": [
+                "Sourced: ref-1 shows a blue steel gate; it does not establish unseen machinery."
+              ],
+              "milestones": [
+                "Opening still"
+              ],
+              "acceptanceCriteria": [
+                "Gate and latch remain visible; visitor waits until release."
+              ],
+              "checklist": [
+                {
+                  "id": "opening",
+                  "label": "Generate opening still",
+                  "status": "planned"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "tool_call",
+          "tool": "workspace_update_entity",
+          "input": {
+            "projectId": "project-1",
+            "kind": "location",
+            "entityId": "location-1",
+            "attributesPatch": {
+              "visualLock": "Workshop with a blue steel gate."
+            }
+          }
+        },
+        {
+          "type": "tool_call",
+          "tool": "workspace_read_entity",
+          "input": {
+            "projectId": "project-1",
+            "kind": "location",
+            "entityId": "location-1"
+          }
+        },
+        {
+          "type": "tool_result",
+          "tool": "workspace_read_entity",
+          "output": {
+            "entity": {
+              "entityId": "location-1",
+              "attributes": {
+                "visualLock": "Workshop with a blue steel gate."
+              }
+            }
+          }
+        },
+        {
+          "type": "tool_call",
+          "tool": "shot_update",
+          "input": {
+            "projectId": "project-1",
+            "shotId": "shot-1",
+            "locationEntityId": "location-1",
+            "direction": {
+              "blocking": "Worker holds the gate latch; visitor waits outside."
+            }
+          }
+        },
+        {
+          "type": "tool_call",
+          "tool": "shot_get",
+          "input": {
+            "projectId": "project-1",
+            "shotId": "shot-1"
+          }
+        },
+        {
+          "type": "tool_result",
+          "tool": "shot_get",
+          "output": {
+            "shot": {
+              "shotId": "shot-1",
+              "locationEntityId": "location-1",
+              "direction": {
+                "blocking": "Worker holds the gate latch; visitor waits outside."
+              }
+            }
+          }
+        }
+      ],
+      "requiredToolInputs": {
+        "workspace_execute_command": {
+          "type": "scene.generateImage",
+          "projectId": "project-1",
+          "sceneId": "shot-1",
+          "operationKey": "image/seedream/seedream/5-lite:text-to-image",
+          "inputs": {}
+        }
+      }
     },
     {
       "id": "performance-aware-shot-revision",
@@ -643,6 +797,40 @@
       ]
     },
     {
+      "id": "visual-realism-pixel-review",
+      "skill": "kinex-review-and-export",
+      "request": "Read-only review the Old Port stills and clips for gate mechanics, camera angle, wardrobe and tool custody. In this test the media service returns metadata only and the preview cannot expose pixels or playback. Report what can actually be verified; do not generate replacements.",
+      "expectedTools": [
+        "shot_list",
+        "shot_get",
+        "media_list_project",
+        "workspace_preview_timeline"
+      ],
+      "orderedTools": [
+        "shot_list",
+        "shot_get",
+        "media_list_project",
+        "workspace_preview_timeline"
+      ],
+      "forbiddenTools": [
+        "workspace_execute_command",
+        "timeline_save",
+        "timeline_export",
+        "shot_update"
+      ],
+      "checks": [
+        "requires generated pixel or watched-frame evidence before approving a still or clip",
+        "checks physical mechanics, lived-in occupancy, material condition, and the promised camera angle",
+        "compares wardrobe, props, task phase, geography, light, and camera-side continuity across affected shots",
+        "reports the first material failure and one targeted repair rather than approving a specific prompt",
+        "keeps sourced and proposed grounded-context decisions distinct"
+      ],
+      "expectedReview": {
+        "verdict": "UNVERIFIED",
+        "pixelEvidence": []
+      }
+    },
+    {
       "id": "verified-final-export",
       "skill": "kinex-review-and-export",
       "request": "Everything is approved. Verify the latest cut and export it.",
@@ -945,6 +1133,176 @@
         "puts delivery direction in a short preface rather than as stage directions inside the spoken text",
         "checks the line against the shot runtime and surfaces the conflict instead of absorbing it",
         "listens to the result against picture before reporting"
+      ]
+    },
+    {
+      "id": "grounded-library-design-stays-library",
+      "skill": "kinex-media-library",
+      "request": "Create a reusable workshop location in my library, not a project. Source ref-1 shows a blue steel gate; do not generate an image yet.",
+      "expectedTools": [
+        "library_list_entities",
+        "library_create_entity"
+      ],
+      "orderedTools": [
+        "library_list_entities",
+        "library_create_entity"
+      ],
+      "forbiddenTools": [
+        "project_create_from_brief",
+        "plan_save",
+        "context_update_section",
+        "workspace_define_entity",
+        "workspace_execute_command",
+        "library_generate_image"
+      ],
+      "requiredToolInputs": {
+        "library_create_entity": {
+          "kind": "locations",
+          "name": "Workshop",
+          "data": {
+            "description": "Sourced: ref-1 shows a blue steel gate. Unresolved: space behind the gate."
+          }
+        }
+      },
+      "checks": [
+        "reviews the location design and source limits before its first image",
+        "preserves library destination without introducing a project"
+      ]
+    },
+    {
+      "id": "grounded-prompt-only-no-project-writes",
+      "toolFree": true,
+      "skill": "kinex-image-prompting",
+      "request": "Write a still prompt from this reviewed design: one worker waits at a blue steel gate. Do not generate or save anything.",
+      "expectedTools": [],
+      "forbiddenTools": [
+        "project_create_from_brief",
+        "plan_save",
+        "context_update_section",
+        "workspace_define_entity",
+        "workspace_update_entity",
+        "shot_update",
+        "workspace_execute_command",
+        "library_create_entity",
+        "library_generate_image"
+      ],
+      "checks": [
+        "inherits the supplied design without another research pass",
+        "returns proposed prompt prose without remote writes or visual acceptance"
+      ]
+    },
+    {
+      "id": "grounded-character-design-before-first-image",
+      "skill": "kinex-agent-workspace",
+      "request": "Design the recurring mechanic and generate the first identity image. Supplied ref-1 shows an adult in a blue cotton work coat; unseen badges and back construction are unknown. The approved voice casting is low conversational register with measured pacing. Review the design before spending on the image; do not ask for another approval.",
+      "expectedTools": [
+        "plan_get",
+        "context_get",
+        "plan_save",
+        "workspace_define_entity",
+        "workspace_read_entity",
+        "workspace_execute_command",
+        "task_get"
+      ],
+      "beforeTool": "workspace_execute_command",
+      "requiredEvents": [
+        {
+          "type": "tool_call",
+          "tool": "plan_save",
+          "input": {
+            "projectId": "project-1",
+            "plan": {
+              "direction": "Design the mechanic from ref-1 before the first identity image.",
+              "milestones": [
+                "Reviewed character design",
+                "First identity image"
+              ],
+              "acceptanceCriteria": [
+                "Preserve the blue cotton work coat; do not infer unseen badges."
+              ],
+              "checklist": [
+                {
+                  "id": "design",
+                  "label": "Review sourced identity and wardrobe",
+                  "status": "complete"
+                },
+                {
+                  "id": "identity",
+                  "label": "Generate first identity image",
+                  "status": "planned"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "design_review",
+          "stage": "before_image",
+          "sourceRefs": [
+            "ref-1"
+          ],
+          "decisions": {
+            "sourced": "Blue cotton work coat.",
+            "unresolved": "Unseen badges and back construction."
+          },
+          "verdict": "READY_FOR_REQUESTED_IMAGE"
+        },
+        {
+          "type": "tool_call",
+          "tool": "workspace_define_entity",
+          "input": {
+            "projectId": "project-1",
+            "kind": "character",
+            "name": "Mechanic",
+            "description": "Adult mechanic in the supplied blue cotton work coat.",
+            "attributes": {
+              "visualLock": "Adult mechanic in a blue cotton work coat.",
+              "voicePrompt": "Established casting: low conversational register with measured pacing."
+            }
+          }
+        },
+        {
+          "type": "tool_call",
+          "tool": "workspace_read_entity",
+          "input": {
+            "projectId": "project-1",
+            "kind": "character",
+            "entityId": "mechanic-1"
+          }
+        },
+        {
+          "type": "tool_result",
+          "tool": "workspace_read_entity",
+          "output": {
+            "entity": {
+              "entityId": "mechanic-1",
+              "attributes": {
+                "visualLock": "Adult mechanic in a blue cotton work coat.",
+                "voicePrompt": "Established casting: low conversational register with measured pacing."
+              }
+            }
+          }
+        }
+      ],
+      "requiredToolInputs": {
+        "workspace_execute_command": {
+          "projectId": "project-1",
+          "type": "entity.generateHero",
+          "entityKind": "character",
+          "entityId": "mechanic-1",
+          "operationKey": "image/seedream/seedream/5-lite:text-to-image",
+          "inputs": {}
+        }
+      },
+      "forbiddenTools": [
+        "library_generate_image",
+        "shot_define"
+      ],
+      "checks": [
+        "reviews source and workwear during character design, before its first image",
+        "marks unseen features unresolved instead of turning them into canon",
+        "does not treat design readiness as pixel approval",
+        "continues the authorized image request without a second approval ceremony"
       ]
     }
   ]

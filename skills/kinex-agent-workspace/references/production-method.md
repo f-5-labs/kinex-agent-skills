@@ -8,6 +8,10 @@ Extract the deliverable, audience, duration, aspect ratio, exact copy or dialogu
 
 For campaigns, give each deliverable family its own beat and artifact target. Share canon and identity locks across the campaign; do not invent a batch abstraction or encode a marketing skill as a tool.
 
+## Ground a real-world story before prompting
+
+When real context matters, complete [grounded production design](grounded-production-design.md) during asset design, before the first image. Research and review the source, identity, wardrobe, work practice, and usable geography together; persist accepted decisions in the executable records. Later shots inherit that design and review only changed requirements. This adds no separate approval ceremony.
+
 ## Build references before coverage
 
 - Choose the lightest sufficient artifact from downstream use: reuse an approved lock, a one-off hero, a quick lock, a full character master sheet, a wardrobe or garment lock, or a location reference sheet. Follow the character and location method for exact coverage and review gates.

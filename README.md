@@ -92,7 +92,7 @@ See [creative examples](./examples/creative-prompts.md) for prompts you can adap
 - Treat a direct request to create a named visual deliverable as plan approval and continue execution after host confirmation instead of asking again.
 - Treat stop and cancel as authoritative; never retry cancelled work without a new instruction.
 - Check what already exists before generating, announce a repeat run as a numbered take, and keep earlier takes available until the user picks one.
-- Treat a generated hero as unassigned until `primaryMediaId` is verified by re-reading the entity; Kinex auto-assigns only an entity's first hero.
+- Treat every generated hero, including the first, as a review candidate; inspect pixels before explicit assignment, then verify `primaryMediaId` by re-reading. An assignment alone never proves creative approval.
 - Treat queued work as pending, not complete.
 - Re-read saved artifacts after writes and verify outputs before claiming success.
 - Claim only finishing work the live Kinex surface proves; prepare an explicit external handoff for grade, sound post, interchange, or delivery formats outside it.
@@ -109,6 +109,8 @@ npx skills add . --list
 
 The seven Agent Workspace production skills share [shot composition and pipeline handoffs](./skills/kinex-agent-workspace/references/shot-composition.md), aligned to the final merged Helios PR #196. The Flow Builder skill uses its separate live typed-graph contract. Confirm the connected server advertises the relevant contract before writing; merged source is not deployment proof.
 
-Validation checks packaging, nested trace expectations, and review-record consistency. Checked-in traces are synthetic tool-call examples, not server executions. Review-record PASS means only that declared fields are consistent; creative quality, saved-state integrity, operation compilation, image dimensions, motion, and sound require their own evidence. Scenarios' prose `checks` are a manual evaluation rubric, not assertions executed by the trace checker.
+Validation checks packaging, nested trace expectations, ordered record evidence before the first generation, and review-record consistency. Checked-in traces are synthetic examples, not server executions. `requiredEvents` matches declared call/readback fields; `expectedReview` checks the verdict allowed by a scenario's supplied artifacts. Neither authenticates evidence or judges pixels. The trace checker always returns `creativeAcceptance: NOT_ASSESSED`. The metadata-only visual case must remain UNVERIFIED, not PASS.
+
+For creative evaluation, separately supply the actual source and generated media to a reviewer. Record media identity, inspected views or video time ranges, criterion-linked observations, and the resulting verdict using the direction-review rubric. In a trace with `expectedReview`, encode the final review as `review_result`; a free-text assertion cannot replace or follow that result. Missing pixels or playback remain unverified; prompt specificity, fabricated observations, and passing synthetic traces are not substitutes. Scenarios' prose `checks` remain that manual rubric, not executable assertions.
 
 Public tool reference and connection guidance live at [docs.kinex.studio/mcp](https://docs.kinex.studio/mcp).

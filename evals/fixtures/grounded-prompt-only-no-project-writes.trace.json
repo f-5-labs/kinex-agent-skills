@@ -1,0 +1,10 @@
+{
+  "scenarioId": "grounded-prompt-only-no-project-writes",
+  "host": "synthetic-contract-fixture",
+  "events": [
+    {
+      "type": "assistant_message",
+      "text": "Proposed still prompt: One worker waits outside the blue steel gate; hands resting at their sides. No image generated or records changed."
+    }
+  ]
+}

@@ -115,6 +115,10 @@ async function validate() {
     agentWorkspaceSource.includes('references/direction-readiness.md'),
     'kinex-agent-workspace: direction readiness link is missing.'
   );
+  check(
+    agentWorkspaceSource.includes('references/grounded-production-design.md'),
+    'kinex-agent-workspace: grounded production design link is missing.'
+  );
   const entityLocationMethod = await readFile(
     path.join(
       root,
@@ -163,6 +167,12 @@ async function validate() {
     );
   }
 
+  await access(path.join(root, 'skills/kinex-agent-workspace/references/grounded-production-design.md'));
+  check(
+    entityLocationMethod.includes('grounded-production-design.md'),
+    'Asset design must route to the shared research and design review.'
+  );
+
   const reviewSource = skillSources.get('kinex-review-and-export') ?? '';
   check(
     reviewSource.includes('references/direction-review.md'),
@@ -178,6 +188,11 @@ async function validate() {
     'Frame',
     'Motion',
     'Sound',
+    'Run the visual-realism gate before acceptance',
+    'Physical mechanics',
+    'Lived-in occupancy',
+    'Camera-angle compliance',
+    'Cross-shot continuity',
     'Audit coverage and route debt',
   ]) {
     check(
@@ -214,10 +229,19 @@ async function validate() {
 
   const scenarioIds = scenarios.scenarios?.map((scenario) => scenario.id) ?? [];
   check(new Set(scenarioIds).size === scenarioIds.length, 'Eval scenario ids must be unique.');
+  for (const scenarioId of [
+    'grounded-story-research-design-before-prompt',
+    'visual-realism-pixel-review',
+  ]) {
+    check(scenarioIds.includes(scenarioId), `Eval scenario is missing ${scenarioId}.`);
+  }
   for (const scenario of scenarios.scenarios ?? []) {
     check(expectedSkills.includes(scenario.skill), `${scenario.id}: unknown skill.`);
     check(Boolean(scenario.request?.trim()), `${scenario.id}: request is required.`);
-    check(scenario.expectedTools?.length > 0, `${scenario.id}: expectedTools must not be empty.`);
+    check(
+      scenario.expectedTools?.length > 0 || scenario.toolFree === true,
+      `${scenario.id}: declare expectedTools or an explicitly tool-free task.`
+    );
     check(scenario.checks?.length > 0, `${scenario.id}: observable checks must not be empty.`);
     check(
       (scenario.orderedTools ?? []).every((tool) => scenario.expectedTools?.includes(tool)),

@@ -22,11 +22,12 @@ function containsExpected(actual, expected) {
   return actual === expected;
 }
 
-/** Checks observable call routing and inputs, not server success or a scenario's prose rubric. */
+/** Checks declared routing, record evidence, and review boundaries; never grants creative acceptance. */
 export function evaluateExternalTrace(scenario, trace) {
   const failures = [];
   if (trace.scenarioId !== scenario.id) failures.push('trace scenarioId does not match the scenario');
   const calls = (trace.events ?? []).filter((event) => event.type === 'tool_call');
+  if (scenario.toolFree && calls.length) failures.push('tool-free request invoked a tool');
   const calledTools = calls.map((event) => event.tool);
   for (const tool of scenario.expectedTools ?? []) {
     if (!calledTools.includes(tool)) failures.push(`missing required tool: ${tool}`);
@@ -63,7 +64,30 @@ export function evaluateExternalTrace(scenario, trace) {
       if (Object.hasOwn(call.input ?? {}, key)) failures.push(`${call.tool} contains unsupported authoring field: ${key}`);
     }
   }
-  return { failures, callCount: calls.length };
+  // A preflight must precede the FIRST generation, even if a trace retries later.
+  const events = trace.events ?? [];
+  const boundary = scenario.beforeTool
+    ? events.findIndex((event) => event.type === 'tool_call' && event.tool === scenario.beforeTool)
+    : events.length;
+  const reviewableEvents = events.slice(0, boundary < 0 ? events.length : boundary);
+  let previous = -1;
+  for (const requirement of scenario.requiredEvents ?? []) {
+    const index = reviewableEvents.findIndex((event, index) =>
+      index > previous && containsExpected(event, requirement));
+    if (index === -1) {
+      failures.push(`missing ordered evidence before ${scenario.beforeTool ?? 'completion'}: ${JSON.stringify(requirement)}`);
+      break;
+    }
+    previous = index;
+  }
+  if (scenario.expectedReview) {
+    const reviews = events.filter((event) => event.type === 'review_result');
+    if (events.at(-1)?.type !== 'review_result' || !reviews.length ||
+        reviews.some((review) => !containsExpected(review, scenario.expectedReview))) {
+      failures.push('review verdict or evidence does not match the supplied artifacts');
+    }
+  }
+  return { failures, callCount: calls.length, creativeAcceptance: 'NOT_ASSESSED' };
 }
 
 const isMain = process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url);

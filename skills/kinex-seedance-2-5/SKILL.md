@@ -111,6 +111,8 @@ For a start-frame or start-and-end-frame operation, bind only the required sourc
 
 Read the current shot with `shot_get` and apply [shared shot composition](../kinex-agent-workspace/references/shot-composition.md) before compiling the provider prompt. Repair known direction or audio contradictions within scope, then run this preflight and execute authorized generation. If the user explicitly requests a test with open creative issues, record those issues and keep the verdict unverified; do not turn preflight into another approval loop.
 
+Inherit the reviewed asset design; check only new action, state, camera, and audio requirements. Do not restart research here or invent local detail. Native film generation compiles persisted records: use the [shared prompt handoff](../kinex-agent-workspace/references/shot-composition.md#persist-decisions-before-film-compilation), not submitted prose as an override. Prompt-only requests remain local proposals.
+
 1. Each activated reference has one job and a token.
 2. GEO, first frame, and screen direction are stated.
 3. One coherent camera plan, including locked-off; one continuous shot unless a cut is intentional.

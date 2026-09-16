@@ -7,6 +7,8 @@ description: Write the image prompt itself for Kinex work — identity locks, he
 
 This skill is about prompt craft. Model choice belongs to `$kinex-media-library`, project routing to `$kinex-agent-workspace`, and motion to the model skills. What arrives here is one image that has to do one job.
 
+Inherit the reviewed asset design and reference limits. Check only what this image changes; research belongs to asset design, not a new workflow here. For prompt-only or standalone use, distinguish sourced facts, proposed choices, and unresolved details in the response without project writes. If essential design evidence is missing, flag the affected choice; do not fill it with a country/community stereotype.
+
 ## Classify the job before writing a word
 
 A prompt that mixes jobs drifts, because the jobs pull against each other:
@@ -21,7 +23,7 @@ Name the job out loud, then write only for that job.
 
 ## Read the operation before the prose
 
-Aspect ratio, resolution, output count, seed, and negative prompt are structured inputs on the live operation. Read them there and fill them there. Writing `--ar 16:9` or “16:9, 4K” in the prompt text controls nothing and spends attention. Confirm the fields from the live registry rather than a remembered schema.
+When preparing an executable request, read aspect ratio, resolution, output count, seed, and negative prompt from the live operation and fill its supported fields. Writing `--ar 16:9` or “16:9, 4K” in prose does not set them. For prompt-only work, return the prose and any proposed structured settings without requiring operation discovery or remote writes.
 
 ## Be dense where control matters, thin everywhere else
 
@@ -46,7 +48,7 @@ None of these operations take a negative prompt in the prose, and naming what to
 - **Motion-safe start frames** follow the sourced incoming action phase in `direction.blocking`. They can show anticipation, stillness, permission, or action already underway. Show the cause before its payoff; never skip approach, consent, contact, or transfer simply to start mid-action.
 - **Edits** change the minimum and preserve the rest explicitly: one change per pass, and name what fills the space a removed object leaves behind. A frame that needs several unrelated changes needs a rebuild, not an edit chain — regenerate it.
 
-For project frames, read `shot_get` and the assigned entities/variants first. Compile `imagePrompt` from `direction.blocking`, `camera`, and `spatialLayout`; preserve the executable assignments. Compose for the exact target ratio before cropping, then inspect actual dimensions and action readability. An Adaptive operation inherits the source frame ratio. Follow [shared shot composition](../kinex-agent-workspace/references/shot-composition.md) when a frame changes the shot.
+For project frames, read `shot_get` and the assigned entities/variants first. Follow the [shared prompt handoff](../kinex-agent-workspace/references/shot-composition.md#persist-decisions-before-film-compilation): native film generation compiles persisted records, while external or prose-accepting paths use authored prompts. Preserve executable assignments and keep proposed record changes local unless writes were requested. Compose for the exact target ratio before cropping, then inspect actual dimensions and action readability. An Adaptive operation inherits the source frame ratio.
 
 For a sequence sheet, design the minimum panels needed to communicate one generated clip's opening state, internal camera cuts, micro-actions, reactions, exact dialogue timing, and outgoing handoff. Do not turn its panels into shot records. Choose 4, 9, 12, or another supported layout from complexity; when the native strategy lacks that count, keep it in the plan/prompt instead of inventing a schema value. Save and pass the sheet as a sequence reference only. It is never the clip's literal first frame; extract or generate a clean single frame when an operation requires `startFrame` or `openingFrame`.
 
@@ -60,7 +62,7 @@ Use identity sheets to preserve people and approved location references to prese
 
 Before sending, delete every clause that is not doing work. Past a point, extra sentences dilute attention rather than adding control; a shorter prompt with the same specifics beats a longer one.
 
-Then generate through the route the project uses, poll the task, and actually look at the returned image. Hide captions, panel labels, and diagrams while judging a claimed camera change. Compare foreground occlusion and scale, face visibility, action-path readability, and background perspective against the planned station. Disqualify an attractive sheet when the uncaptioned image contradicts the camera plan. Repair at the source — job classification, reference role, light, framing, structured field — rather than appending adjectives to the prompt that already failed.
+If generation was requested, use the existing route, poll the task, and actually look at the returned image. Otherwise stop with the proposed prompt. Hide captions, panel labels, and diagrams while judging a claimed camera change. Compare foreground occlusion and scale, face visibility, action-path readability, and background perspective against the planned station. Disqualify an attractive sheet when the uncaptioned image contradicts the camera plan. Repair at the source — job classification, reference role, light, framing, structured field — rather than appending adjectives to the prompt that already failed.
 
 Read [tool map](references/tool-map.md) for discovery, routing, and review boundaries.
 

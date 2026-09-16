@@ -8,7 +8,9 @@ Use this gate for scene coverage and motion. It is a creative decision gate, not
 
 Do not promote these evidence states into one another:
 
-`saved and re-read` → persistence only; `direction PASS` → authored coverage is ready for frame work; `frame PASS` → inspected composition and actual dimensions are usable; `motion PASS` → observed action, performance, camera, join, and audible result are usable.
+`saved and re-read` → persistence only; `direction PASS` → authored coverage is ready for frame work; `frame PASS` → inspected pixels, composition, actual dimensions, applicable physical mechanics, context-appropriate occupancy, and continuity are usable; `motion PASS` → observed action, performance, camera, join, and audible result are usable.
+
+For a grounded story, apply the research-and-design record during frame and motion review. A context-rich prompt does not prove that work practice, material wear, signage or artefacts, and camera blocking actually survived into the generated pixels.
 
 ## Receive an incoming production
 
